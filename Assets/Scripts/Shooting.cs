@@ -12,9 +12,12 @@ public class Shooting : MonoBehaviour
     // how frequentlty player can fire
     private float timer;
     public float timeBetweenFiring;
+    public static Shooting shooterInstance;
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+         shooterInstance = this;
     }
 
     // Update is called once per frame
@@ -43,4 +46,11 @@ public class Shooting : MonoBehaviour
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
     }
+public void NotifyHit()
+{
+    // Deactivate the shooter object upon a successful hit
+    gameObject.SetActive(false);
+    Destroy(gameObject);
+    
+}
 }
