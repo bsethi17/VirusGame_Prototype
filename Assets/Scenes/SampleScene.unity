@@ -314,7 +314,7 @@ Transform:
   m_GameObject: {fileID: 352276157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.34, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -333,6 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e0171e2806c464a88400fc9fa86c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  virusObject: {fileID: 1727471896}
+  distanceFromRectangularObject: 2
   bullet: {fileID: 341143343979238756, guid: 6444e94da38e84609b2d19dd14fd63ab, type: 3}
   bulletTransform: {fileID: 1054705959}
   canFire: 1
@@ -1274,7 +1276,7 @@ Transform:
   m_GameObject: {fileID: 1054705958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.003, y: 0.688, z: 0}
+  m_LocalPosition: {x: -0.003, y: 0.394, z: 0}
   m_LocalScale: {x: 1.0625, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1668,7 +1670,7 @@ Transform:
   m_GameObject: {fileID: 1727471896}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -1.56, z: 0}
+  m_LocalPosition: {x: 0.02, y: -1.565, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
+    public GameObject virusObject;
+    private float distanceFromVirusObject = 1.0f;
     private Vector3 mousePos;
     public GameObject bullet;
     public Transform bulletTransform;
@@ -17,7 +19,7 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-         shooterInstance = this;
+        shooterInstance = this;
     }
 
     // Update is called once per frame
@@ -26,11 +28,13 @@ public class Shooting : MonoBehaviour
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
-
+        Vector3 directionToMouse = mousePos - virusObject.transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-
-        // Rotate the player character to face the mouse cursor.
+        // float rotZ = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
+        // Rotate the red dot to face the mouse cursor.
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        // Set the position of the small circle relative to the rectangular object.
+        transform.position = virusObject.transform.position + directionToMouse.normalized * distanceFromVirusObject;
 
         if (!canFire)
         {
@@ -47,11 +51,11 @@ public class Shooting : MonoBehaviour
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
     }
-public void NotifyHit()
-{
-    // Deactivate the shooter object upon a successful hit
-    gameObject.SetActive(false);
-    Destroy(gameObject);
-    
-}
+    public void NotifyHit()
+    {
+        // Deactivate the shooter object upon a successful hit
+        gameObject.SetActive(false);
+        Destroy(gameObject);
+
+    }
 }
