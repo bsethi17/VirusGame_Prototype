@@ -26,6 +26,7 @@ public class Shooting : MonoBehaviour
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
+        // Rotate the player character to face the mouse cursor.
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
         if (!canFire)
