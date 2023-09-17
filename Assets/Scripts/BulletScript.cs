@@ -59,7 +59,7 @@ public class BulletScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!canCollide) return;
-        if (collision.gameObject.tag == "NVHuman2")
+        if (collision.gameObject.tag == "NVHuman2" || collision.gameObject.tag == "NVHuman1")
         {
             // Notify the shooter of the successful hit
             Shooting.shooterInstance.NotifyHit();
