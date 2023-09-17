@@ -1118,13 +1118,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
-  - {fileID: 210086994}
   - {fileID: 1757284761}
   - {fileID: 661772249}
   - {fileID: 92500320}
   - {fileID: 439918501}
   - {fileID: 1347676773}
   - {fileID: 899870290}
+  - {fileID: 210086994}
   - {fileID: 1592637251}
   - {fileID: 151743508}
   - {fileID: 493962110}

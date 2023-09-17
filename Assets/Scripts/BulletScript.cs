@@ -40,10 +40,9 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         // Calculate the distance between the bullet's initial position and its current position.
-        // Calculate the distance squared between the bullet's initial position and its current position.
         float distanceSquared = (transform.position - initialPosition).sqrMagnitude;
 
-        // If the squared distance exceeds the squared maximum range, destroy the bulle
+        // If the squared distance exceeds the squared maximum range, destroy the bullet
         if (distanceSquared > maxRange * maxRange)
         {
             Destroy(gameObject);
