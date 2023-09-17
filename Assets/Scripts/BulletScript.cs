@@ -60,6 +60,11 @@ public class BulletScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!canCollide) return;
+        if (collision.gameObject.tag == "VaccinatedHuman")
+    {
+        Destroy(gameObject);
+        return; 
+    }
         if (collision.gameObject.tag == "NVHuman2" || collision.gameObject.tag == "NVHuman1" || collision.gameObject.tag == "NVHuman3")
         {
             // Notify the shooter of the successful hit

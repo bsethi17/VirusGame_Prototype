@@ -9,6 +9,7 @@ TagManager:
   - InitialVirus
   - NVHuman3
   - bullet
+  - VaccinatedHuman
   layers:
   - Default
   - TransparentFX
