@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5253542943995583010}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ab9c8a3b41a4f58b51b90705fdfe5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRange: 5
+  maxRange: 2
   force: 5
   objectToDestroy: {fileID: 0}
   initialVirusPrefab: {fileID: 2165581262963403846, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}

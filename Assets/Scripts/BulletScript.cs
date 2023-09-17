@@ -8,7 +8,7 @@ public class BulletScript : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rb;
     private Vector3 initialPosition;
-    public float maxRange; // Maximum range the bullet can travel.
+    public static float maxRange = 2; // Maximum range the bullet can travel.
     public float force;
     public GameObject objectToDestroy;
 
@@ -77,7 +77,7 @@ public class BulletScript : MonoBehaviour
 
             // Set the local position to ensure it is visible
             newVirus.transform.localPosition = new Vector3(0, 0, 0);
-
+            maxRange+=1;
 
             if(!isInitialVirus){
                 Destroy(objectToDestroy);
