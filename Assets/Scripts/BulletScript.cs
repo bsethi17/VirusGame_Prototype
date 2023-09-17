@@ -77,7 +77,7 @@ public class BulletScript : MonoBehaviour
 
             // Set the local position to ensure it is visible
             newVirus.transform.localPosition = new Vector3(0, 0, 0);
-            maxRange+=1;
+            maxRange+=2;
 
             if(!isInitialVirus){
                 Destroy(objectToDestroy);
