@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class AmbulanceScript : MonoBehaviour
 {
@@ -12,11 +14,20 @@ public class AmbulanceScript : MonoBehaviour
     public GameObject human1;
     public GameObject human2;
     public GameObject human3;
+    private bool human1Infected;
+    private bool human2Infected;
+    private bool human3Infected;
     private GameObject ambulance;
     public float slideSpeed;
 
+    public GameObject popUpCanvas;
+    public GameObject popUpPanel;
+    public TMP_Text popUpText;
+    public Color newColor;
+
     void Start()
     {
+        popUpCanvas.SetActive(false);
         ambulance = this.gameObject;
     }
 
@@ -50,7 +61,6 @@ public class AmbulanceScript : MonoBehaviour
                 // The object has reached the last waypoint.
                 HandleLastWaypointReached();
             }
-
         }
     }
 
@@ -60,23 +70,43 @@ public class AmbulanceScript : MonoBehaviour
         return obj.childCount > 0;
     }
 
-    void TakeInfectedPersonAway(Transform transform)
+    bool isInfected(Transform transform)
     {
         float step = slideSpeed * Time.deltaTime;
         if (HasChildren(transform))
         {
             // make the human get into ambulance
             transform.position = Vector3.MoveTowards(transform.position, ambulance.transform.position, step);
-
+            return true;
         }
+        else
+        {
+            return false;
+        }
+    }
 
+    void displayResult()
+    {
+        if (human1Infected && human2Infected && human3Infected)
+        {
+            popUpText.text = "Virus wins!";
+            popUpCanvas.SetActive(true);
+        }
+        else
+        {
+            popUpText.text = "Human wins!";
+            popUpCanvas.SetActive(true);
+        }
     }
 
     void HandleLastWaypointReached()
     {
         // This function will be called when the object stops at the last waypoint.
-        TakeInfectedPersonAway(human2.transform);
-        TakeInfectedPersonAway(human1.transform);
-        TakeInfectedPersonAway(human3.transform);
+        human2Infected = isInfected(human2.transform);
+        human1Infected = isInfected(human1.transform);
+        human3Infected = isInfected(human3.transform);
+
+        // give the game results: if there's still non-vaccinated human who is not infected, then the humans win; otherwise us(virus) win
+        Invoke("displayResult", 3f);
     }
 }
