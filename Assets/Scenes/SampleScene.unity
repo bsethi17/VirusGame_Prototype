@@ -612,7 +612,8 @@ MonoBehaviour:
   delay: 5
   human1: {fileID: 970776230}
   human2: {fileID: 908426900}
-  slideSpeed: 1
+  human3: {fileID: 1691576492}
+  slideSpeed: 3
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0

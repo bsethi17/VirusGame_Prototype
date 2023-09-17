@@ -11,8 +11,9 @@ public class AmbulanceScript : MonoBehaviour
 
     public GameObject human1;
     public GameObject human2;
+    public GameObject human3;
     private GameObject ambulance;
-    public float slideSpeed = 1.0f;
+    public float slideSpeed;
 
     void Start()
     {
@@ -59,15 +60,23 @@ public class AmbulanceScript : MonoBehaviour
         return obj.childCount > 0;
     }
 
+    void TakeInfectedPersonAway(Transform transform)
+    {
+        float step = slideSpeed * Time.deltaTime;
+        if (HasChildren(transform))
+        {
+            // make the human get into ambulance
+            transform.position = Vector3.MoveTowards(transform.position, ambulance.transform.position, step);
+
+        }
+
+    }
+
     void HandleLastWaypointReached()
     {
         // This function will be called when the object stops at the last waypoint.
-        if (HasChildren(human2.transform))
-        {
-            // make the human slide into ambulance
-            float step = slideSpeed * Time.deltaTime;
-
-            human2.transform.position = Vector3.MoveTowards(human2.transform.position, ambulance.transform.position, step);
-        }
+        TakeInfectedPersonAway(human2.transform);
+        TakeInfectedPersonAway(human1.transform);
+        TakeInfectedPersonAway(human3.transform);
     }
 }
