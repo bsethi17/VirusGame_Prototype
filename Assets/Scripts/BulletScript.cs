@@ -16,6 +16,8 @@ public class BulletScript : MonoBehaviour
 
     private bool canCollide = false;
 
+    public static bool isInitialVirus=false;
+
 
     void Start()
     {
@@ -58,7 +60,7 @@ public class BulletScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!canCollide) return;
-        if (collision.gameObject.tag == "NVHuman2" || collision.gameObject.tag == "NVHuman1")
+        if (collision.gameObject.tag == "NVHuman2" || collision.gameObject.tag == "NVHuman1" || collision.gameObject.tag == "NVHuman3")
         {
             // Notify the shooter of the successful hit
             Shooting.shooterInstance.NotifyHit();
@@ -76,12 +78,15 @@ public class BulletScript : MonoBehaviour
             // Set the local position to ensure it is visible
             newVirus.transform.localPosition = new Vector3(0, 0, 0);
 
+
+            if(!isInitialVirus){
+                Destroy(objectToDestroy);
+                isInitialVirus=true;
+                objectToDestroy=null;
+            }
             // Destroy the bullet
             Destroy(gameObject);
-            if (objectToDestroy != null)
-            {
-                Destroy(objectToDestroy);
-            }
+        
         }
     }
 
