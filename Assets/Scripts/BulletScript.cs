@@ -12,6 +12,11 @@ public class BulletScript : MonoBehaviour
     public float force;
     public GameObject objectToDestroy;
 
+    public GameObject initialVirusPrefab;
+
+    private bool canCollide = false;
+
+
     void Start()
     {
         // the initial position of the bullet
@@ -27,7 +32,8 @@ public class BulletScript : MonoBehaviour
         // float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         // transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
-         objectToDestroy = GameObject.FindWithTag("InitialVirus");
+        objectToDestroy = GameObject.FindWithTag("InitialVirus");
+        StartCoroutine(EnableCollisionAfterDelay(0.1f));
 
     }
 
@@ -44,20 +50,40 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-private void OnCollisionEnter2D(Collision2D collision)
-{
-    Debug.Log("Collision Detected" + collision.gameObject.tag);
-    if (collision.gameObject.tag == "NVHuman2")
+    private IEnumerator EnableCollisionAfterDelay(float delay)
     {
-        // Notify the shooter of the successful hit
-        Shooting.shooterInstance.NotifyHit();
-        // Destroy the bullet
-        Destroy(gameObject);
-        if (objectToDestroy != null)
+        yield return new WaitForSeconds(delay);
+        canCollide = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!canCollide) return;
+        if (collision.gameObject.tag == "NVHuman2")
         {
-            Destroy(objectToDestroy);
+            // Notify the shooter of the successful hit
+            Shooting.shooterInstance.NotifyHit();
+
+            GameObject newVirus = Instantiate(initialVirusPrefab, collision.transform.position, Quaternion.identity);
+
+            // Set the new virus object as a child of the NVHuman2 game object
+            newVirus.transform.SetParent(collision.transform);
+            SpriteRenderer sr = newVirus.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.sortingOrder = 1; // Set to a value that ensures it is rendered in front of NVHuman2
+            }
+
+            // Set the local position to ensure it is visible
+            newVirus.transform.localPosition = new Vector3(0, 0, 0);
+
+            // Destroy the bullet
+            Destroy(gameObject);
+            if (objectToDestroy != null)
+            {
+                Destroy(objectToDestroy);
+            }
         }
     }
-}
 
 }
