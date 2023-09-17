@@ -8,6 +8,7 @@ TagManager:
   - NVHuman2
   - InitialVirus
   - NVHuman3
+  - bullet
   layers:
   - Default
   - TransparentFX
