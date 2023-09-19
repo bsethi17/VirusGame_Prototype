@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class AmbulanceScript : MonoBehaviour
 {
@@ -20,14 +18,11 @@ public class AmbulanceScript : MonoBehaviour
     private GameObject ambulance;
     public float slideSpeed;
 
-    public GameObject popUpCanvas;
-    public GameObject popUpPanel;
-    public TMP_Text popUpText;
-    public Color newColor;
+    public PopUpCanvas popUpCanvas;
 
     void Start()
     {
-        popUpCanvas.SetActive(false);
+        popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
     }
 
@@ -89,13 +84,25 @@ public class AmbulanceScript : MonoBehaviour
     {
         if (human1Infected && human2Infected && human3Infected)
         {
-            popUpText.text = "Virus wins!";
-            popUpCanvas.SetActive(true);
+            if (popUpCanvas != null)
+            {
+                popUpCanvas.ShowPopUp("Virus wins!");
+            }
+            else
+            {
+                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+            }
         }
         else
         {
-            popUpText.text = "Human wins!";
-            popUpCanvas.SetActive(true);
+            if (popUpCanvas != null)
+            {
+                popUpCanvas.ShowPopUp("Human wins!");
+            }
+            else
+            {
+                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+            }
         }
     }
 

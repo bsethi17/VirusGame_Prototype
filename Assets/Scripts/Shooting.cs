@@ -22,7 +22,6 @@ public class Shooting : MonoBehaviour
         shooterInstance = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -51,6 +50,7 @@ public class Shooting : MonoBehaviour
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
     }
+
     public void NotifyHit()
     {
         // Deactivate the shooter object upon a successful hit

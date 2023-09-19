@@ -16,8 +16,9 @@ public class BulletScript : MonoBehaviour
 
     private bool canCollide = false;
 
-    public static bool isInitialVirus=false;
+    public static bool isInitialVirus = false;
 
+    public PopUpCanvas popUpCanvas;
 
     void Start()
     {
@@ -60,11 +61,23 @@ public class BulletScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!canCollide) return;
+
+        // if the bullet touches vaccinated human
         if (collision.gameObject.tag == "VaccinatedHuman")
-    {
-        Destroy(gameObject);
-        return; 
-    }
+        {
+            // Virus die, human wins directly
+            Destroy(gameObject);
+            if (popUpCanvas != null)
+            {
+                popUpCanvas.ShowPopUp("Human wins!");
+            }
+            else
+            {
+                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+            }
+            return;
+        }
+
         if (collision.gameObject.tag == "NVHuman2" || collision.gameObject.tag == "NVHuman1" || collision.gameObject.tag == "NVHuman3")
         {
             // Notify the shooter of the successful hit
@@ -82,16 +95,17 @@ public class BulletScript : MonoBehaviour
 
             // Set the local position to ensure it is visible
             newVirus.transform.localPosition = new Vector3(0, 0, 0);
-            maxRange+=2;
+            maxRange += 2;
 
-            if(!isInitialVirus){
+            if (!isInitialVirus)
+            {
                 Destroy(objectToDestroy);
-                isInitialVirus=true;
-                objectToDestroy=null;
+                isInitialVirus = true;
+                objectToDestroy = null;
             }
             // Destroy the bullet
             Destroy(gameObject);
-        
+
         }
     }
 
