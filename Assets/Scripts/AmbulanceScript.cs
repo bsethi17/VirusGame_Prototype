@@ -20,13 +20,10 @@ public class AmbulanceScript : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
-    private GameManager gameManager;
-
     void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -67,7 +64,6 @@ public class AmbulanceScript : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus wins!");
-                gameManager.StopGame();
             }
             else
             {
@@ -104,7 +100,6 @@ public class AmbulanceScript : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus wins!");
-                gameManager.StopGame();
             }
             else
             {
@@ -116,7 +111,6 @@ public class AmbulanceScript : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Human wins!");
-                gameManager.StopGame();
             }
             else
             {

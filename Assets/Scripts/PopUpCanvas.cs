@@ -6,11 +6,22 @@ using TMPro;
 
 public class PopUpCanvas : MonoBehaviour
 {
+    public static PopUpCanvas Instance { get; private set; }
     public TMP_Text popUpText;
+    private GameManager gameManager;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
         HidePopUp();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -20,8 +31,9 @@ public class PopUpCanvas : MonoBehaviour
 
     public void ShowPopUp(string message)
     {
-        popUpText.text = message;
-        this.gameObject.SetActive(true);
+         this.gameObject.SetActive(true);
+        popUpText.text = message;   
+        gameManager.StopGame();       
     }
 
     public void HidePopUp()
