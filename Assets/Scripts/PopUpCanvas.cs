@@ -6,7 +6,6 @@ using TMPro;
 
 public class PopUpCanvas : MonoBehaviour
 {
-    public GameObject canvas;
     public TMP_Text popUpText;
 
     void Start()
@@ -22,11 +21,11 @@ public class PopUpCanvas : MonoBehaviour
     public void ShowPopUp(string message)
     {
         popUpText.text = message;
-        canvas.SetActive(true);
+        this.gameObject.SetActive(true);
     }
 
     public void HidePopUp()
     {
-        canvas.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 }
