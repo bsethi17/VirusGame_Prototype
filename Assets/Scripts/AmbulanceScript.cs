@@ -20,10 +20,13 @@ public class AmbulanceScript : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
+    private GameManager gameManager;
+
     void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -57,6 +60,20 @@ public class AmbulanceScript : MonoBehaviour
                 HandleLastWaypointReached();
             }
         }
+
+        // check constantly if all the humans are infected; if so, stop the game immediately
+        if (human1Infected && human2Infected && human3Infected)
+        {
+            if (popUpCanvas != null)
+            {
+                popUpCanvas.ShowPopUp("Virus wins!");
+                gameManager.StopGame();
+            }
+            else
+            {
+                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+            }
+        }
     }
 
     // check if this human is infected
@@ -87,6 +104,7 @@ public class AmbulanceScript : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus wins!");
+                gameManager.StopGame();
             }
             else
             {
@@ -98,6 +116,7 @@ public class AmbulanceScript : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Human wins!");
+                gameManager.StopGame();
             }
             else
             {

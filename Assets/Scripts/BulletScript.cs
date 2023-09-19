@@ -22,6 +22,7 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
+        popUpCanvas = FindObjectOfType<PopUpCanvas>();
         // the initial position of the bullet
         initialPosition = transform.position;
 
