@@ -33,9 +33,21 @@ public class PopUpCanvas : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         popUpText.text = message;
+        if (message == "Virus wins!")
+        {
+            StartCoroutine(DelayedStopGame());
+        }
+        else
+        {
+            gameManager.StopGame();
+        }
+
+    }
+    private IEnumerator DelayedStopGame()
+    {
+        yield return new WaitForSeconds(3f); // Adjust the delay as needed
         gameManager.StopGame();
     }
-
     public void HidePopUp()
     {
         this.gameObject.SetActive(false);
