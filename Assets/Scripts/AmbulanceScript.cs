@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AmbulanceScript : MonoBehaviour
@@ -54,7 +57,10 @@ public class AmbulanceScript : MonoBehaviour
             else
             {
                 // The object has reached the last waypoint.
-                HandleLastWaypointReached();
+                MoveInfectedHumansIntoAmbulance(() =>
+                {
+                    displayResult();
+                });
             }
         }
 
@@ -78,18 +84,44 @@ public class AmbulanceScript : MonoBehaviour
         return obj.childCount > 0;
     }
 
-    bool isInfected(Transform transform)
+    void MoveInfectedHumansIntoAmbulance(Action callback)
     {
         float step = slideSpeed * Time.deltaTime;
-        if (HasChildren(transform))
+        StartCoroutine(MoveToAmbulance(step, callback));
+    }
+
+    // make the human get into the ambulance
+    IEnumerator MoveToAmbulance(float step, Action callback)
+    {
+        if (HasChildren(human2.transform))
         {
-            // make the human get into ambulance
-            transform.position = Vector3.MoveTowards(transform.position, ambulance.transform.position, step);
-            return true;
+            while (Vector3.Distance(human2.transform.position, ambulance.transform.position) > 0.001f)
+            {
+                human2.transform.position = Vector3.MoveTowards(human2.transform.position, ambulance.transform.position, step);
+                yield return null;
+            }
         }
-        else
+        if (HasChildren(human1.transform))
         {
-            return false;
+            while (Vector3.Distance(human1.transform.position, ambulance.transform.position) > 0.01f)
+            {
+                human1.transform.position = Vector3.MoveTowards(human1.transform.position, ambulance.transform.position, step);
+                yield return null;
+            }
+        }
+        if (HasChildren(human3.transform))
+        {
+            while (Vector3.Distance(human3.transform.position, ambulance.transform.position) > 0.001f)
+            {
+                human3.transform.position = Vector3.MoveTowards(human3.transform.position, ambulance.transform.position, step);
+                yield return null;
+            }
+        }
+
+        // Movement is finished, invoke the callback.
+        if (callback != null)
+        {
+            callback();
         }
     }
 
@@ -117,16 +149,5 @@ public class AmbulanceScript : MonoBehaviour
                 Debug.LogWarning("PopUpCanvas reference is not assigned!");
             }
         }
-    }
-
-    void HandleLastWaypointReached()
-    {
-        // This function will be called when the object stops at the last waypoint.
-        human2Infected = isInfected(human2.transform);
-        human1Infected = isInfected(human1.transform);
-        human3Infected = isInfected(human3.transform);
-
-        // give the game results: if there's still non-vaccinated human who is not infected, then the humans win; otherwise us(virus) win
-        Invoke("displayResult", 1f);
     }
 }

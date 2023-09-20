@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     // deley the stop operation to make sure the pop up shows up correctly
     public IEnumerator DelayedStopGame()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         StopGame();
     }
 
