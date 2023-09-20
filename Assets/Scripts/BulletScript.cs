@@ -30,11 +30,8 @@ public class BulletScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;
-        // for bullets to rotate
-        // Vector3 rotation = transform.position - mousePos;
+
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
-        // float rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        // transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
         objectToDestroy = GameObject.FindWithTag("InitialVirus");
         StartCoroutine(EnableCollisionAfterDelay(0.1f));
@@ -108,12 +105,5 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
 
         }
-    }
-
-    public void ResetToInitialState()
-    {
-        maxRange = 2;
-        canCollide = false;
-        isInitialVirus = false;
     }
 }

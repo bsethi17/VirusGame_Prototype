@@ -36,6 +36,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f; // Stop the game
     }
 
+    // deley the stop operation to make sure the pop up shows up correctly
+    public IEnumerator DelayedStopGame()
+    {
+        yield return new WaitForSeconds(0.2f);
+        StopGame();
+    }
+
     void ResumeGame()
     {
         Time.timeScale = 1f; // Unpause the game
