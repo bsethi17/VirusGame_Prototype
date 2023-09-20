@@ -983,11 +983,11 @@ MonoBehaviour:
   - {fileID: 2093051871}
   - {fileID: 907710984}
   speed: 4
-  delay: 5
+  delay: 8
   human1: {fileID: 970776230}
   human2: {fileID: 908426900}
   human3: {fileID: 1691576492}
-  slideSpeed: 7
+  slideSpeed: 10
   popUpCanvas: {fileID: 1300896067}
 --- !u!1 &515446973
 GameObject:

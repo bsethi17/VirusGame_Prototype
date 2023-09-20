@@ -59,7 +59,7 @@ public class AmbulanceScript : MonoBehaviour
         }
 
         // check constantly if all the humans are infected; if so, stop the game immediately
-        if (human1Infected && human2Infected && human3Infected)
+        if (HasChildren(human1.transform) && HasChildren(human2.transform) && HasChildren(human3.transform))
         {
             if (popUpCanvas != null)
             {
@@ -127,6 +127,6 @@ public class AmbulanceScript : MonoBehaviour
         human3Infected = isInfected(human3.transform);
 
         // give the game results: if there's still non-vaccinated human who is not infected, then the humans win; otherwise us(virus) win
-        Invoke("displayResult", 3f);
+        Invoke("displayResult", 1f);
     }
 }
