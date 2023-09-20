@@ -5,24 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    void Start()
-    {
+    public static GameManager Instance { get; private set; }
 
+    private string originalSceneName;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        originalSceneName = SceneManager.GetActiveScene().name;
     }
 
-    void Update()
-    {
-
-    }
 
     public void RestartGame()
     {
         // Add any additional restart logic here.
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(originalSceneName);
+        ResumeGame();
     }
 
     public void StopGame()
     {
         Time.timeScale = 0f; // Stop the game
+    }
+
+    void ResumeGame()
+    {
+        Time.timeScale = 1f; // Unpause the game
+
+        // reset the virus to the initial virus 
+        BulletScript.isInitialVirus = false;
+        BulletScript.maxRange = 2;
     }
 }

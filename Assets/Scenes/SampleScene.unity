@@ -936,7 +936,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f00cbb912392c0c4fba74a7d0d42d2c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -955,13 +955,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496797573}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.57, y: -4.16, z: 0}
-  m_LocalScale: {x: 2.0758, y: 1, z: 1}
+  m_LocalRotation: {x: -0.027202941, y: -0.027113497, z: 0.7054208, w: 0.70774746}
+  m_LocalPosition: {x: 14.096, y: -4.16, z: 0}
+  m_LocalScale: {x: 2.0758, y: 1.7193, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.014, y: -4.402, z: 89.812}
 --- !u!114 &496797576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4521,6 +4521,22 @@ PrefabInstance:
     - target: {fileID: 2624037154835970595, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230910256739608225, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300002, guid: 4745d8326cce0104db089c35fd71a440, type: 3}
+    - target: {fileID: 5230910256739608225, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230910256739608225, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5230910256739608225, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5230910256739608225, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: m_SortingLayer

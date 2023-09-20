@@ -110,4 +110,10 @@ public class BulletScript : MonoBehaviour
         }
     }
 
+    public void ResetToInitialState()
+    {
+        maxRange = 2;
+        canCollide = false;
+        isInitialVirus = false;
+    }
 }

@@ -31,9 +31,9 @@ public class PopUpCanvas : MonoBehaviour
 
     public void ShowPopUp(string message)
     {
-         this.gameObject.SetActive(true);
-        popUpText.text = message;   
-        gameManager.StopGame();       
+        this.gameObject.SetActive(true);
+        popUpText.text = message;
+        gameManager.StopGame();
     }
 
     public void HidePopUp()
