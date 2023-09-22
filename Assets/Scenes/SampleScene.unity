@@ -402,7 +402,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &163525103
 GameObject:
@@ -2078,7 +2078,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &908426905
 CircleCollider2D:
@@ -2344,7 +2344,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &970776235
 CircleCollider2D:
@@ -3802,7 +3802,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &1691576494
 CircleCollider2D:
@@ -4567,8 +4567,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 970776233}
-  - {fileID: 1691576497}
   - {fileID: 908426903}
+  - {fileID: 1691576497}
   - {fileID: 749529282}
   - {fileID: 346742968}
   - {fileID: 1183988285}

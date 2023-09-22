@@ -34,7 +34,7 @@ public class BulletScript : MonoBehaviour
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
 
         objectToDestroy = GameObject.FindWithTag("InitialVirus");
-        StartCoroutine(EnableCollisionAfterDelay(0.1f));
+        StartCoroutine(EnableCollisionAfterDelay(0.01f));
 
     }
 
