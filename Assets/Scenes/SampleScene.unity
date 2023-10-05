@@ -4745,6 +4745,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2774702210358841066, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: m_TagString
+      value: rotatePoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047013594826945339, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: m_TagString
+      value: bulletTransform
+      objectReference: {fileID: 0}
     - target: {fileID: 5230910256739608225, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: m_Sprite
       value: 

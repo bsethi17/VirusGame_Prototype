@@ -95,6 +95,7 @@ public class BulletScript : MonoBehaviour
             newVirus.transform.localPosition = new Vector3(0, 0, 0);
             maxRange += 2;
 
+            //initially I will destroy the virus object
             if (!isInitialVirus)
             {
                 Destroy(objectToDestroy);

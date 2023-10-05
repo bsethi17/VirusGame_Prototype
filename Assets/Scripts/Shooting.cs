@@ -49,6 +49,8 @@ public class Shooting : MonoBehaviour
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
+        //Code to switch the shooting agent on right click of infected human
+        HandleRightClick();
     }
 
     public void NotifyHit()
@@ -58,4 +60,96 @@ public class Shooting : MonoBehaviour
         Destroy(gameObject);
 
     }
+
+
+    private void HandleRightClick()
+    {
+
+        if (Input.GetMouseButtonDown(1)) // 1 is for right click
+        {
+
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+
+            if (hit.collider != null)
+            {
+
+                bool hasInitialVirusChild = false;
+                Transform targetVirusTransform = null;
+
+                foreach (Transform child in hit.collider.transform)
+                {
+                    if (child.CompareTag("InitialVirus"))
+                    {
+                        hasInitialVirusChild = true;
+                        targetVirusTransform = child;
+                        break;
+                    }
+                }
+
+                if (hasInitialVirusChild || hit.collider.CompareTag("InitialVirus"))
+                {
+
+                    if (!hasInitialVirusChild)
+                        targetVirusTransform = hit.collider.transform;
+
+                    Transform parentTransform = targetVirusTransform.parent;
+
+
+                    if (parentTransform != null &&
+                       (parentTransform.CompareTag("NVHuman1") || parentTransform.CompareTag("NVHuman2") || parentTransform.CompareTag("NVHuman3")))
+                    {
+                        Shooting shootingScript = null;
+
+                        foreach (Transform virusChild in parentTransform)
+                        {
+                            if (virusChild.CompareTag("InitialVirus"))
+                            {
+                                foreach (Transform potentialRotatePoint in virusChild)
+                                {
+
+                                    if (potentialRotatePoint.name.StartsWith("Rotate Point"))
+                                    {
+                                        Debug.Log("Found Rotate Point under: " + virusChild.name);
+                                        shootingScript = potentialRotatePoint.GetComponent<Shooting>();
+                                        break;
+                                    }
+                                }
+                            }
+
+                            //If it doesn't have a RotatePoint child, instantiate one and attach Shooting script
+                            if (shootingScript == null)
+                            {
+                                Debug.Log("creating new shooting agent");
+                                GameObject newRotatePoint = Instantiate(gameObject, targetVirusTransform.position, Quaternion.identity);
+                                newRotatePoint.transform.SetParent(targetVirusTransform);
+                                shootingScript = newRotatePoint.GetComponent<Shooting>();
+                                shootingScript.virusObject = parentTransform.gameObject;
+                                Destroy(gameObject);
+                            }
+
+                            if (shootingScript != null)
+                            {
+                                Debug.Log(" no need of creating new shooting agent");
+                                shootingScript.ActivateShooter();
+                            }
+                            else
+                            {
+                                Debug.Log("Failed to activate Shooting script for: " + targetVirusTransform.name);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    public void ActivateShooter()
+    {
+        // Activate your Shooting functionality here
+        Debug.Log("Activating Shooter on: " + gameObject.name);
+        canFire = true;
+        this.enabled = true;
+    }
+
 }
