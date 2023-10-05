@@ -76,7 +76,7 @@ public class BulletScript : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.tag == "NVHuman2" || collision.gameObject.tag == "NVHuman1" || collision.gameObject.tag == "NVHuman3")
+        if (collision.gameObject.tag == "NVHuman2" || collision.gameObject.tag == "NVHuman1" || collision.gameObject.tag == "NVHuman3" || collision.gameObject.tag == "NVHuman4")
         {
             // Notify the shooter of the successful hit
             Shooting.shooterInstance.NotifyHit();

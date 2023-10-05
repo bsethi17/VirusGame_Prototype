@@ -10,6 +10,9 @@ TagManager:
   - NVHuman3
   - bullet
   - VaccinatedHuman
+  - rotatePoint
+  - bulletTransform
+  - NVHuman4
   layers:
   - Default
   - TransparentFX

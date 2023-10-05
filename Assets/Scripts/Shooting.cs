@@ -97,7 +97,7 @@ public class Shooting : MonoBehaviour
 
 
                     if (parentTransform != null &&
-                       (parentTransform.CompareTag("NVHuman1") || parentTransform.CompareTag("NVHuman2") || parentTransform.CompareTag("NVHuman3")))
+                       (parentTransform.CompareTag("NVHuman1") || parentTransform.CompareTag("NVHuman2") || parentTransform.CompareTag("NVHuman3") || parentTransform.CompareTag("NVHuman4")))
                     {
                         Shooting shootingScript = null;
 
