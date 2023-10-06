@@ -19,6 +19,8 @@ public class BulletScript : MonoBehaviour
     public static bool isInitialVirus = false;
 
     public PopUpCanvas popUpCanvas;
+    public GameObject shooter; // This will hold the reference to the shooter object
+
 
     void Start()
     {
@@ -65,14 +67,35 @@ public class BulletScript : MonoBehaviour
         {
             // Virus die, human wins directly
             Destroy(gameObject);
-            if (popUpCanvas != null)
+            if (shooter != null && shooter.transform.parent != null)
             {
-                popUpCanvas.ShowPopUp("Human wins!");
+                Debug.Log("Bullet was shot by: " + shooter.name);
+                // Destroy all shooter objects inside the shooter's parent
+                foreach (Transform child in shooter.transform.parent)
+                {
+
+                    Destroy(child.gameObject);
+
+                }
+            }
+            else if (shooter != null && !isInitialVirus)
+            {
+                Destroy(shooter);
+                if (popUpCanvas != null)
+                {
+                    Debug.Log("Attempting to show popup...");
+                    popUpCanvas.ShowPopUp("Human wins!");
+                }
+                else
+                {
+                    Debug.LogWarning("PopUpCanvas reference is not assigned!");
+                }
             }
             else
             {
-                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+                Debug.Log("Shooter or its parent reference is not set for the bullet!");
             }
+
             return;
         }
 

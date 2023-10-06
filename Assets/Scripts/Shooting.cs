@@ -70,11 +70,22 @@ public class Shooting : MonoBehaviour
                 timer = 0;
             }
         }
+
         if (Input.GetMouseButton(0) && canFire)
         {
             canFire = false;
-            Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            BulletScript newBullet = Instantiate(bullet, bulletTransform.position, Quaternion.identity).GetComponent<BulletScript>();
+            if (this.gameObject.transform.parent != null)
+            {
+                newBullet.shooter = this.gameObject.transform.parent.gameObject;
+            }
+            else
+            {
+                // Handle the case where gameObject does not have a parent
+                Debug.LogWarning("The game object " + gameObject.name + " does not have a parent!");
+            }
         }
+
         //Code to switch the shooting agent on right click of infected human
         HandleRightClick();
     }
