@@ -7,11 +7,14 @@ public class AmbulanceTimer : MonoBehaviour
 {
     // Start is called before the first frame update
     Image timerBar;
+
+    public GameObject timeupText;
     public float maxTime = 10f;
     float timeLeft;
     void Start()
     {
         timerBar = GetComponent<Image>();
+        timeupText.SetActive(false);
         timeLeft = maxTime;
     }
 
@@ -21,6 +24,9 @@ public class AmbulanceTimer : MonoBehaviour
         if (timeLeft > 0) {
             timeLeft -= Time.deltaTime;
             timerBar.fillAmount = timeLeft / maxTime;
+        }
+        else {
+            timeupText.SetActive(true);
         }
     }
 }
