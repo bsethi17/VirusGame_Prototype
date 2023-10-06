@@ -16,10 +16,26 @@ public class Shooting : MonoBehaviour
     public float timeBetweenFiring;
     public static Shooting shooterInstance;
 
+    // Triangle Renderer to show shooting direction
+    private LineRenderer triangleRenderer;
+    public float triangleBaseSize = 1.0f; // This value will determine the width of the triangle's base
+    public float triangleHeight = 2.0f; // This value will determine the triangle's height
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         shooterInstance = this;
+
+        // Initialize TriangleRenderer
+        triangleRenderer = GetComponent<LineRenderer>();
+        if (triangleRenderer == null)
+        {
+            triangleRenderer = gameObject.AddComponent<LineRenderer>();
+        }
+        triangleRenderer.startWidth = 0.05f;
+        triangleRenderer.endWidth = 0.05f;
+        triangleRenderer.positionCount = 4; // Three corners + close the triangle (returning to the starting point)
+        triangleRenderer.loop = true; // Connect the last point to the first to close the triangle
     }
 
     void Update()
@@ -27,13 +43,23 @@ public class Shooting : MonoBehaviour
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
-        Vector3 directionToMouse = mousePos - virusObject.transform.position;
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        // float rotZ = Mathf.Atan2(directionToMouse.y, directionToMouse.x) * Mathf.Rad2Deg;
+
         // Rotate the red dot to face the mouse cursor.
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
         // Set the position of the small circle relative to the rectangular object.
-        transform.position = virusObject.transform.position + directionToMouse.normalized * distanceFromVirusObject;
+        transform.position = virusObject.transform.position + rotation.normalized * distanceFromVirusObject;
+
+        // Calculate triangle points based on direction and sizes
+        Vector3 triangleApex = transform.position + rotation.normalized * triangleHeight;
+        Vector3 leftBaseCorner = transform.position + Quaternion.Euler(0, 0, 90) * rotation.normalized * (triangleBaseSize / 2);
+        Vector3 rightBaseCorner = transform.position + Quaternion.Euler(0, 0, -90) * rotation.normalized * (triangleBaseSize / 2);
+
+        // Set triangle renderer's positions
+        triangleRenderer.SetPosition(0, leftBaseCorner);
+        triangleRenderer.SetPosition(1, triangleApex);
+        triangleRenderer.SetPosition(2, rightBaseCorner);
+        triangleRenderer.SetPosition(3, leftBaseCorner); // close the triangle
 
         if (!canFire)
         {
