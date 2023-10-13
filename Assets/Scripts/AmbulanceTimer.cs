@@ -6,27 +6,22 @@ using UnityEngine.UI;
 public class AmbulanceTimer : MonoBehaviour
 {
     // Start is called before the first frame update
-    Image timerBar;
+    public float timeStart;
+    public Text textBox;
+    public Text startBtnText;
 
-    public GameObject timeupText;
-    public float maxTime = 10f;
-    float timeLeft;
-    void Start()
-    {
-        timerBar = GetComponent<Image>();
-        timeupText.SetActive(false);
-        timeLeft = maxTime;
-    }
+    bool timerActive = false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (timeLeft > 0) {
-            timeLeft -= Time.deltaTime;
-            timerBar.fillAmount = timeLeft / maxTime;
+	// Use this for initialization
+	void Start () {
+        textBox.text = timeStart.ToString();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        if(timerActive){
+            timeStart += Time.deltaTime;
+            textBox.text = timeStart.ToString();
         }
-        else {
-            timeupText.SetActive(true);
-        }
-    }
+	}
 }
