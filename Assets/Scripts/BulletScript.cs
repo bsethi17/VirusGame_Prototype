@@ -101,22 +101,44 @@ public class BulletScript : MonoBehaviour
 
         if (collision.gameObject.tag == "NVHuman2" || collision.gameObject.tag == "NVHuman1" || collision.gameObject.tag == "NVHuman3" || collision.gameObject.tag == "NVHuman4")
         {
-            // Notify the shooter of the successful hit
-            Shooting.shooterInstance.NotifyHit();
+            Transform initialVirusChild = null;
+            Transform rotatePointGrandChild = null;
 
-            GameObject newVirus = Instantiate(initialVirusPrefab, collision.transform.position, Quaternion.identity);
-
-            // Set the new virus object as a child of the NVHuman2 game object
-            newVirus.transform.SetParent(collision.transform);
-            SpriteRenderer sr = newVirus.GetComponent<SpriteRenderer>();
-            if (sr != null)
+            foreach (Transform child in collision.transform)
             {
-                sr.sortingOrder = 1; // Set to a value that ensures it is rendered in front of NVHuman2
+                if (child.name.StartsWith("InitialVirus"))
+                {
+                    initialVirusChild = child;
+                    foreach (Transform grandChild in child)
+                    {
+                        if (grandChild.name.StartsWith("RotatePoint"))
+                        {
+                            rotatePointGrandChild = grandChild;
+                            break;
+                        }
+                    }
+                }
             }
 
-            // Set the local position to ensure it is visible
-            newVirus.transform.localPosition = new Vector3(0, 0, 0);
-            maxRange += 2;
+            //3 cases will be there
+
+
+            if (initialVirusChild == null)
+            {
+                // Case 1: Instantiate the initialVirusPrefab under this NVHuman
+                InstantiateVirus(collision.transform);
+            }
+            else if (rotatePointGrandChild == null)
+            {
+                // Case 2: Destroy the existing initialVirus and instantiate a new one with shooting
+                Destroy(initialVirusChild.gameObject);
+                InstantiateVirus(collision.transform);
+            }
+
+            //case 3 infected human with shooting capability is hit then do nothing
+            
+            // Notify the shooter of the successful hit
+            Shooting.shooterInstance.NotifyHit();
 
             //initially I will destroy the virus object
             if (!isInitialVirus)
@@ -130,4 +152,17 @@ public class BulletScript : MonoBehaviour
 
         }
     }
+
+private void InstantiateVirus(Transform parentTransform)
+{
+    GameObject newVirus = Instantiate(initialVirusPrefab, parentTransform.position, Quaternion.identity);
+    newVirus.transform.SetParent(parentTransform);
+    SpriteRenderer sr = newVirus.GetComponent<SpriteRenderer>();
+    if (sr != null)
+    {
+        sr.sortingOrder = 1; // Ensure it is rendered in front
+    }
+    newVirus.transform.localPosition = new Vector3(0, 0, 0);
+    maxRange += 2;
+}
 }
