@@ -50,7 +50,49 @@ public class BulletScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (!AreVirusesRemaining())
+    {
+        EndGame("Human wins!");
     }
+    }
+
+    private bool AreVirusesRemaining()
+{
+    // Check for top-level "InitialVirus" objects
+    GameObject[] viruses = GameObject.FindGameObjectsWithTag("InitialVirus");
+    if (viruses.Length > 0)
+    {
+        return true; // A top-level virus is found
+    }
+
+    // Check for child objects tagged "InitialVirus"
+    GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+    foreach (GameObject obj in allObjects)
+    {
+        foreach (Transform child in obj.transform)
+        {
+            if (child.CompareTag("InitialVirus"))
+            {
+                return true; // A child virus is found
+            }
+        }
+    }
+    return false; // No viruses found
+}
+
+private void EndGame(string message)
+{
+    if (popUpCanvas != null)
+    {
+        popUpCanvas.ShowPopUp(message);
+    }
+    else
+    {
+        Debug.LogWarning("PopUpCanvas reference is not assigned!");
+    }
+}
+
 
     private IEnumerator EnableCollisionAfterDelay(float delay)
     {
@@ -80,11 +122,12 @@ public class BulletScript : MonoBehaviour
             }
             else if (shooter != null && !isInitialVirus)
             {
-                Destroy(shooter);
+                
                 if (popUpCanvas != null)
                 {
                     Debug.Log("Attempting to show popup...");
                     popUpCanvas.ShowPopUp("Human wins!");
+                    Destroy(shooter);
                 }
                 else
                 {
