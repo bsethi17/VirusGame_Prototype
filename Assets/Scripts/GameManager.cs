@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
         ResumeGame();
     }
 
+    public void NextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        ResumeGame();
+    }
+
     public void StopGame()
     {
         Time.timeScale = 0f; // Stop the game
