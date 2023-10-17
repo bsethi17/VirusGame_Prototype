@@ -21,6 +21,9 @@ public class Shooting : MonoBehaviour
     public float triangleBaseSize = 1.0f; // This value will determine the width of the triangle's base
     public float triangleHeight = 2.0f; // This value will determine the triangle's height
 
+    public int bulletsPerBurst = 2;
+    private int bulletsFiredInBurst = 0;
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -71,24 +74,30 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && canFire)
+        if (Input.GetMouseButtonDown(0) && canFire)
         {
-            canFire = false;
-            BulletScript newBullet = Instantiate(bullet, bulletTransform.position, Quaternion.identity).GetComponent<BulletScript>();
-            if (this.gameObject.transform.parent != null)
+            for (int i = 0; i < bulletsPerBurst; i++) // Loop to fire multiple bullets
             {
-                newBullet.shooter = this.gameObject.transform.parent.gameObject;
+                // Fire a bullet
+                BulletScript newBullet = Instantiate(bullet, bulletTransform.position, Quaternion.identity).GetComponent<BulletScript>();
+                if (this.gameObject.transform.parent != null)
+                {
+                    newBullet.shooter = this.gameObject.transform.parent.gameObject;
+                }
+                else
+                {
+                    // Handle the case where gameObject does not have a parent
+                    Debug.LogWarning("The game object " + gameObject.name + " does not have a parent!");
+                }
             }
-            else
-            {
-                // Handle the case where gameObject does not have a parent
-                Debug.LogWarning("The game object " + gameObject.name + " does not have a parent!");
-            }
+
+            canFire = false; // Set canFire to false after firing the burst of bullets
         }
 
         //Code to switch the shooting agent on right click of infected human
         HandleRightClick();
     }
+
 
     public void NotifyHit()
     {

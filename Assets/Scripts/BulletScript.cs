@@ -179,7 +179,7 @@ private void EndGame(string message)
             }
 
             //case 3 infected human with shooting capability is hit then do nothing
-            
+
             // Notify the shooter of the successful hit
             Shooting.shooterInstance.NotifyHit();
 
@@ -196,16 +196,16 @@ private void EndGame(string message)
         }
     }
 
-private void InstantiateVirus(Transform parentTransform)
-{
-    GameObject newVirus = Instantiate(initialVirusPrefab, parentTransform.position, Quaternion.identity);
-    newVirus.transform.SetParent(parentTransform);
-    SpriteRenderer sr = newVirus.GetComponent<SpriteRenderer>();
-    if (sr != null)
+    private void InstantiateVirus(Transform parentTransform)
     {
-        sr.sortingOrder = 1; // Ensure it is rendered in front
+        GameObject newVirus = Instantiate(initialVirusPrefab, parentTransform.position, Quaternion.identity);
+        newVirus.transform.SetParent(parentTransform);
+        SpriteRenderer sr = newVirus.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sortingOrder = 1; // Ensure it is rendered in front
+        }
+        newVirus.transform.localPosition = new Vector3(0, 0, 0);
+        maxRange += 2;
     }
-    newVirus.transform.localPosition = new Vector3(0, 0, 0);
-    maxRange += 2;
-}
 }
