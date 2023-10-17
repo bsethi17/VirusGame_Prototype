@@ -21,6 +21,7 @@ public class BulletScript : MonoBehaviour
     public PopUpCanvas popUpCanvas;
     public GameObject shooter; // This will hold the reference to the shooter object
 
+    private static Stack<GameObject> infectedStack = new Stack<GameObject>();
 
     void Start()
     {
@@ -52,46 +53,46 @@ public class BulletScript : MonoBehaviour
         }
 
         if (!AreVirusesRemaining())
-    {
-        EndGame("Human wins!");
-    }
+        {
+            EndGame("Human wins!");
+        }
     }
 
     private bool AreVirusesRemaining()
-{
-    // Check for top-level "InitialVirus" objects
-    GameObject[] viruses = GameObject.FindGameObjectsWithTag("InitialVirus");
-    if (viruses.Length > 0)
     {
-        return true; // A top-level virus is found
-    }
-
-    // Check for child objects tagged "InitialVirus"
-    GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
-    foreach (GameObject obj in allObjects)
-    {
-        foreach (Transform child in obj.transform)
+        // Check for top-level "InitialVirus" objects
+        GameObject[] viruses = GameObject.FindGameObjectsWithTag("InitialVirus");
+        if (viruses.Length > 0)
         {
-            if (child.CompareTag("InitialVirus"))
+            return true; // A top-level virus is found
+        }
+
+        // Check for child objects tagged "InitialVirus"
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            foreach (Transform child in obj.transform)
             {
-                return true; // A child virus is found
+                if (child.CompareTag("InitialVirus"))
+                {
+                    return true; // A child virus is found
+                }
             }
         }
+        return false; // No viruses found
     }
-    return false; // No viruses found
-}
 
-private void EndGame(string message)
-{
-    if (popUpCanvas != null)
+    private void EndGame(string message)
     {
-        popUpCanvas.ShowPopUp(message);
+        if (popUpCanvas != null)
+        {
+            popUpCanvas.ShowPopUp(message);
+        }
+        else
+        {
+            Debug.LogWarning("PopUpCanvas reference is not assigned!");
+        }
     }
-    else
-    {
-        Debug.LogWarning("PopUpCanvas reference is not assigned!");
-    }
-}
 
 
     private IEnumerator EnableCollisionAfterDelay(float delay)
@@ -107,22 +108,63 @@ private void EndGame(string message)
         // if the bullet touches vaccinated human
         if (collision.gameObject.tag == "VaccinatedHuman")
         {
-            // Virus die, human wins directly
+
             Destroy(gameObject);
             if (shooter != null && shooter.transform.parent != null)
             {
-                Debug.Log("Bullet was shot by: " + shooter.name);
+                Debug.Log("which parent virus are we killing" + shooter.transform.parent);
                 // Destroy all shooter objects inside the shooter's parent
                 foreach (Transform child in shooter.transform.parent)
                 {
-
+                    Debug.Log("deleting " + child.gameObject.tag);
+                }
+                foreach (Transform child in shooter.transform.parent)
+                {
                     Destroy(child.gameObject);
+                }
 
+                if (infectedStack.Count > 0)
+                {
+                    Debug.Log("Stack count before pop: " + infectedStack.Count);
+                    GameObject topItem = infectedStack.Peek();
+                    Debug.Log("peek before pop: " + topItem);
+
+                    GameObject poppedItem = infectedStack.Pop();
+                    Debug.Log("Popped item: " + poppedItem);
+
+                    Debug.Log("Stack count after pop: " + infectedStack.Count);
+                    if (infectedStack.Count > 0)
+                    {
+                        Debug.Log("peek after pop: " + infectedStack.Peek());
+                    }
+                    if (infectedStack.Count > 0)
+                    {
+                        Debug.Log("peek after pop" + infectedStack.Peek());
+                        GameObject nextInfected = infectedStack.Peek();
+                        Transform initialVirusChild = null;
+                        // Find the "InitialVirus" child of the next infected NVHuman
+                        foreach (Transform child in nextInfected.transform)
+                        {
+                            if (child.name.StartsWith("InitialVirus"))
+                            {
+                                initialVirusChild = child;
+                                break;
+                            }
+                        }
+                        if (initialVirusChild)
+                        {
+                            // Destroy the existing "InitialVirus" child
+                            Destroy(initialVirusChild.gameObject);
+                            // Instantiate a new "InitialVirus" prefab under the next infected NVHuman
+                            InstantiateVirus(nextInfected.transform);
+                        }
+
+                    }
                 }
             }
             else if (shooter != null && !isInitialVirus)
             {
-                
+
                 if (popUpCanvas != null)
                 {
                     Debug.Log("Attempting to show popup...");
@@ -138,6 +180,8 @@ private void EndGame(string message)
             {
                 Debug.Log("Shooter or its parent reference is not set for the bullet!");
             }
+
+
 
             return;
         }
@@ -207,5 +251,10 @@ private void EndGame(string message)
         }
         newVirus.transform.localPosition = new Vector3(0, 0, 0);
         maxRange += 2;
+         if (!infectedStack.Contains(parentTransform.gameObject))
+        {
+            infectedStack.Push(parentTransform.gameObject);
+        }
+        Debug.Log("Stack count just after new virus creation: " + infectedStack.Count);
     }
 }
