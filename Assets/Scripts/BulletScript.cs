@@ -251,7 +251,7 @@ public class BulletScript : MonoBehaviour
         }
         newVirus.transform.localPosition = new Vector3(0, 0, 0);
         maxRange += 2;
-         if (!infectedStack.Contains(parentTransform.gameObject))
+         if (infectedStack.Count == 0 || infectedStack.Peek() != parentTransform.gameObject)
         {
             infectedStack.Push(parentTransform.gameObject);
         }
