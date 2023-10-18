@@ -29,6 +29,20 @@ public class LevelOneAmbulanceScript : MonoBehaviour
 
     void Update()
     {
+        // check constantly if all the humans are infected; if so, stop the game immediately
+        if (HasChildren(human1.transform) && HasChildren(human2.transform))
+        {
+            if (popUpCanvas != null)
+            {
+                popUpCanvas.ShowPopUp("Virus wins!");
+                return;
+            }
+            else
+            {
+                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+            }
+        }
+        
         // Add some delay before it starts to move
         if (!hasStartedMoving)
         {
@@ -59,19 +73,6 @@ public class LevelOneAmbulanceScript : MonoBehaviour
                 {
                     displayResult();
                 });
-            }
-        }
-
-        // check constantly if all the humans are infected; if so, stop the game immediately
-        if (HasChildren(human1.transform) && HasChildren(human2.transform))
-        {
-            if (popUpCanvas != null)
-            {
-                popUpCanvas.ShowPopUp("Virus wins!");
-            }
-            else
-            {
-                Debug.LogWarning("PopUpCanvas reference is not assigned!");
             }
         }
     }

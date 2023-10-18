@@ -19,6 +19,7 @@ public class AmbulanceScript : MonoBehaviour
     private bool human1Infected;
     private bool human2Infected;
     private bool human3Infected;
+    private bool human4Infected;
     private GameObject ambulance;
     public float slideSpeed;
 
@@ -32,6 +33,20 @@ public class AmbulanceScript : MonoBehaviour
 
     void Update()
     {
+        // check constantly if all the humans are infected; if so, stop the game immediately
+        if (HasChildren(human1.transform) && HasChildren(human2.transform) && HasChildren(human3.transform) && HasChildren(human4.transform))
+        {
+            if (popUpCanvas != null)
+            {
+                popUpCanvas.ShowPopUp("Virus wins!");
+                return;
+            }
+            else
+            {
+                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+            }
+        }
+        
         // Add some delay before it starts to move
         if (!hasStartedMoving)
         {
@@ -62,19 +77,6 @@ public class AmbulanceScript : MonoBehaviour
                 {
                     displayResult();
                 });
-            }
-        }
-
-        // check constantly if all the humans are infected; if so, stop the game immediately
-        if (HasChildren(human1.transform) && HasChildren(human2.transform) && HasChildren(human3.transform) && HasChildren(human4.transform))
-        {
-            if (popUpCanvas != null)
-            {
-                popUpCanvas.ShowPopUp("Virus wins!");
-            }
-            else
-            {
-                Debug.LogWarning("PopUpCanvas reference is not assigned!");
             }
         }
     }
@@ -136,7 +138,7 @@ public class AmbulanceScript : MonoBehaviour
 
     void displayResult()
     {
-        if (human1Infected && human2Infected && human3Infected)
+        if (human1Infected && human2Infected && human3Infected && human4Infected)
         {
             if (popUpCanvas != null)
             {
