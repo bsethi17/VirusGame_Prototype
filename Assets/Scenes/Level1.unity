@@ -924,7 +924,7 @@ MonoBehaviour:
   - {fileID: 2093051871}
   - {fileID: 907710984}
   speed: 6
-  delay: 10
+  delay: 9
   human1: {fileID: 970776230}
   human2: {fileID: 399351777}
   slideSpeed: 0.5

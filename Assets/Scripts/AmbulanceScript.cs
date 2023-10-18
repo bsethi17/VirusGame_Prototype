@@ -15,6 +15,7 @@ public class AmbulanceScript : MonoBehaviour
     public GameObject human1;
     public GameObject human2;
     public GameObject human3;
+    public GameObject human4;
     private bool human1Infected;
     private bool human2Infected;
     private bool human3Infected;
@@ -65,7 +66,7 @@ public class AmbulanceScript : MonoBehaviour
         }
 
         // check constantly if all the humans are infected; if so, stop the game immediately
-        if (HasChildren(human1.transform) && HasChildren(human2.transform) && HasChildren(human3.transform))
+        if (HasChildren(human1.transform) && HasChildren(human2.transform) && HasChildren(human3.transform) && HasChildren(human4.transform))
         {
             if (popUpCanvas != null)
             {
@@ -114,6 +115,14 @@ public class AmbulanceScript : MonoBehaviour
             while (Vector3.Distance(human3.transform.position, ambulance.transform.position) > 0.001f)
             {
                 human3.transform.position = Vector3.MoveTowards(human3.transform.position, ambulance.transform.position, step);
+                yield return null;
+            }
+        }
+        if (HasChildren(human4.transform))
+        {
+            while (Vector3.Distance(human4.transform.position, ambulance.transform.position) > 0.001f)
+            {
+                human4.transform.position = Vector3.MoveTowards(human4.transform.position, ambulance.transform.position, step);
                 yield return null;
             }
         }

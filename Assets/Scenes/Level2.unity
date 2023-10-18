@@ -1267,10 +1267,11 @@ MonoBehaviour:
   - {fileID: 2093051871}
   - {fileID: 907710984}
   speed: 6
-  delay: 21.5
+  delay: 19
   human1: {fileID: 970776230}
   human2: {fileID: 0}
   human3: {fileID: 0}
+  human4: {fileID: 399351777}
   slideSpeed: 0.5
   popUpCanvas: {fileID: 1300896067}
 --- !u!1 &515446973
