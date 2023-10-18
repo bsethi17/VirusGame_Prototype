@@ -22,7 +22,7 @@ public class Shooting : MonoBehaviour
     public float triangleHeight = 2.0f; // This value will determine the triangle's height
 
     public int bulletsPerBurst = 2;
-    private int bulletsFiredInBurst = 0;
+    //private int bulletsFiredInBurst = 0;
 
     void Start()
     {
