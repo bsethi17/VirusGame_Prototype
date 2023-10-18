@@ -101,6 +101,14 @@ public class BulletScript : MonoBehaviour
         canCollide = true;
     }
 
+    private void RemoveFromInfectedStackByName(string targetName)
+    {
+        if (infectedStack.Count > 0 && infectedStack.Peek().name == targetName)
+        {
+            infectedStack.Pop();
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!canCollide) return;
@@ -108,7 +116,6 @@ public class BulletScript : MonoBehaviour
         // if the bullet touches vaccinated human
         if (collision.gameObject.tag == "VaccinatedHuman")
         {
-
             Destroy(gameObject);
             if (shooter != null && shooter.transform.parent != null)
             {
@@ -125,21 +132,14 @@ public class BulletScript : MonoBehaviour
 
                 if (infectedStack.Count > 0)
                 {
-                    Debug.Log("Stack count before pop: " + infectedStack.Count);
-                    GameObject topItem = infectedStack.Peek();
-                    Debug.Log("peek before pop: " + topItem);
 
-                    GameObject poppedItem = infectedStack.Pop();
-                    Debug.Log("Popped item: " + poppedItem);
 
-                    Debug.Log("Stack count after pop: " + infectedStack.Count);
-                    if (infectedStack.Count > 0)
+                    RemoveFromInfectedStackByName(shooter.transform.parent.name);
+
+                    if (infectedStack.Count > 0 && infectedStack.Peek().name != shooter.transform.parent.name)
                     {
-                        Debug.Log("peek after pop: " + infectedStack.Peek());
-                    }
-                    if (infectedStack.Count > 0)
-                    {
-                        Debug.Log("peek after pop" + infectedStack.Peek());
+                        Debug.Log(infectedStack.Peek());
+
                         GameObject nextInfected = infectedStack.Peek();
                         Transform initialVirusChild = null;
                         // Find the "InitialVirus" child of the next infected NVHuman
@@ -209,7 +209,7 @@ public class BulletScript : MonoBehaviour
 
             //3 cases will be there
 
-
+            Shooting.shooterInstance.NotifyHit();
             if (initialVirusChild == null)
             {
                 // Case 1: Instantiate the initialVirusPrefab under this NVHuman
@@ -225,7 +225,7 @@ public class BulletScript : MonoBehaviour
             //case 3 infected human with shooting capability is hit then do nothing
 
             // Notify the shooter of the successful hit
-            Shooting.shooterInstance.NotifyHit();
+            
 
             //initially I will destroy the virus object
             if (!isInitialVirus)
@@ -242,6 +242,7 @@ public class BulletScript : MonoBehaviour
 
     private void InstantiateVirus(Transform parentTransform)
     {
+        Debug.Log("Hellooo i am in initialisation");
         GameObject newVirus = Instantiate(initialVirusPrefab, parentTransform.position, Quaternion.identity);
         newVirus.transform.SetParent(parentTransform);
         SpriteRenderer sr = newVirus.GetComponent<SpriteRenderer>();
@@ -251,10 +252,9 @@ public class BulletScript : MonoBehaviour
         }
         newVirus.transform.localPosition = new Vector3(0, 0, 0);
         maxRange += 2;
-         if (infectedStack.Count == 0 || infectedStack.Peek() != parentTransform.gameObject)
+        if (infectedStack.Count == 0 || infectedStack.Peek() != parentTransform.gameObject)
         {
             infectedStack.Push(parentTransform.gameObject);
         }
-        Debug.Log("Stack count just after new virus creation: " + infectedStack.Count);
     }
 }
