@@ -209,7 +209,15 @@ public class BulletScript : MonoBehaviour
 
             //3 cases will be there
 
-            Shooting.shooterInstance.NotifyHit();
+            // Shooting.shooterInstance.NotifyHit();
+            //delete shooting for the shooter so that it can go to next human
+            foreach (Transform child in shooter.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+
+
             if (initialVirusChild == null)
             {
                 // Case 1: Instantiate the initialVirusPrefab under this NVHuman
@@ -225,7 +233,7 @@ public class BulletScript : MonoBehaviour
             //case 3 infected human with shooting capability is hit then do nothing
 
             // Notify the shooter of the successful hit
-            
+
 
             //initially I will destroy the virus object
             if (!isInitialVirus)
