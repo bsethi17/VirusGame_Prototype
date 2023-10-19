@@ -35,6 +35,7 @@ public class Shooting : MonoBehaviour
         {
             triangleRenderer = gameObject.AddComponent<LineRenderer>();
         }
+        // triangleHeight = BulletScript.maxRange;
         triangleRenderer.startWidth = 0.05f;
         triangleRenderer.endWidth = 0.05f;
         triangleRenderer.positionCount = 4; // Three corners + close the triangle (returning to the starting point)
@@ -43,6 +44,7 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
+        // Get mouse position
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
@@ -51,18 +53,22 @@ public class Shooting : MonoBehaviour
         // Rotate the red dot to face the mouse cursor.
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
         // Set the position of the small circle relative to the rectangular object.
-        transform.position = virusObject.transform.position + rotation.normalized * distanceFromVirusObject;
+        transform.position = virusObject.transform.position + rotation.normalized * (distanceFromVirusObject + triangleHeight);
+        Vector3 shootingPoint = virusObject.transform.position + rotation.normalized * distanceFromVirusObject;
 
         // Calculate triangle points based on direction and sizes
-        Vector3 triangleApex = transform.position + rotation.normalized * triangleHeight;
-        Vector3 leftBaseCorner = transform.position + Quaternion.Euler(0, 0, 90) * rotation.normalized * (triangleBaseSize / 2);
-        Vector3 rightBaseCorner = transform.position + Quaternion.Euler(0, 0, -90) * rotation.normalized * (triangleBaseSize / 2);
+        Vector3 triangleApex = shootingPoint + rotation.normalized * triangleHeight;
+        Vector3 leftBaseCorner = shootingPoint - Quaternion.Euler(0, 0, 90) * rotation.normalized * (triangleBaseSize / 2);
+        Vector3 rightBaseCorner = shootingPoint + Quaternion.Euler(0, 0, 90) * rotation.normalized * (triangleBaseSize / 2);
 
         // Set triangle renderer's positions
         triangleRenderer.SetPosition(0, leftBaseCorner);
         triangleRenderer.SetPosition(1, triangleApex);
         triangleRenderer.SetPosition(2, rightBaseCorner);
         triangleRenderer.SetPosition(3, leftBaseCorner); // close the triangle
+        // Set bulletTransform at the tip of the triangle
+        bulletTransform.position = triangleApex;
+
 
         if (!canFire)
         {
