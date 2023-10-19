@@ -6,15 +6,18 @@ using UnityEngine.Networking;
 
 public class SuccessRateRequest : MonoBehaviour
 {
+    public static SuccessRateRequest Instance { get; private set; }
     [SerializeField] private string googleFormURL;
     private long _sessionID;
     private int _numOfInfectedHumans;
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
         _sessionID = DateTime.Now.Ticks;
-        // test
-        Send();
     }
 
     void Start()
@@ -27,10 +30,10 @@ public class SuccessRateRequest : MonoBehaviour
 
     }
 
-    public void Send()
+    public void Send(int numOfInfectedHumans)
     {
         // test
-        _numOfInfectedHumans = 2;
+        _numOfInfectedHumans = numOfInfectedHumans;
         StartCoroutine(Post(_sessionID.ToString(), _numOfInfectedHumans.ToString()));
     }
 

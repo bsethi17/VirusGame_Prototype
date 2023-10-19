@@ -130,8 +130,8 @@ List<GameObject> nvHumansWithBothChildren = new List<GameObject>();
         {
             
             int infectedCount = infectedCountScript.GetInfectedCount();
-            Debug.Log(infectedCount);
-            Debug.Log(isInitialVirus);
+            // Debug.Log(infectedCount);
+            // Debug.Log(isInitialVirus);
             if (infectedCount == 0 && isInitialVirus)
             {
                 return false; 

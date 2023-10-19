@@ -1572,6 +1572,7 @@ MonoBehaviour:
   human4: {fileID: 399351777}
   slideSpeed: 0.5
   popUpCanvas: {fileID: 1300896067}
+  successRateRequest: {fileID: 1841313032}
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5587,7 +5588,7 @@ GameObject:
   - component: {fileID: 1841313033}
   - component: {fileID: 1841313032}
   m_Layer: 0
-  m_Name: AnalyticManager
+  m_Name: SuccessRateRequest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6199,7 +6200,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1300896066}
   - {fileID: 970776233}
   - {fileID: 399351782}
   - {fileID: 908426903}
@@ -6215,6 +6215,7 @@ SceneRoots:
   - {fileID: 1733749711}
   - {fileID: 134932589}
   - {fileID: 547181636}
+  - {fileID: 1300896066}
   - {fileID: 1241381088}
   - {fileID: 1054705962}
   - {fileID: 1427021161}
