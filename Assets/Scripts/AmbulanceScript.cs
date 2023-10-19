@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Services.Core;
-using Unity.Services.Analytics;
 
 public class AmbulanceScript : MonoBehaviour
 {
@@ -31,14 +29,6 @@ public class AmbulanceScript : MonoBehaviour
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
-        try{
-            await UnityServices.InitializeAsync();
-            AnalyticsService.Instance.StartDataCollection();
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
-        }
     }
 
     void Update()
