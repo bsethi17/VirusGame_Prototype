@@ -6233,6 +6233,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: triangleHeight
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
