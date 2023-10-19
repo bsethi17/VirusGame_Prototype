@@ -16,14 +16,19 @@ public class AmbulanceScript : MonoBehaviour
     public GameObject human2;
     public GameObject human3;
     public GameObject human4;
-    private bool human1Infected;
-    private bool human2Infected;
-    private bool human3Infected;
-    private bool human4Infected;
     private GameObject ambulance;
     public float slideSpeed;
 
     public PopUpCanvas popUpCanvas;
+    private bool requestSent;
+
+    public SuccessRateRequest successRateRequest;
+
+
+    private void Awake()
+    {
+        requestSent = false;
+    }
 
     async void Start()
     {
@@ -39,6 +44,12 @@ public class AmbulanceScript : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus wins!");
+                if (!requestSent)
+                {
+                    successRateRequest.Send(4);
+
+                    requestSent = true;
+                }
                 return;
             }
             else
@@ -46,7 +57,7 @@ public class AmbulanceScript : MonoBehaviour
                 Debug.LogWarning("PopUpCanvas reference is not assigned!");
             }
         }
-        
+
         // Add some delay before it starts to move
         if (!hasStartedMoving)
         {
@@ -136,24 +147,42 @@ public class AmbulanceScript : MonoBehaviour
         }
     }
 
+    private int getNumOfInfectedHumans()
+    {
+        int count = 0;
+        if (HasChildren(human1.transform))
+        {
+            count += 1;
+        }
+        if (HasChildren(human2.transform))
+        {
+            count += 1;
+        }
+        if (HasChildren(human3.transform))
+        {
+            count += 1;
+        }
+        if (HasChildren(human4.transform))
+        {
+            count += 1;
+        }
+        return count;
+    }
+
+    // display result when time's up
     void displayResult()
     {
-        if (human1Infected && human2Infected && human3Infected && human4Infected)
+        if (popUpCanvas != null)
         {
-            if (popUpCanvas != null)
+            popUpCanvas.ShowPopUp("Virus Lost!");
+
+            if (!requestSent)
             {
-                popUpCanvas.ShowPopUp("Virus wins!");
-            }
-            else
-            {
-                Debug.LogWarning("PopUpCanvas reference is not assigned!");
-            }
-        }
-        else
-        {
-            if (popUpCanvas != null)
-            {
-                popUpCanvas.ShowPopUp("Virus Lost!");
+                int numberOfInfectedHumans = getNumOfInfectedHumans();
+                successRateRequest.Send(numberOfInfectedHumans);
+
+                requestSent = true;
+                return;
             }
             else
             {
