@@ -125,27 +125,23 @@ List<GameObject> nvHumansWithBothChildren = new List<GameObject>();
 
     private bool AreVirusesRemaining()
     {
-        // Check for top-level "InitialVirus" objects
-        GameObject[] viruses = GameObject.FindGameObjectsWithTag("InitialVirus");
-        if (viruses.Length > 0)
+        InfectedCount infectedCountScript = FindObjectOfType<InfectedCount>();
+        if (infectedCountScript != null)
         {
-            return true; // A top-level virus is found
-        }
-
-        // Check for child objects tagged "InitialVirus"
-        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
-        foreach (GameObject obj in allObjects)
-        {
-            foreach (Transform child in obj.transform)
+            
+            int infectedCount = infectedCountScript.GetInfectedCount();
+            Debug.Log(infectedCount);
+            Debug.Log(isInitialVirus);
+            if (infectedCount == 0 && isInitialVirus)
             {
-                if (child.CompareTag("InitialVirus"))
-                {
-                    return true; // A child virus is found
-                }
+                return false; 
             }
         }
-        return false; // No viruses found
+        return true;  
     }
+
+
+
 
     private void EndGame(string message)
     {

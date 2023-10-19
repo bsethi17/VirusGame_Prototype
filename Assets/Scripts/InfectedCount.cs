@@ -17,28 +17,7 @@ public class InfectedCount : MonoBehaviour
 
     void Update()
     {
-        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
-        List<GameObject> nvHumans = new List<GameObject>();
-        int infectedCount = 0;
-
-        foreach (GameObject obj in allObjects)
-        {
-            if (obj.name.StartsWith("HumanNV"))
-            {
-                
-                nvHumans.Add(obj);
-            }
-        }
-
-        foreach (GameObject nvHuman in nvHumans)
-        {
-            Transform virusChild = FindChildWithTagPrefix(nvHuman.transform, "InitialVirus");
-            if (virusChild != null)
-            {
-                Debug.Log("hello inside human");
-                infectedCount++;
-            }
-        }
+        int infectedCount = GetInfectedCount();
 
         // Get the current scene's name
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -50,6 +29,31 @@ public class InfectedCount : MonoBehaviour
         }
        
             infectedText.text = "Humans Infected : " + infectedCount + " / " + maxInfectedForScene;
+    }
+    public int GetInfectedCount()
+    {
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+        List<GameObject> nvHumans = new List<GameObject>();
+        int infectedCount = 0;
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name.StartsWith("HumanNV"))
+            {
+                nvHumans.Add(obj);
+            }
+        }
+
+        foreach (GameObject nvHuman in nvHumans)
+        {
+            Transform virusChild = FindChildWithTagPrefix(nvHuman.transform, "InitialVirus");
+            if (virusChild != null)
+            {
+                infectedCount++;
+            }
+        }
+
+        return infectedCount;
     }
 
     private Transform FindChildWithTagPrefix(Transform parent, string prefix)
