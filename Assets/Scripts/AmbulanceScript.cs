@@ -20,9 +20,9 @@ public class AmbulanceScript : MonoBehaviour
     public float slideSpeed;
 
     public PopUpCanvas popUpCanvas;
-    private bool requestSent;
 
     public SuccessRateRequest successRateRequest;
+    private bool requestSent;
 
 
     private void Awake()
