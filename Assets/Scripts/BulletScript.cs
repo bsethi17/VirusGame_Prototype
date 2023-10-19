@@ -43,6 +43,7 @@ public class BulletScript : MonoBehaviour
 
     void Update()
     {
+        checkForMultipleShooters();
         // Calculate the distance between the bullet's initial position and its current position.
         float distanceSquared = (transform.position - initialPosition).sqrMagnitude;
 
@@ -56,6 +57,70 @@ public class BulletScript : MonoBehaviour
         {
             EndGame("Virus Lost!");
         }
+    }
+
+    private void checkForMultipleShooters(){
+    List<GameObject> nvHumans = new List<GameObject>();
+
+    // Step 1: Find all NVHuman objects in the scene.
+    GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name.StartsWith("HumanNV"))
+            {
+                
+                nvHumans.Add(obj);
+            }
+        }
+List<GameObject> nvHumansWithBothChildren = new List<GameObject>();
+   foreach (var nvHuman in nvHumans)
+    {
+        bool hasInitialVirus = false;
+        bool hasRotatePoint = false;
+
+        // Check if NVHuman has both InitialVirus and RotatePoint as children.
+        foreach (Transform child in nvHuman.transform)
+        {
+            if (child.name.StartsWith("InitialVirus"))
+            {
+                foreach (Transform grandChild in child)
+                {
+                    if (grandChild.name.StartsWith("Rotate Point"))
+                    {
+                        hasRotatePoint = true;
+                        break;
+                    }
+                }
+                hasInitialVirus = true;
+            }
+        }
+
+        if (hasInitialVirus && hasRotatePoint)
+        {
+            nvHumansWithBothChildren.Add(nvHuman);
+        }
+    }
+
+    // Step 3: If you find more than one NVHuman meeting the criteria, destroy the RotatePoint of one.
+    if (nvHumansWithBothChildren.Count > 1)
+    {
+        foreach (Transform child in nvHumansWithBothChildren[0].transform)
+        {
+            if (child.name.StartsWith("InitialVirus"))
+            {
+                foreach (Transform grandChild in child)
+                {
+                    if (grandChild.name.StartsWith("Rotate Point"))
+                    {
+                        
+                        Destroy(grandChild.gameObject);  // Destroy the RotatePoint.
+                        break;
+                    }
+                }
+            }
+        }
+    }
+   
     }
 
     private bool AreVirusesRemaining()
