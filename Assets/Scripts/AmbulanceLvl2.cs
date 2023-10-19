@@ -133,7 +133,7 @@ public class AmbulanceLvl2 : MonoBehaviour
         {
             if (popUpCanvas != null)
             {
-                popUpCanvas.ShowPopUp("Human wins!");
+                popUpCanvas.ShowPopUp("Virus Lost!");
             }
             else
             {

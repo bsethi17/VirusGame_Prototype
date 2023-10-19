@@ -54,7 +54,7 @@ public class BulletScript : MonoBehaviour
 
         if (!AreVirusesRemaining())
         {
-            EndGame("Human wins!");
+            EndGame("Virus Lost!");
         }
     }
 
@@ -168,7 +168,7 @@ public class BulletScript : MonoBehaviour
                 if (popUpCanvas != null)
                 {
                     Debug.Log("Attempting to show popup...");
-                    popUpCanvas.ShowPopUp("Human wins!");
+                    popUpCanvas.ShowPopUp("Virus Lost!");
                     Destroy(shooter);
                 }
                 else
