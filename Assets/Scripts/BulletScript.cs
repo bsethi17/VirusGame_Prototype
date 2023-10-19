@@ -53,107 +53,75 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (!AreVirusesRemaining())
-        {
-            EndGame("Virus Lost!");
-        }
     }
 
-    private void checkForMultipleShooters(){
-    List<GameObject> nvHumans = new List<GameObject>();
+    private void checkForMultipleShooters()
+    {
+        List<GameObject> nvHumans = new List<GameObject>();
 
-    // Step 1: Find all NVHuman objects in the scene.
-    GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
+        // Step 1: Find all NVHuman objects in the scene.
+        GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
         foreach (GameObject obj in allObjects)
         {
             if (obj.name.StartsWith("HumanNV"))
             {
-                
+
                 nvHumans.Add(obj);
             }
         }
-List<GameObject> nvHumansWithBothChildren = new List<GameObject>();
-   foreach (var nvHuman in nvHumans)
-    {
-        bool hasInitialVirus = false;
-        bool hasRotatePoint = false;
-
-        // Check if NVHuman has both InitialVirus and RotatePoint as children.
-        foreach (Transform child in nvHuman.transform)
+        List<GameObject> nvHumansWithBothChildren = new List<GameObject>();
+        foreach (var nvHuman in nvHumans)
         {
-            if (child.name.StartsWith("InitialVirus"))
+            bool hasInitialVirus = false;
+            bool hasRotatePoint = false;
+
+            // Check if NVHuman has both InitialVirus and RotatePoint as children.
+            foreach (Transform child in nvHuman.transform)
             {
-                foreach (Transform grandChild in child)
+                if (child.name.StartsWith("InitialVirus"))
                 {
-                    if (grandChild.name.StartsWith("Rotate Point"))
+                    foreach (Transform grandChild in child)
                     {
-                        hasRotatePoint = true;
-                        break;
+                        if (grandChild.name.StartsWith("Rotate Point"))
+                        {
+                            hasRotatePoint = true;
+                            break;
+                        }
                     }
-                }
-                hasInitialVirus = true;
-            }
-        }
-
-        if (hasInitialVirus && hasRotatePoint)
-        {
-            nvHumansWithBothChildren.Add(nvHuman);
-        }
-    }
-
-    // Step 3: If you find more than one NVHuman meeting the criteria, destroy the RotatePoint of one.
-    if (nvHumansWithBothChildren.Count > 1)
-    {
-        foreach (Transform child in nvHumansWithBothChildren[0].transform)
-        {
-            if (child.name.StartsWith("InitialVirus"))
-            {
-                foreach (Transform grandChild in child)
-                {
-                    if (grandChild.name.StartsWith("Rotate Point"))
-                    {
-                        
-                        Destroy(grandChild.gameObject);  // Destroy the RotatePoint.
-                        break;
-                    }
+                    hasInitialVirus = true;
                 }
             }
-        }
-    }
-   
-    }
 
-    private bool AreVirusesRemaining()
-    {
-        InfectedCount infectedCountScript = FindObjectOfType<InfectedCount>();
-        if (infectedCountScript != null)
-        {
-            
-            int infectedCount = infectedCountScript.GetInfectedCount();
-            // Debug.Log(infectedCount);
-            // Debug.Log(isInitialVirus);
-            if (infectedCount == 0 && isInitialVirus)
+            if (hasInitialVirus && hasRotatePoint)
             {
-                return false; 
+                nvHumansWithBothChildren.Add(nvHuman);
             }
         }
-        return true;  
+
+        // Step 3: If you find more than one NVHuman meeting the criteria, destroy the RotatePoint of one.
+        if (nvHumansWithBothChildren.Count > 1)
+        {
+            foreach (Transform child in nvHumansWithBothChildren[0].transform)
+            {
+                if (child.name.StartsWith("InitialVirus"))
+                {
+                    foreach (Transform grandChild in child)
+                    {
+                        if (grandChild.name.StartsWith("Rotate Point"))
+                        {
+
+                            Destroy(grandChild.gameObject);  // Destroy the RotatePoint.
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 
 
-
-    private void EndGame(string message)
-    {
-        if (popUpCanvas != null)
-        {
-            popUpCanvas.ShowPopUp(message);
-        }
-        else
-        {
-            Debug.LogWarning("PopUpCanvas reference is not assigned!");
-        }
-    }
 
 
     private IEnumerator EnableCollisionAfterDelay(float delay)
@@ -180,12 +148,8 @@ List<GameObject> nvHumansWithBothChildren = new List<GameObject>();
             Destroy(gameObject);
             if (shooter != null && shooter.transform.parent != null)
             {
-                Debug.Log("which parent virus are we killing" + shooter.transform.parent);
+            
                 // Destroy all shooter objects inside the shooter's parent
-                foreach (Transform child in shooter.transform.parent)
-                {
-                    Debug.Log("deleting " + child.gameObject.tag);
-                }
                 foreach (Transform child in shooter.transform.parent)
                 {
                     Destroy(child.gameObject);
@@ -199,7 +163,7 @@ List<GameObject> nvHumansWithBothChildren = new List<GameObject>();
 
                     if (infectedStack.Count > 0 && infectedStack.Peek().name != shooter.transform.parent.name)
                     {
-                        Debug.Log(infectedStack.Peek());
+                       
 
                         GameObject nextInfected = infectedStack.Peek();
                         Transform initialVirusChild = null;
@@ -311,7 +275,6 @@ List<GameObject> nvHumansWithBothChildren = new List<GameObject>();
 
     private void InstantiateVirus(Transform parentTransform)
     {
-        Debug.Log("Hellooo i am in initialisation");
         GameObject newVirus = Instantiate(initialVirusPrefab, parentTransform.position, Quaternion.identity);
         newVirus.transform.SetParent(parentTransform);
         SpriteRenderer sr = newVirus.GetComponent<SpriteRenderer>();

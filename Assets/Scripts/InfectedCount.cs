@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class InfectedCount : MonoBehaviour
 {
     public TextMeshProUGUI infectedText;
+    public PopUpCanvas popUpCanvas;
 
     void Start()
     {
+        popUpCanvas = PopUpCanvas.Instance;
         if (infectedText == null)
         {
             Debug.LogError("Infected Text reference is not set!");
@@ -24,12 +26,36 @@ public class InfectedCount : MonoBehaviour
         // Set the max infected count based on the scene name
         int maxInfectedForScene = 4;
         if (currentSceneName == "Level1" || currentSceneName == "Level2")
-        {           
+        {
             maxInfectedForScene = 2;
         }
-       
-            infectedText.text = "Humans Infected : " + infectedCount + " / " + maxInfectedForScene;
+
+        infectedText.text = "Humans Infected : " + infectedCount + " / " + maxInfectedForScene;
+
+        if (infectedCount == 0 && !getIsInitialVirusPresent())
+        {
+            EndGame("Virus Lost!");
+        }
     }
+
+    private bool getIsInitialVirusPresent()
+    {
+        GameObject virusObject = GameObject.Find("InitialVirus");
+        return virusObject != null;
+    }
+
+    private void EndGame(string message)
+    {
+        if (popUpCanvas != null)
+        {
+            popUpCanvas.ShowPopUp(message);
+        }
+        else
+        {
+            Debug.LogWarning("PopUpCanvas reference is not assigned!");
+        }
+    }
+
     public int GetInfectedCount()
     {
         GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
