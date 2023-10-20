@@ -7,8 +7,20 @@ public class InfectedCount : MonoBehaviour
 {
     public TextMeshProUGUI infectedText;
     public PopUpCanvas popUpCanvas;
+    //Analytics
+    public SuccessRateRequestL1 successRateRequestL1;
+    public SuccessRateRequestL2 successRateRequestL2;
+    public SuccessRateRequestL3 successRateRequestL3;
+    private bool requestSent;
+    string currentSceneName;
+    int infectedCount;
 
-    void Start()
+    private void Awake()
+    {
+        requestSent = false;
+    }
+
+    async void Start()
     {
         popUpCanvas = PopUpCanvas.Instance;
         if (infectedText == null)
@@ -19,10 +31,10 @@ public class InfectedCount : MonoBehaviour
 
     void Update()
     {
-        int infectedCount = GetInfectedCount();
+        infectedCount = GetInfectedCount();
 
         // Get the current scene's name
-        string currentSceneName = SceneManager.GetActiveScene().name;
+        currentSceneName = SceneManager.GetActiveScene().name;
         // Set the max infected count based on the scene name
         int maxInfectedForScene = 4;
         if (currentSceneName == "Level1" || currentSceneName == "Level2")
@@ -35,6 +47,7 @@ public class InfectedCount : MonoBehaviour
         if (infectedCount == 0 && !getIsInitialVirusPresent())
         {
             EndGame("Virus Lost!");
+
         }
     }
 
@@ -49,6 +62,9 @@ public class InfectedCount : MonoBehaviour
         if (popUpCanvas != null)
         {
             popUpCanvas.ShowPopUp(message);
+            Debug.Log("REQUEST STATUS: " + requestSent);
+            //Analytics
+            SendAnalytics(currentSceneName);
         }
         else
         {
@@ -99,5 +115,48 @@ public class InfectedCount : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void SendAnalytics(string currentlevel)
+    {
+        //Analytics
+        if (!requestSent)
+        {
+            Debug.Log("SENDING: " + infectedCount);
+            if (currentlevel == "Level1")
+            {
+                if (successRateRequestL1 == null)
+                {
+                    Debug.LogError("successRateRequest is null");
+                }
+                else
+                {
+                    successRateRequestL1.Send(infectedCount);
+                }
+            }
+            else if (currentlevel == "Level2")
+            {
+                if (successRateRequestL2 == null)
+                {
+                    Debug.LogError("successRateRequest is null");
+                }
+                else
+                {
+                    successRateRequestL2.Send(infectedCount);
+                }
+            } else if (currentlevel == "Level3")
+            {
+                if (successRateRequestL3 == null)
+                {
+                    Debug.LogError("successRateRequest is null");
+                }
+                else
+                {
+                    successRateRequestL3.Send(infectedCount);
+                }
+            }
+
+            requestSent = true;
+        }
     }
 }

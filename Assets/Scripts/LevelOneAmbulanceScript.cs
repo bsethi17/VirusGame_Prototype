@@ -20,8 +20,16 @@ public class LevelOneAmbulanceScript : MonoBehaviour
     public float slideSpeed;
 
     public PopUpCanvas popUpCanvas;
+    //Analytics
+    public SuccessRateRequestL1 successRateRequestL1;
+    private bool requestSent;
 
-    void Start()
+    private void Awake()
+    {
+        requestSent = false;
+    }
+
+    async void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
@@ -115,6 +123,19 @@ public class LevelOneAmbulanceScript : MonoBehaviour
             callback();
         }
     }
+    private int getNumOfInfectedHumans()
+    {
+        int count = 0;
+        if (HasChildren(human1.transform))
+        {
+            count += 1;
+        }
+        if (HasChildren(human2.transform))
+        {
+            count += 1;
+        }
+        return count;
+    }
 
     void displayResult()
     {
@@ -134,6 +155,14 @@ public class LevelOneAmbulanceScript : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus Lost!");
+                if (!requestSent)
+                {
+                    int numberOfInfectedHumans = getNumOfInfectedHumans();
+                    successRateRequestL1.Send(numberOfInfectedHumans);
+                    Debug.Log("SENT:" + numberOfInfectedHumans);
+
+                    requestSent = true;
+                }
             }
             else
             {

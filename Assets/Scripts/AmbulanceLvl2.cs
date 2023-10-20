@@ -21,10 +21,20 @@ public class AmbulanceLvl2 : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
-    void Start()
+    //Analytics
+    public SuccessRateRequestL2 successRateRequest;
+    private bool requestSent;
+
+    private void Awake()
+    {
+        requestSent = false;
+    }
+
+    async void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
+
     }
 
     void Update()
@@ -34,8 +44,7 @@ public class AmbulanceLvl2 : MonoBehaviour
         {
             if (popUpCanvas != null)
             {
-                popUpCanvas.ShowPopUp("Virus wins!");
-                return;
+                popUpCanvas.ShowPopUp("Virus wins!");         
             }
             else
             {
@@ -116,13 +125,26 @@ public class AmbulanceLvl2 : MonoBehaviour
         }
     }
 
+    private int getNumOfInfectedHumans()
+    {
+        int count = 0;
+        if (HasChildren(human1.transform))
+        {
+            count += 1;
+        }
+        if (HasChildren(human4.transform))
+        {
+            count += 1;
+        }
+        return count;
+    }
     void displayResult()
     {
         if (human1Infected && human4Infected)
         {
             if (popUpCanvas != null)
             {
-                popUpCanvas.ShowPopUp("Virus wins!");
+                popUpCanvas.ShowPopUp("Virus wins!");            
             }
             else
             {
@@ -134,6 +156,16 @@ public class AmbulanceLvl2 : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus Lost!");
+                Debug.Log("LOST");
+                //Analytics
+                if (!requestSent)
+                {
+                    int numberOfInfectedHumans = getNumOfInfectedHumans();
+                    successRateRequest.Send(numberOfInfectedHumans);
+                    Debug.Log("SENT:" + numberOfInfectedHumans);
+
+                    requestSent = true;
+                }
             }
             else
             {
