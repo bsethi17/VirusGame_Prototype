@@ -21,7 +21,7 @@ public class AmbulanceScript : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
-    public SuccessRateRequest successRateRequest;
+    public SuccessRateRequestL3 successRateRequest;
     private bool requestSent;
 
 
@@ -44,13 +44,6 @@ public class AmbulanceScript : MonoBehaviour
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus wins!");
-                if (!requestSent)
-                {
-                    successRateRequest.Send(4);
-
-                    requestSent = true;
-                }
-                return;
             }
             else
             {

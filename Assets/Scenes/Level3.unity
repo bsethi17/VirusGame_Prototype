@@ -1572,7 +1572,7 @@ MonoBehaviour:
   human4: {fileID: 399351777}
   slideSpeed: 0.5
   popUpCanvas: {fileID: 1300896067}
-  successRateRequest: {fileID: 1841313032}
+  successRateRequest: {fileID: 1841313034}
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0
@@ -3945,6 +3945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpText: {fileID: 1373220713}
+  successRateRequestL1: {fileID: 0}
+  successRateRequestL2: {fileID: 0}
+  successRateRequestL3: {fileID: 1841313034}
 --- !u!1 &1347676772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,6 +4580,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infectedText: {fileID: 69131890}
+  popUpCanvas: {fileID: 1300896067}
+  successRateRequestL1: {fileID: 0}
+  successRateRequestL2: {fileID: 0}
+  successRateRequestL3: {fileID: 1841313034}
 --- !u!1 &1455993089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5586,7 +5593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1841313033}
-  - component: {fileID: 1841313032}
+  - component: {fileID: 1841313034}
   m_Layer: 0
   m_Name: SuccessRateRequest
   m_TagString: Untagged
@@ -5594,19 +5601,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1841313032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841313031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec370bd8f020146f78d75f2d989bb7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdyzAiYYJe-rA_nliEhQ6IgnaSRDkF7EOrqb5JF41K8twkE-A/formResponse
 --- !u!4 &1841313033
 Transform:
   m_ObjectHideFlags: 0
@@ -5622,6 +5616,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1841313034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841313031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02345014a23a34a7597298b56657623b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdyzAiYYJe-rA_nliEhQ6IgnaSRDkF7EOrqb5JF41K8twkE-A/formResponse
 --- !u!1 &1841368916
 GameObject:
   m_ObjectHideFlags: 0

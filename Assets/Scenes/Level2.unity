@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1484980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484982}
+  - component: {fileID: 1484983}
+  m_Layer: 0
+  m_Name: SuccessRateRequest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484980}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.3111107, y: 0.92808247, z: -0.088436574}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1484983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501ffa30343e84e6ebddc17845ac47c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSc9skZAlSyXGA-YPkbSuDJGLuf-2AHVV3LR7P4oVijs7-uAAg/formResponse
 --- !u!1 &90686630
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,6 +1193,7 @@ MonoBehaviour:
   human4: {fileID: 399351777}
   slideSpeed: 0.5
   popUpCanvas: {fileID: 1300896067}
+  successRateRequest: {fileID: 1484983}
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0
@@ -3045,6 +3091,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpText: {fileID: 1373220713}
+  successRateRequestL1: {fileID: 0}
+  successRateRequestL2: {fileID: 1484983}
+  successRateRequestL3: {fileID: 0}
 --- !u!1 &1359346975
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,6 +3997,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infectedText: {fileID: 809522261}
+  popUpCanvas: {fileID: 0}
+  successRateRequestL1: {fileID: 0}
+  successRateRequestL2: {fileID: 1484983}
+  successRateRequestL3: {fileID: 0}
 --- !u!114 &1735148977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4785,3 +4838,4 @@ SceneRoots:
   - {fileID: 1241381088}
   - {fileID: 1054705962}
   - {fileID: 1735148980}
+  - {fileID: 1484982}
