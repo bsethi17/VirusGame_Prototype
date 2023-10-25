@@ -22,7 +22,7 @@ public class BulletScript : MonoBehaviour
     public GameObject shooter; // This will hold the reference to the shooter object
 
     private static Stack<GameObject> infectedStack = new Stack<GameObject>();
-
+    public rangepopup popupController;
     void Start()
     {
         popUpCanvas = PopUpCanvas.Instance;
@@ -38,6 +38,7 @@ public class BulletScript : MonoBehaviour
 
         objectToDestroy = GameObject.FindWithTag("InitialVirus");
         StartCoroutine(EnableCollisionAfterDelay(0.01f));
+        popupController = FindObjectOfType<rangepopup>();
 
     }
 
@@ -145,12 +146,16 @@ public class BulletScript : MonoBehaviour
         // if the bullet touches vaccinated human
         if (collision.gameObject.tag == "VaccinatedHuman")
         {
-
+            float previousRange = maxRange;
             maxRange -= 2;
             // Ensure that maxRange doesn't go below a certain threshold if required
             if (maxRange < 2)
             {
                 maxRange = 2;
+            }
+            if (popupController != null && maxRange < previousRange)
+            {
+                popupController.ShowPopup("Range Decreased!");
             }
 
             Destroy(gameObject);
@@ -273,6 +278,11 @@ public class BulletScript : MonoBehaviour
                 isInitialVirus = true;
                 objectToDestroy = null;
             }
+            maxRange += 1;
+            if (popupController != null)
+            {
+                popupController.ShowPopup("Range Increased!");
+            }
             // Destroy the bullet
             Destroy(gameObject);
 
@@ -289,7 +299,6 @@ public class BulletScript : MonoBehaviour
             sr.sortingOrder = 1; // Ensure it is rendered in front
         }
         newVirus.transform.localPosition = new Vector3(0, 0, 0);
-        maxRange += 1;
         if (infectedStack.Count == 0 || infectedStack.Peek() != parentTransform.gameObject)
         {
             infectedStack.Push(parentTransform.gameObject);
