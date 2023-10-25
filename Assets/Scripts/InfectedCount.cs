@@ -42,7 +42,7 @@ public class InfectedCount : MonoBehaviour
             maxInfectedForScene = 2;
         }
 
-        infectedText.text = "Humans Infected : " + infectedCount + " / " + maxInfectedForScene;
+        infectedText.text = infectedCount + " / " + maxInfectedForScene;
 
         if (infectedCount == 0 && !getIsInitialVirusPresent())
         {
