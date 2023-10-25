@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour , IPointerClickHandler
     }
 
     [SerializeField] private Image uiFill;
-    [SerializeField] private Text uiText;
+    // [SerializeField] private Text uiText;
 
     public int Duration;
 
@@ -37,8 +37,18 @@ public class Timer : MonoBehaviour , IPointerClickHandler
         {
             if (!Pause)
             {
-                uiText.text = $"{remainingDuration / 60:00}:{remainingDuration % 60:00}";
+                // uiText.text = $"{remainingDuration / 60:00}:{remainingDuration % 60:00}";
                 uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
+                print("Fill Amount: "+uiFill.fillAmount);
+                if (uiFill.fillAmount >= 0.66) {
+                    uiFill.color = Color.green;
+                }
+                else if (uiFill.fillAmount >= 0.33) {
+                    uiFill.color = Color.yellow;
+                }
+                else {
+                    uiFill.color = Color.red;
+                }
                 remainingDuration--;
                 yield return new WaitForSeconds(1f);
             }
@@ -49,7 +59,7 @@ public class Timer : MonoBehaviour , IPointerClickHandler
 
     private void OnEnd()
     {
-        uiText.text = "Time's Up!";
+        // uiText.text = "Time's Up!";
         // print("End");
     }
 }
