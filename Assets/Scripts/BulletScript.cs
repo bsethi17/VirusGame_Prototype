@@ -206,8 +206,7 @@ public class BulletScript : MonoBehaviour
                 Debug.Log("Shooter or its parent reference is not set for the bullet!");
             }
 
-
-
+             maxRange -= 2;
             return;
         }
 
