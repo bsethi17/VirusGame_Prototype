@@ -145,10 +145,18 @@ public class BulletScript : MonoBehaviour
         // if the bullet touches vaccinated human
         if (collision.gameObject.tag == "VaccinatedHuman")
         {
+
+            maxRange -= 2;
+            // Ensure that maxRange doesn't go below a certain threshold if required
+            if (maxRange < 2)
+            {
+                maxRange = 2;
+            }
+
             Destroy(gameObject);
             if (shooter != null && shooter.transform.parent != null)
             {
-            
+
                 // Destroy all shooter objects inside the shooter's parent
                 foreach (Transform child in shooter.transform.parent)
                 {
@@ -163,7 +171,7 @@ public class BulletScript : MonoBehaviour
 
                     if (infectedStack.Count > 0 && infectedStack.Peek().name != shooter.transform.parent.name)
                     {
-                       
+
 
                         GameObject nextInfected = infectedStack.Peek();
                         Transform initialVirusChild = null;
@@ -206,7 +214,6 @@ public class BulletScript : MonoBehaviour
                 Debug.Log("Shooter or its parent reference is not set for the bullet!");
             }
 
-             maxRange -= 2;
             return;
         }
 
@@ -282,7 +289,7 @@ public class BulletScript : MonoBehaviour
             sr.sortingOrder = 1; // Ensure it is rendered in front
         }
         newVirus.transform.localPosition = new Vector3(0, 0, 0);
-        maxRange += 2;
+        maxRange += 1;
         if (infectedStack.Count == 0 || infectedStack.Peek() != parentTransform.gameObject)
         {
             infectedStack.Push(parentTransform.gameObject);
