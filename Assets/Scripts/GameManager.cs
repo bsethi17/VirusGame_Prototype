@@ -27,11 +27,13 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         // Add any additional restart logic here.
+        ResetBulletCount();
         SceneManager.LoadScene(originalSceneName);
         ResumeGame();
     }
 
     public void NextLevel() {
+        ResetBulletCount();
         SceneManager.LoadScene("LevelScene");
         ResumeGame();
     }
@@ -56,4 +58,10 @@ public class GameManager : MonoBehaviour
         BulletScript.isInitialVirus = false;
         BulletScript.maxRange = 2;
     }
+
+    private void ResetBulletCount()
+    {
+        UIManager.Instance.ResetBulletsToInitialCount(); // Calling the reset method from UIManager.
+    }
 }
+

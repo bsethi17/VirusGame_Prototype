@@ -55,5 +55,12 @@ public class UIManager : MonoBehaviour
         GlobalBulletCount += count;
         UpdateBulletCount(GlobalBulletCount);
     }
+
+    public void ResetBulletsToInitialCount()
+    {
+        GlobalBulletCount = 3; // Reset to initial value
+        UpdateBulletCount(GlobalBulletCount);
+    }
+
 }
 

@@ -44,10 +44,10 @@ public class InfectedCount : MonoBehaviour
 
         infectedText.text = infectedCount + " / " + maxInfectedForScene;
 
-        if (infectedCount == 0 && !getIsInitialVirusPresent())
+        if ((infectedCount == 0 && !getIsInitialVirusPresent()) || UIManager.Instance.GlobalBulletCount == 0)
         {
-            EndGame("Virus Lost!");
-
+            string endMessage = UIManager.Instance.GlobalBulletCount == 0 ? "Out of Bullets!" : "Virus Lost!";
+            EndGame(endMessage);
         }
     }
 

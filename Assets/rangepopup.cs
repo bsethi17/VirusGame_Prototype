@@ -6,7 +6,7 @@ using TMPro;
 public class rangepopup : MonoBehaviour
 {
     public TextMeshProUGUI popupText;
-    public float displayTime = 2f;
+    public float displayTime = 0.5f;
     private Coroutine popupCoroutine;
 
     private void Awake()
