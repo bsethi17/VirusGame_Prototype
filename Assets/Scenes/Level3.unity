@@ -288,37 +288,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1592048668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &92500319
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 92500320}
-  m_Layer: 0
-  m_Name: HumanNV2 path (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &92500320
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92500319}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: 0.00000047683716, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 346742968}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &100556936
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,37 +539,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 547181636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &210086993
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 210086994}
-  m_Layer: 0
-  m_Name: HumanNV2 path (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &210086994
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210086993}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: 3.5300004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 346742968}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252296032
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,12 +663,9 @@ Transform:
   m_Children:
   - {fileID: 1757284761}
   - {fileID: 661772249}
-  - {fileID: 92500320}
-  - {fileID: 439918501}
-  - {fileID: 1347676773}
-  - {fileID: 899870290}
-  - {fileID: 210086994}
   - {fileID: 1592637251}
+  - {fileID: 1347676773}
+  - {fileID: 439918501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352410639
@@ -1130,7 +1065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 439918501}
   m_Layer: 0
-  m_Name: HumanNV2 path (3)
+  m_Name: HumanNV2 path4
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1846,7 +1781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661772249}
   m_Layer: 0
-  m_Name: HumanNV2 path (1)
+  m_Name: HumanNV2 path1
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1861,7 +1796,7 @@ Transform:
   m_GameObject: {fileID: 661772248}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: 1.2900004, z: 0}
+  m_LocalPosition: {x: 8.84, y: -4.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2590,37 +2525,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891688305}
   m_CullTransparentMesh: 1
---- !u!1 &899870289
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 899870290}
-  m_Layer: 0
-  m_Name: HumanNV2 path (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &899870290
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899870289}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: -2.58, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 346742968}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &905907879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,12 +2622,9 @@ MonoBehaviour:
   waypoints:
   - {fileID: 1757284761}
   - {fileID: 661772249}
-  - {fileID: 92500320}
-  - {fileID: 439918501}
-  - {fileID: 1347676773}
-  - {fileID: 899870290}
-  - {fileID: 210086994}
   - {fileID: 1592637251}
+  - {fileID: 1347676773}
+  - {fileID: 439918501}
   speed: 3
 --- !u!212 &908426902
 SpriteRenderer:
@@ -2786,7 +2687,7 @@ Transform:
   m_GameObject: {fileID: 908426900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.3, y: -3.0499995, z: 0}
+  m_LocalPosition: {x: 11.22, y: -1.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4250,7 +4151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1347676773}
   m_Layer: 0
-  m_Name: HumanNV2 path (4)
+  m_Name: HumanNV2 path3
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4265,7 +4166,7 @@ Transform:
   m_GameObject: {fileID: 1347676772}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: -1.8099995, z: 0}
+  m_LocalPosition: {x: 10.37, y: -1.8099995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5495,7 +5396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1592637251}
   m_Layer: 0
-  m_Name: HumanNV2 path (7)
+  m_Name: HumanNV2 path2
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -5510,7 +5411,7 @@ Transform:
   m_GameObject: {fileID: 1592637250}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: -3.3999996, z: 0}
+  m_LocalPosition: {x: 9.48, y: -2.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6054,7 +5955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1757284761}
   m_Layer: 0
-  m_Name: HumanNV2 path
+  m_Name: HumanNV2 path0
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6069,7 +5970,7 @@ Transform:
   m_GameObject: {fileID: 1757284760}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: 2.2700005, z: 0}
+  m_LocalPosition: {x: 10.52, y: -4.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6984,13 +6885,13 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 789875498}
   - {fileID: 970776233}
-  - {fileID: 399351782}
   - {fileID: 908426903}
   - {fileID: 1691576497}
+  - {fileID: 399351782}
   - {fileID: 749529282}
-  - {fileID: 1018392367}
   - {fileID: 346742968}
   - {fileID: 1183988285}
+  - {fileID: 1018392367}
   - {fileID: 496797575}
   - {fileID: 1500073246}
   - {fileID: 7364125226037779481}
