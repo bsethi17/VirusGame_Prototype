@@ -121,10 +121,6 @@ public class BulletScript : MonoBehaviour
 
     }
 
-
-
-
-
     private IEnumerator EnableCollisionAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -270,7 +266,7 @@ public class BulletScript : MonoBehaviour
             //case 3 infected human with shooting capability is hit then do nothing
 
             // Notify the shooter of the successful hit
-            
+
             //initially I will destroy the virus object
             if (!isInitialVirus)
             {
@@ -279,7 +275,7 @@ public class BulletScript : MonoBehaviour
                 objectToDestroy = null;
             }
             maxRange += 1;
-            
+
             if (popupController != null)
             {
                 popupController.ShowPopup("Range Increased!");
