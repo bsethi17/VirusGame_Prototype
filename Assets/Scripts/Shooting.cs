@@ -80,8 +80,9 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && canFire)
+        if (Input.GetMouseButtonDown(0) && canFire&&UIManager.Instance.GlobalBulletCount > 0)
         {
+           
             for (int i = 0; i < bulletsPerBurst; i++) // Loop to fire multiple bullets
             {
                 // Fire a bullet
@@ -98,6 +99,7 @@ public class Shooting : MonoBehaviour
             }
 
             canFire = false; // Set canFire to false after firing the burst of bullets
+             UIManager.Instance.UseBullets(1);
         }
 
         //Code to switch the shooting agent on right click of infected human

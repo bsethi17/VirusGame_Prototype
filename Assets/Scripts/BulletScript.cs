@@ -243,6 +243,7 @@ public class BulletScript : MonoBehaviour
                 }
             }
 
+
             //3 cases will be there
 
             // Shooting.shooterInstance.NotifyHit();
@@ -278,11 +279,13 @@ public class BulletScript : MonoBehaviour
                 objectToDestroy = null;
             }
             maxRange += 1;
+            
             if (popupController != null)
             {
                 popupController.ShowPopup("Range Increased!");
             }
             // Destroy the bullet
+            UIManager.Instance.AddBullets(1);
             Destroy(gameObject);
 
         }
