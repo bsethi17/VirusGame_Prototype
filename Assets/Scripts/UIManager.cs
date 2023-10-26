@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateBulletCount(int count)
     {
-        bulletCountText.text = "Bullets: " + count;
+        bulletCountText.text = " : " + count;
     }
 
     public void UseBullets(int count)
