@@ -17,5 +17,6 @@ public class CirclePathMovementNV1 : MonoBehaviour
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
+        
     }
 }
