@@ -32,10 +32,23 @@ public class GameManager : MonoBehaviour
         ResumeGame();
     }
 
-    public void NextLevel() {
+    public void Menu()
+    {
         ResetBulletCount();
         SceneManager.LoadScene("LevelScene");
         ResumeGame();
+    }
+
+    public void GoToLevel2()
+    {
+        ResetBulletCount();
+        SceneManager.LoadScene("Level2");
+    }
+
+    public void GoToLevel3()
+    {
+        ResetBulletCount();
+        SceneManager.LoadScene("Level3");
     }
 
     public void StopGame()
