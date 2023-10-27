@@ -279,7 +279,7 @@ public class BulletScript : MonoBehaviour
 
             if (popupController != null)
             {
-                popupController.ShowPopup("Range Increased!");
+                popupController.ShowPopup("Range Increased! \nBullets+2");
             }
             // Destroy the bullet
             UIManager.Instance.AddBullets(1);
