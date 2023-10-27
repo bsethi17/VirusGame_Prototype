@@ -1079,7 +1079,7 @@ Transform:
   m_GameObject: {fileID: 439918500}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: -0.95999956, z: 0}
+  m_LocalPosition: {x: 13.02, y: -0.95999956, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2283,7 +2283,7 @@ Transform:
   m_GameObject: {fileID: 792345050}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.25, y: -2.22, z: 0}
+  m_LocalPosition: {x: 12.42, y: -1.63, z: 0}
   m_LocalScale: {x: 4.554261, y: 4.44514, z: 1.5127}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2649,7 +2649,7 @@ Transform:
   m_GameObject: {fileID: 899870289}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: -2.58, z: 0}
+  m_LocalPosition: {x: 13.06, y: -2.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2753,6 +2753,7 @@ MonoBehaviour:
   - {fileID: 439918501}
   - {fileID: 1347676773}
   - {fileID: 899870290}
+  - {fileID: 1592637251}
   speed: 3
 --- !u!212 &908426902
 SpriteRenderer:
@@ -2815,7 +2816,7 @@ Transform:
   m_GameObject: {fileID: 908426900}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.3, y: -3.0499995, z: 0}
+  m_LocalPosition: {x: 12.98, y: -0.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4284,7 +4285,7 @@ Transform:
   m_GameObject: {fileID: 1347676772}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: -1.8099995, z: 0}
+  m_LocalPosition: {x: 11.81, y: -1.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5560,7 +5561,7 @@ Transform:
   m_GameObject: {fileID: 1592637250}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.26, y: -3.3999996, z: 0}
+  m_LocalPosition: {x: 14.08, y: -1.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6925,7 +6926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: bulletsPerBurst
-      value: 100
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
