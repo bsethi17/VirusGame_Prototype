@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     private static UIManager _instance;
 
     // Add bullet management
-    public int GlobalBulletCount { get; private set; } = 3;  // Initial value
+    public int GlobalBulletCount { get; private set; } = 4;  // Initial value
 
     public static UIManager Instance 
     {
