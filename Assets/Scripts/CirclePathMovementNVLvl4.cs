@@ -31,7 +31,5 @@ public class CirclePathMovementNVLvl4 : MonoBehaviour
                 direction = -direction;
             }
         }
-        
-        Debug.Log("Current waypoint index: " + currentWaypointIndex);
     }
 }

@@ -102,6 +102,13 @@ MonoBehaviour:
   force: 6
   objectToDestroy: {fileID: 0}
   initialVirusPrefab: {fileID: 2165581262963403846, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+  popUpCanvas: {fileID: 0}
+  shooter: {fileID: 0}
+  popupController: {fileID: 0}
+  shield: {fileID: 0}
+  shieldColor1: {r: 0, g: 0.11495834, b: 0.9716981, a: 0.54901963}
+  shieldColor2: {r: 0.28773582, g: 0.51139826, b: 1, a: 0.54901963}
+  shieldColor3: {r: 0.6462264, g: 0.8295686, b: 1, a: 0.45490196}
 --- !u!50 &5588044880000933862
 Rigidbody2D:
   serializedVersion: 4

@@ -23,6 +23,7 @@ public class BulletScript : MonoBehaviour
 
     private static Stack<GameObject> infectedStack = new Stack<GameObject>();
     public rangepopup popupController;
+
     void Start()
     {
         popUpCanvas = PopUpCanvas.Instance;
@@ -39,7 +40,6 @@ public class BulletScript : MonoBehaviour
         objectToDestroy = GameObject.FindWithTag("InitialVirus");
         StartCoroutine(EnableCollisionAfterDelay(0.01f));
         popupController = FindObjectOfType<rangepopup>();
-
     }
 
     void Update()
@@ -120,9 +120,6 @@ public class BulletScript : MonoBehaviour
         }
 
     }
-
-
-
 
 
     private IEnumerator EnableCollisionAfterDelay(float delay)
