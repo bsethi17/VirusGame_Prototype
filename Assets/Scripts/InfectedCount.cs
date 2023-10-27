@@ -44,11 +44,17 @@ public class InfectedCount : MonoBehaviour
 
         infectedText.text = infectedCount + " / " + maxInfectedForScene;
 
-        if ((infectedCount == 0 && !getIsInitialVirusPresent()) || UIManager.Instance.GlobalBulletCount == 0)
+        if ((infectedCount == 0 && !getIsInitialVirusPresent()) || UIManager.Instance.GlobalBulletCount == 0 && !IsBulletInScene())
         {
             string endMessage = UIManager.Instance.GlobalBulletCount == 0 ? "Out of Bullets!" : "Virus Lost!";
             EndGame(endMessage);
         }
+    }
+
+    private bool IsBulletInScene()
+    {
+        GameObject bulletObject = GameObject.FindWithTag("bullet");
+        return bulletObject != null;
     }
 
     private bool getIsInitialVirusPresent()

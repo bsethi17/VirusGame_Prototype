@@ -49,6 +49,7 @@ public class Shooting : MonoBehaviour
             canFire = false;  // Disable shooting
             return;  // Exit the Update method
         }
+        
         // Get mouse position
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
