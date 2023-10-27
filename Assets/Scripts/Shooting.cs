@@ -44,6 +44,11 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0)  // Check if the game is paused
+        {
+            canFire = false;  // Disable shooting
+            return;  // Exit the Update method
+        }
         // Get mouse position
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 

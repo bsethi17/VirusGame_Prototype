@@ -19,8 +19,8 @@ public class InstructionsPopup : MonoBehaviour
 
     public void CloseInstructions()
     {
+        instructionsPanel.SetActive(false);
         // Resume the game
         Time.timeScale = 1;
-        instructionsPanel.SetActive(false);
     }
 }
