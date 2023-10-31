@@ -154,8 +154,15 @@ public class BulletScript : MonoBehaviour
             {
                 popupController.ShowPopup("Range Decreased!");
             }
+            if (!isInitialVirus)
+            {
+                Destroy(objectToDestroy);
+                isInitialVirus = true;
+                objectToDestroy = null;
+            }
 
             Destroy(gameObject);
+            
             if (shooter != null && shooter.transform.parent != null)
             {
 
