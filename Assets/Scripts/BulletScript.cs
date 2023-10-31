@@ -293,6 +293,10 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
 
         }
+
+        if (collision.gameObject.tag == "Blocker") {
+            Destroy(gameObject);
+        }
     }
 
     private void InstantiateVirus(Transform parentTransform)

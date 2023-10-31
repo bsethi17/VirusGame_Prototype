@@ -9,7 +9,9 @@ public class UIManager : MonoBehaviour
     private static UIManager _instance;
 
     // Add bullet management
-    public int GlobalBulletCount { get; private set; } = 4;  // Initial value
+    public int GlobalBulletCount = 3;  // Initial value
+
+    public int ResetBulletCount = 3;
 
     public static UIManager Instance 
     {
@@ -58,7 +60,7 @@ public class UIManager : MonoBehaviour
 
     public void ResetBulletsToInitialCount()
     {
-        GlobalBulletCount = 3; // Reset to initial value
+        GlobalBulletCount = ResetBulletCount; // Reset to initial value
         UpdateBulletCount(GlobalBulletCount);
     }
 
