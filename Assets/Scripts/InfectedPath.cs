@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CirclePathMovementNV1 : MonoBehaviour
+public class InfectedPath : MonoBehaviour
 {
     public Transform[] waypoints;
     public float speed = 5.0f;

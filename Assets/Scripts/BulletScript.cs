@@ -23,6 +23,8 @@ public class BulletScript : MonoBehaviour
 
     private static Stack<GameObject> infectedStack = new Stack<GameObject>();
     public rangepopup popupController;
+    public InfectedPath infectedPathMovementScript;
+
 
     public static Stack<GameObject> GetInfectedStack()
     {
@@ -234,6 +236,22 @@ public class BulletScript : MonoBehaviour
         {
             Transform initialVirusChild = null;
             Transform rotatePointGrandChild = null;
+            if (collision.gameObject.tag != "NVHuman1")
+            {
+                MonoBehaviour circlePathScript = (MonoBehaviour)collision.gameObject.GetComponent(typeof(MonoBehaviour));
+                if (circlePathScript != null)
+                {
+                    circlePathScript.enabled = false;
+                }
+
+                // Find and enable the InfectedPath script
+                InfectedPath infectedPathScript = collision.gameObject.GetComponent<InfectedPath>();
+                if (infectedPathScript != null)
+                {
+                    infectedPathScript.enabled = true;
+                }
+            }
+
 
             foreach (Transform child in collision.transform)
             {
