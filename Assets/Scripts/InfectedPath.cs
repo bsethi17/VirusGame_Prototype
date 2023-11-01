@@ -24,4 +24,36 @@ public class InfectedPath : MonoBehaviour
             }
         }
     }
+
+
+ private bool hasVisitedFirstWaypoint = false;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("hii triggered");
+        if (collision.CompareTag("FirstWaypoint")) // Change "FirstWaypoint" to the tag of your first waypoint
+        {
+            if (!hasVisitedFirstWaypoint)
+            {
+                // Mark the first waypoint as visited
+                hasVisitedFirstWaypoint = true;
+            }
+            else
+            {
+                // Find and disable the InfectedPath script
+                InfectedPath infectedPathScript = GetComponent<InfectedPath>();
+                if (infectedPathScript != null)
+                {
+                    infectedPathScript.enabled = false;
+                }
+
+                // Find and enable the CirclePathMovementNV1 script
+                MonoBehaviour circlePathScript = (MonoBehaviour)GetComponent(typeof(MonoBehaviour)); // Replace MonoBehaviour with the actual type of your circle path script
+                if (circlePathScript != null)
+                {
+                    circlePathScript.enabled = true;
+                }
+            }
+        }
+    }
 }
