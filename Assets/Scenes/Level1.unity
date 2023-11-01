@@ -953,6 +953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletCountText: {fileID: 1328441887}
+  GlobalBulletCount: 3
+  ResetBulletCount: 3
 --- !u!114 &444080254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6771,6 +6773,14 @@ PrefabInstance:
     - target: {fileID: 5230910256739608225, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: m_SortingLayerID
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: triangleHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: triangleBaseSize
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
