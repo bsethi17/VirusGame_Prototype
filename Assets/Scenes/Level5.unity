@@ -1099,7 +1099,7 @@ MonoBehaviour:
   - {fileID: 944121149}
   - {fileID: 1948310324}
   - {fileID: 905907880}
-  speed: 3
+  speed: 1
 --- !u!212 &399351781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4034,7 +4034,7 @@ MonoBehaviour:
   - {fileID: 1532809334}
   - {fileID: 897501944}
   - {fileID: 958359919}
-  speed: 5
+  speed: 1
 --- !u!50 &1222554815
 Rigidbody2D:
   serializedVersion: 4
@@ -5199,6 +5199,7 @@ GameObject:
   - component: {fileID: 1427021159}
   - component: {fileID: 1427021158}
   - component: {fileID: 1427021162}
+  - component: {fileID: 1427021163}
   m_Layer: 5
   m_Name: IC
   m_TagString: Untagged
@@ -5306,6 +5307,33 @@ MonoBehaviour:
   successRateRequestL1: {fileID: 0}
   successRateRequestL2: {fileID: 0}
   successRateRequestL3: {fileID: 1841313034}
+--- !u!50 &1427021163
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427021157}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1467052137
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,7 +6172,7 @@ MonoBehaviour:
   - {fileID: 364618368}
   - {fileID: 1227791780}
   - {fileID: 1070484603}
-  speed: 3
+  speed: 1
 --- !u!1 &1733749708
 GameObject:
   m_ObjectHideFlags: 0
@@ -6753,6 +6781,7 @@ GameObject:
   - component: {fileID: 1950887427}
   - component: {fileID: 1950887429}
   - component: {fileID: 1950887430}
+  - component: {fileID: 1950887431}
   m_Layer: 0
   m_Name: healingHouse
   m_TagString: Untagged
@@ -6839,6 +6868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: addaf35d63b3647468b448794b53a95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialVirusPrefab: {fileID: 2088487859}
 --- !u!61 &1950887430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6884,6 +6914,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 2.625}
   m_EdgeRadius: 0
+--- !u!50 &1950887431
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950887426}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2000715374
 GameObject:
   m_ObjectHideFlags: 0
@@ -7100,6 +7157,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1592048668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2088487859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2165581262963403846, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+  m_PrefabInstance: {fileID: 7364125226037779481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2093051870
 GameObject:
   m_ObjectHideFlags: 0

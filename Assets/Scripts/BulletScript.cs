@@ -24,6 +24,11 @@ public class BulletScript : MonoBehaviour
     private static Stack<GameObject> infectedStack = new Stack<GameObject>();
     public rangepopup popupController;
 
+    public static Stack<GameObject> GetInfectedStack()
+    {
+        return infectedStack;
+    }
+
     void Start()
     {
         popUpCanvas = PopUpCanvas.Instance;
@@ -162,7 +167,6 @@ public class BulletScript : MonoBehaviour
             }
 
             Destroy(gameObject);
-            
             if (shooter != null && shooter.transform.parent != null)
             {
 
