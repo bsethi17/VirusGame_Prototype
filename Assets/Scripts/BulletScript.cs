@@ -327,6 +327,13 @@ public class BulletScript : MonoBehaviour
             sr.sortingOrder = 1; // Ensure it is rendered in front
         }
         newVirus.transform.localPosition = new Vector3(0, 0, 0);
+        MonoBehaviour virusScript = (MonoBehaviour)newVirus.GetComponent(typeof(MonoBehaviour));
+    if (virusScript != null)
+    {
+        virusScript.enabled = false;
+    }
+
+
         if (infectedStack.Count == 0 || infectedStack.Peek() != parentTransform.gameObject)
         {
             infectedStack.Push(parentTransform.gameObject);
