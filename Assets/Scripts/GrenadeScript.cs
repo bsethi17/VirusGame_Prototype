@@ -2,21 +2,18 @@ using UnityEngine;
 
 public class GrenadeScript : MonoBehaviour
 {
-    // You can adjust the value as needed
     public int bulletsToAddOnHit = 1;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the collided object is a bullet
-        if (collision.gameObject.tag == "bullet")
+        
+        if (collision.gameObject.CompareTag("bullet"))
         {
-            Debug.Log("Collision detected with: " + collision.gameObject.name);
-            // Call the AddBullets method from UIManager
-            UIManager.Instance.AddGrenades(bulletsToAddOnHit);
+            Debug.Log("hiiii destroying grenade");
+            UIManager.Instance.AddGrenades(1);
             Destroy(gameObject);
-
-            // Optional: Destroy the grenade after being hit
-            // Destroy(gameObject);
         }
     }
+
 }
+

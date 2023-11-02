@@ -20,8 +20,16 @@ public class healingHouse : MonoBehaviour
     {
 
     }
+
      private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("grenade"))
+        {
+            // Destroy the healingHouse
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+
         if (other.gameObject.name.StartsWith("HumanNV"))
         {
             // Try to find the child object named "InitialVirus"

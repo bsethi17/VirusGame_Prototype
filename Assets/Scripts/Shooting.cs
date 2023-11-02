@@ -6,10 +6,14 @@ public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
     public GameObject virusObject;
-    private float distanceFromVirusObject = 0.5f;
+    private float distanceFromVirusObject = 1.0f;
     private Vector3 mousePos;
     public GameObject bullet;
     public Transform bulletTransform;
+
+    public GameObject grenadePrefab;
+    public Transform grenadeTransform;
+    
     public bool canFire;
     // how frequentlty player can fire
     private float timer;
@@ -18,11 +22,20 @@ public class Shooting : MonoBehaviour
 
     // Triangle Renderer to show shooting direction
     private LineRenderer triangleRenderer;
-    private float triangleBaseSize = 0.5f; // This value will determine the width of the triangle's base
-    private float triangleHeight = 1.0f; // This value will determine the triangle's height
+    public float triangleBaseSize = 1.0f; // This value will determine the width of the triangle's base
+    public float triangleHeight = 2.0f; // This value will determine the triangle's height
 
     public int bulletsPerBurst = 2;
     //private int bulletsFiredInBurst = 0;
+
+
+    public enum ShootingMode
+    {
+        Bullets,
+        Grenades
+    }
+
+    private ShootingMode currentMode = ShootingMode.Bullets;
 
     void Start()
     {
@@ -35,7 +48,7 @@ public class Shooting : MonoBehaviour
         {
             triangleRenderer = gameObject.AddComponent<LineRenderer>();
         }
-
+        // triangleHeight = BulletScript.maxRange;
         triangleRenderer.startWidth = 0.05f;
         triangleRenderer.endWidth = 0.05f;
         triangleRenderer.positionCount = 4; // Three corners + close the triangle (returning to the starting point)
@@ -49,28 +62,41 @@ public class Shooting : MonoBehaviour
             canFire = false;  // Disable shooting
             return;  // Exit the Update method
         }
+        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            currentMode = ShootingMode.Grenades;
+        }
+        else if (Input.GetKeyDown(KeyCode.B))
+        {
+            currentMode = ShootingMode.Bullets;
+        }
 
         // Get mouse position
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;  // Ensure that the z position is 0
 
-        Vector3 direction = (mousePos - virusObject.transform.position).normalized;  // Calculate the normalized direction vector from the virusObject to the mouse cursor
-        Vector3 triangleApex = virusObject.transform.position + direction * triangleHeight;  // Calculate the position of the triangle apex
+        Vector3 rotation = mousePos - transform.position;
+        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // Rotate the red dot to face the mouse cursor.
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        // Set the position of the small circle relative to the rectangular object.
+        transform.position = virusObject.transform.position + rotation.normalized * (distanceFromVirusObject + triangleHeight);
+        Vector3 shootingPoint = virusObject.transform.position + rotation.normalized * distanceFromVirusObject;
 
-        transform.position = virusObject.transform.position + direction * distanceFromVirusObject;  // Calculate the position of the small circle
-        bulletTransform.position = triangleApex;  // Set the bulletTransform position to the triangle apex
-
-        Vector3 leftBaseCorner = transform.position - Quaternion.Euler(0, 0, 90) * direction * (triangleBaseSize / 2);  // Calculate the left base corner of the triangle
-        Vector3 rightBaseCorner = transform.position + Quaternion.Euler(0, 0, 90) * direction * (triangleBaseSize / 2);  // Calculate the right base corner of the triangle
+        // Calculate triangle points based on direction and sizes
+        Vector3 triangleApex = shootingPoint + rotation.normalized * triangleHeight;
+        Vector3 leftBaseCorner = shootingPoint - Quaternion.Euler(0, 0, 90) * rotation.normalized * (triangleBaseSize / 2);
+        Vector3 rightBaseCorner = shootingPoint + Quaternion.Euler(0, 0, 90) * rotation.normalized * (triangleBaseSize / 2);
 
         // Set triangle renderer's positions
         triangleRenderer.SetPosition(0, leftBaseCorner);
         triangleRenderer.SetPosition(1, triangleApex);
         triangleRenderer.SetPosition(2, rightBaseCorner);
-        triangleRenderer.SetPosition(3, leftBaseCorner);
+        triangleRenderer.SetPosition(3, leftBaseCorner); // close the triangle
+        // Set bulletTransform at the tip of the triangle
+        bulletTransform.position = triangleApex;
+
 
         if (!canFire)
         {
@@ -82,9 +108,32 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && canFire && UIManager.Instance.GlobalBulletCount > 0)
+        if (Input.GetMouseButtonDown(0) && canFire&&UIManager.Instance.GlobalBulletCount > 0)
         {
+           switch (currentMode)
+            {
+                case ShootingMode.Bullets:
+                    if (UIManager.Instance.GlobalBulletCount > 0)
+                    {
+                        ShootBullets();
+                    }
+                    break;
+                case ShootingMode.Grenades:
+                    if (UIManager.Instance.GlobalGrenadeCount > 0)
+                    {
+                        ShootGrenades();
+                    }
+                    break;
+            }
+        }
 
+        //Code to switch the shooting agent on right click of infected human
+        HandleRightClick();
+    }
+
+    private void ShootBullets()
+    {
+            Debug.Log("s");
             for (int i = 0; i < bulletsPerBurst; i++) // Loop to fire multiple bullets
             {
                 // Fire a bullet
@@ -102,10 +151,24 @@ public class Shooting : MonoBehaviour
 
             canFire = false; // Set canFire to false after firing the burst of bullets
             UIManager.Instance.UseBullets(1);
-        }
+    }
 
-        //Code to switch the shooting agent on right click of infected human
-        HandleRightClick();
+    private void ShootGrenades()
+    {
+        Debug.Log("g");
+        if (UIManager.Instance.GlobalGrenadeCount > 0)
+        {
+            GameObject newGrenade = Instantiate(grenadePrefab, bulletTransform.position, Quaternion.identity);
+            GrenadeScript grenadeScript = newGrenade.GetComponent<GrenadeScript>();
+            
+            // Apply forces or any other initialization to the grenade
+            // For example:
+            // Rigidbody2D rb = newGrenade.GetComponent<Rigidbody2D>();
+            // rb.AddForce(...);
+
+            canFire = false;
+            UIManager.Instance.UseGrenades(1);
+        }
     }
 
 
@@ -209,3 +272,4 @@ public class Shooting : MonoBehaviour
     }
 
 }
+

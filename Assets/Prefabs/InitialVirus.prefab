@@ -174,8 +174,12 @@ MonoBehaviour:
   virusObject: {fileID: 2165581262963403846}
   bullet: {fileID: 341143343979238756, guid: 6444e94da38e84609b2d19dd14fd63ab, type: 3}
   bulletTransform: {fileID: 8782360934462793883}
+  grenadePrefab: {fileID: 775298122507213076, guid: 16d7d6279de5f43a4a87fb5e1f1b1686, type: 3}
+  grenadeTransform: {fileID: 8782360934462793883}
   canFire: 1
   timeBetweenFiring: 0.1
+  triangleBaseSize: 1
+  triangleHeight: 2
   bulletsPerBurst: 2
 --- !u!1 &4047013594826945339
 GameObject:
