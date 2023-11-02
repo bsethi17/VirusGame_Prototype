@@ -162,7 +162,7 @@ public class BulletScript : MonoBehaviour
             }
 
             Destroy(gameObject);
-            
+
             if (shooter != null && shooter.transform.parent != null)
             {
 
@@ -258,7 +258,6 @@ public class BulletScript : MonoBehaviour
             }
 
 
-
             if (initialVirusChild == null)
             {
                 // Case 1: Instantiate the initialVirusPrefab under this NVHuman
@@ -294,7 +293,8 @@ public class BulletScript : MonoBehaviour
 
         }
 
-        if (collision.gameObject.tag == "Blocker") {
+        if (collision.gameObject.tag == "Blocker")
+        {
             Destroy(gameObject);
         }
     }

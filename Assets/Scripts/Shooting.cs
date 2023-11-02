@@ -49,7 +49,7 @@ public class Shooting : MonoBehaviour
             canFire = false;  // Disable shooting
             return;  // Exit the Update method
         }
-        
+
         // Get mouse position
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;  // Ensure that the z position is 0
@@ -65,7 +65,7 @@ public class Shooting : MonoBehaviour
 
         Vector3 leftBaseCorner = transform.position - Quaternion.Euler(0, 0, 90) * direction * (triangleBaseSize / 2);  // Calculate the left base corner of the triangle
         Vector3 rightBaseCorner = transform.position + Quaternion.Euler(0, 0, 90) * direction * (triangleBaseSize / 2);  // Calculate the right base corner of the triangle
-        
+
         // Set triangle renderer's positions
         triangleRenderer.SetPosition(0, leftBaseCorner);
         triangleRenderer.SetPosition(1, triangleApex);
@@ -82,9 +82,9 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && canFire&&UIManager.Instance.GlobalBulletCount > 0)
+        if (Input.GetMouseButtonDown(0) && canFire && UIManager.Instance.GlobalBulletCount > 0)
         {
-           
+
             for (int i = 0; i < bulletsPerBurst; i++) // Loop to fire multiple bullets
             {
                 // Fire a bullet
@@ -101,7 +101,7 @@ public class Shooting : MonoBehaviour
             }
 
             canFire = false; // Set canFire to false after firing the burst of bullets
-             UIManager.Instance.UseBullets(1);
+            UIManager.Instance.UseBullets(1);
         }
 
         //Code to switch the shooting agent on right click of infected human
