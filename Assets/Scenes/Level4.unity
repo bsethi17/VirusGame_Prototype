@@ -1898,7 +1898,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 496797573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9022290a8d1d74e05b9640bef2692b9c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe8c66c570663495ab0d8e8f5b693e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
@@ -1909,15 +1909,14 @@ MonoBehaviour:
   - {fileID: 2000715375}
   - {fileID: 2093051871}
   - {fileID: 907710984}
-  speed: 6
-  delay: 29
+  speed: 7
+  delay: 30
   human1: {fileID: 970776230}
   human2: {fileID: 908426900}
   human3: {fileID: 1691576492}
   human4: {fileID: 399351777}
-  slideSpeed: 0.5
+  slideSpeed: 1
   popUpCanvas: {fileID: 1300896067}
-  successRateRequest: {fileID: 1841313034}
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0

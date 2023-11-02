@@ -12,16 +12,19 @@ public class AmbulanceTimer : MonoBehaviour
 
     bool timerActive = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         textBox.text = timeStart.ToString();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(timerActive){
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (timerActive)
+        {
             timeStart += Time.deltaTime;
             textBox.text = timeStart.ToString();
         }
-	}
+    }
 }

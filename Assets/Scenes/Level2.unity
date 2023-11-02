@@ -1707,7 +1707,7 @@ MonoBehaviour:
   delay: 19
   human1: {fileID: 970776230}
   human4: {fileID: 399351777}
-  slideSpeed: 0.5
+  slideSpeed: 1
   popUpCanvas: {fileID: 1300896067}
   successRateRequest: {fileID: 1484983}
 --- !u!1 &515446973
