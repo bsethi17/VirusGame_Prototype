@@ -6,7 +6,7 @@ public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
     public GameObject virusObject;
-    private float distanceFromVirusObject = 1.0f;
+    private float distanceFromVirusObject = 0.5f;
     private Vector3 mousePos;
     public GameObject bullet;
     public Transform bulletTransform;
@@ -22,12 +22,14 @@ public class Shooting : MonoBehaviour
 
     // Triangle Renderer to show shooting direction
     private LineRenderer triangleRenderer;
-    public float triangleBaseSize = 1.0f; // This value will determine the width of the triangle's base
-    public float triangleHeight = 2.0f; // This value will determine the triangle's height
+    public float triangleBaseSize = 0.5f; // This value will determine the width of the triangle's base
+    public float triangleHeight = 1f; // This value will determine the triangle's height
 
     public int bulletsPerBurst = 2;
     //private int bulletsFiredInBurst = 0;
 
+    public Color bulletColor = Color.white; // Default color for the bullet mode
+    public Color grenadeColor = Color.red; // Color for when the grenade mode is
 
     public enum ShootingMode
     {
@@ -53,6 +55,7 @@ public class Shooting : MonoBehaviour
         triangleRenderer.endWidth = 0.05f;
         triangleRenderer.positionCount = 4; // Three corners + close the triangle (returning to the starting point)
         triangleRenderer.loop = true; // Connect the last point to the first to close the triangle
+        triangleRenderer.material.color = bulletColor;
     }
 
     void Update()
@@ -66,37 +69,34 @@ public class Shooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             currentMode = ShootingMode.Grenades;
+            triangleRenderer.material.color = grenadeColor; // Change the triangle color to grenade color
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {
             currentMode = ShootingMode.Bullets;
+            triangleRenderer.material.color = bulletColor; // Change the triangle color back to bullet color
         }
 
         // Get mouse position
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0; // Ensure that the z position is 0  
 
-        Vector3 rotation = mousePos - transform.position;
-        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        Vector3 direction = (mousePos - virusObject.transform.position).normalized;  // Calculate the normalized direction vector from the virusObject to the mouse cursor
+        Vector3 triangleApex = virusObject.transform.position + direction * triangleHeight;  // Calculate the position of the triangle apex
 
-        // Rotate the red dot to face the mouse cursor.
+        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
-        // Set the position of the small circle relative to the rectangular object.
-        transform.position = virusObject.transform.position + rotation.normalized * (distanceFromVirusObject + triangleHeight);
-        Vector3 shootingPoint = virusObject.transform.position + rotation.normalized * distanceFromVirusObject;
+        transform.position = virusObject.transform.position + direction * distanceFromVirusObject;  // Calculate the position of the small circle
+        bulletTransform.position = triangleApex;  // Set the bulletTransform position to the triangle apex
 
-        // Calculate triangle points based on direction and sizes
-        Vector3 triangleApex = shootingPoint + rotation.normalized * triangleHeight;
-        Vector3 leftBaseCorner = shootingPoint - Quaternion.Euler(0, 0, 90) * rotation.normalized * (triangleBaseSize / 2);
-        Vector3 rightBaseCorner = shootingPoint + Quaternion.Euler(0, 0, 90) * rotation.normalized * (triangleBaseSize / 2);
-
+        Vector3 leftBaseCorner = transform.position - Quaternion.Euler(0, 0, 90) * direction * (triangleBaseSize / 2);  // Calculate the left base corner of the triangle
+        Vector3 rightBaseCorner = transform.position + Quaternion.Euler(0, 0, 90) * direction * (triangleBaseSize / 2);  // Calculate the right base corner of the triangle
         // Set triangle renderer's positions
         triangleRenderer.SetPosition(0, leftBaseCorner);
         triangleRenderer.SetPosition(1, triangleApex);
         triangleRenderer.SetPosition(2, rightBaseCorner);
-        triangleRenderer.SetPosition(3, leftBaseCorner); // close the triangle
-        // Set bulletTransform at the tip of the triangle
-        bulletTransform.position = triangleApex;
-
+        triangleRenderer.SetPosition(3, leftBaseCorner);
 
         if (!canFire)
         {
