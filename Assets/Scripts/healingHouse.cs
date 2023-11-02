@@ -5,7 +5,10 @@ using UnityEngine;
 public class healingHouse : MonoBehaviour
 {
     public GameObject initialVirusPrefab;
+    public GameObject humanNShieldPrefab; 
     private static Stack<GameObject> infectedStack;
+
+     private HashSet<GameObject> humansToReceiveShield = new HashSet<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +20,7 @@ public class healingHouse : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter2D(Collider2D other)
+     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name.StartsWith("HumanNV"))
         {
@@ -68,6 +71,9 @@ public class healingHouse : MonoBehaviour
                         InstantiateVirus(previousShooter.transform);
                     }
                 }
+                
+                // Add the healed human to the HashSet
+                humansToReceiveShield.Add(other.gameObject);
             }
             else
             {
@@ -75,6 +81,43 @@ public class healingHouse : MonoBehaviour
             }
         }
     }
+
+     private void OnTriggerExit2D(Collider2D other)
+    {
+        if (humansToReceiveShield.Contains(other.gameObject))
+        {
+            AttachShieldToHuman(other.transform);
+            humansToReceiveShield.Remove(other.gameObject);
+        }
+    }
+
+    private void AttachShieldToHuman(Transform humanTransform)
+    {
+        // Check if the human already has a shield
+        foreach (Transform child in humanTransform)
+        {
+            if (child.name.StartsWith("HS"))
+            {
+                Debug.Log("Human already has a shield.");
+                return;
+            }
+        }
+
+        // Instantiate and attach the shield to the human
+        GameObject newShield = Instantiate(humanNShieldPrefab, humanTransform.position, Quaternion.identity);
+        if (newShield != null)
+        {
+            Debug.Log("Shield attached successfully.");
+        }
+        else
+        {
+            Debug.LogError("Shield attachment failed.");
+            return;
+        }
+        newShield.transform.SetParent(humanTransform);
+        newShield.transform.localPosition = new Vector3(0, 0, 0);
+    }
+    
     private void InstantiateVirus(Transform parentTransform)
     {
 
