@@ -6511,8 +6511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574c95b4174f944979c103d3fedaa75f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldPrefab: {fileID: 635899508187777368, guid: e3c5697759c754eba853caeda684c58d, type: 3}
   grenadePrefab: {fileID: 5690917555359222756, guid: d124f000d3cd946bb9e496207de83453, type: 3}
+  shieldPrefab: {fileID: 635899508187777368, guid: e3c5697759c754eba853caeda684c58d, type: 3}
   spawnPoints:
   - {fileID: 367977303}
   - {fileID: 1008315566}
@@ -7809,6 +7809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialVirusPrefab: {fileID: 2165581262963403846, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+  humanNShieldPrefab: {fileID: 1485660214930898332, guid: 2fdfc077f1db3467b9db24dea229f69b, type: 3}
 --- !u!61 &1950887430
 BoxCollider2D:
   m_ObjectHideFlags: 0

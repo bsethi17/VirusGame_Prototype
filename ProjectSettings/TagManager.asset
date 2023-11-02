@@ -15,6 +15,7 @@ TagManager:
   - NVHuman4
   - Shield
   - FirstWaypoint
+  - HS
   layers:
   - Default
   - TransparentFX
