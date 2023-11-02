@@ -64,6 +64,12 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Level5");
     }
 
+    public void GoToLevel6()
+    {
+        ResetBulletCount();
+        SceneManager.LoadScene("Level6");
+    }
+
     public void StopGame()
     {
         Time.timeScale = 0f; // Stop the game
