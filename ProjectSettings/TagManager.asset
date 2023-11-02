@@ -14,7 +14,7 @@ TagManager:
   - bulletTransform
   - NVHuman4
   - Shield
-  - HS
+  - FirstWaypoint
   layers:
   - Default
   - TransparentFX
