@@ -39,7 +39,7 @@ public class AmbulanceLvl5 : MonoBehaviour
     void Update()
     {
         // check constantly if all the humans are infected; if so, stop the game immediately
-        if (HasChildren(human1.transform) && HasChildren(human2.transform) && HasChildren(human3.transform) && HasChildren(human4.transform))
+        if (IsInfected(human1.transform) && IsInfected(human2.transform) && IsInfected(human3.transform) && IsInfected(human4.transform))
         {
             if (popUpCanvas != null)
             {
@@ -86,9 +86,16 @@ public class AmbulanceLvl5 : MonoBehaviour
     }
 
     // check if this human is infected
-    bool HasChildren(Transform obj)
+    bool IsInfected(Transform obj)
     {
-        return obj.childCount > 0;
+        foreach (Transform child in obj)
+        {
+            if (child.name.StartsWith("InitialVirus"))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void MoveInfectedHumansIntoAmbulance(Action callback)
@@ -100,7 +107,7 @@ public class AmbulanceLvl5 : MonoBehaviour
     // make the human get into the ambulance
     IEnumerator MoveToAmbulance(float step, Action callback)
     {
-        if (HasChildren(human2.transform))
+        if (IsInfected(human2.transform))
         {
             while (Vector3.Distance(human2.transform.position, ambulance.transform.position) > 0.001f)
             {
@@ -108,7 +115,7 @@ public class AmbulanceLvl5 : MonoBehaviour
                 yield return null;
             }
         }
-        if (HasChildren(human1.transform))
+        if (IsInfected(human1.transform))
         {
             while (Vector3.Distance(human1.transform.position, ambulance.transform.position) > 0.01f)
             {
@@ -116,7 +123,7 @@ public class AmbulanceLvl5 : MonoBehaviour
                 yield return null;
             }
         }
-        if (HasChildren(human3.transform))
+        if (IsInfected(human3.transform))
         {
             while (Vector3.Distance(human3.transform.position, ambulance.transform.position) > 0.001f)
             {
@@ -124,7 +131,7 @@ public class AmbulanceLvl5 : MonoBehaviour
                 yield return null;
             }
         }
-        if (HasChildren(human4.transform))
+        if (IsInfected(human4.transform))
         {
             while (Vector3.Distance(human4.transform.position, ambulance.transform.position) > 0.001f)
             {
@@ -143,19 +150,19 @@ public class AmbulanceLvl5 : MonoBehaviour
     private int getNumOfInfectedHumans()
     {
         int count = 0;
-        if (HasChildren(human1.transform))
+        if (IsInfected(human1.transform))
         {
             count += 1;
         }
-        if (HasChildren(human2.transform))
+        if (IsInfected(human2.transform))
         {
             count += 1;
         }
-        if (HasChildren(human3.transform))
+        if (IsInfected(human3.transform))
         {
             count += 1;
         }
-        if (HasChildren(human4.transform))
+        if (IsInfected(human4.transform))
         {
             count += 1;
         }
