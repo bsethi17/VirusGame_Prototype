@@ -1,59 +1,64 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class ParentLifetime : MonoBehaviour
+public class AvgLifeTimeL1 : MonoBehaviour
 {
-    private List<float> childDurations = new List<float>();
+    public static AvgLifeTimeL1 Instance { get; private set; }
+    [SerializeField] private string googleFormURL;
+    private long _sessionID;
+    private string _humanNumber;
+    private float _averageTime;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        _sessionID = DateTime.Now.Ticks;
+    }
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
 
-        foreach (Transform child in transform)
-        {
-            Debug.Log("Child tag: " + child.gameObject.tag);
-            if (child.CompareTag("InitialVirus"))
-            {
-                Debug.Log("New initialVirus child detected: " + child.gameObject.name);
-                ObjectLifetime objectLifetime = child.GetComponent<ObjectLifetime>();
-                if (objectLifetime == null)
-                {
-                    objectLifetime = child.gameObject.AddComponent<ObjectLifetime>();
-                }
-                objectLifetime.OnDestroyEvent += HandleChildDestroy;
-                objectLifetime.OnEndGameEvent += HandleChildEndGame;
+    }
 
+    public void Send(string humanNumber, float averageTime)
+    {
+        _humanNumber = humanNumber;
+        _averageTime = averageTime;
+        StartCoroutine(Post(_sessionID.ToString(), _humanNumber.ToString(), _averageTime.ToString()));
+    }
+
+    private IEnumerator Post(string sessionID, string humanNumber, string averageTime)
+    {
+        WWWForm form = new WWWForm();
+
+        // session ID entry, human number, avg time
+        form.AddField("entry.1681809441", sessionID);
+        form.AddField("entry.1941213516", humanNumber);
+        form.AddField("entry.2093876290", averageTime);
+
+        // Send responses and verify result    
+        using (UnityWebRequest www = UnityWebRequest.Post(googleFormURL, form))
+        {
+            yield return www.SendWebRequest();
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                Debug.Log("Analytic 2 Form upload complete!");
             }
         }
-
-    }
-
-    private void HandleChildDestroy(float duration)
-    {
-        // Add the child's duration to the list
-        childDurations.Add(duration);
-
-        // Print the average duration of all child objects
-        PrintAverageChildDuration();
-    }
-    private void HandleChildEndGame(float duration)
-    {
-        Debug.Log("HandleChildEndGame");
-        // Add the child's duration to the list
-        childDurations.Add(duration);
-
-        // Print the average duration of all child objects
-        PrintAverageChildDuration();
-    }
-
-    private void PrintAverageChildDuration()
-    {
-        float sum = 0f;
-        foreach (float duration in childDurations)
-        {
-            sum += duration;
-        }
-        float avg = childDurations.Count > 0 ? sum / childDurations.Count : 0f;
-        Debug.Log("Average child duration: " + avg);
     }
 }

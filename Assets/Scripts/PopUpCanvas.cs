@@ -18,7 +18,6 @@ public class PopUpCanvas : MonoBehaviour
     public SuccessRateRequestL3 successRateRequestL3;
     private bool requestSent;
 
-
     void Awake()
     {
         requestSent = false;
@@ -63,7 +62,7 @@ public class PopUpCanvas : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-     private void SendAnalytics(string currentlevel)
+    private void SendAnalytics(string currentlevel)
     {
         //Analytics
         if (!requestSent)
