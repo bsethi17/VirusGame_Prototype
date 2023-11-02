@@ -9,6 +9,8 @@ public class ParentLifetime : MonoBehaviour
     private List<float> childDurations = new List<float>();
 
     public AvgLifeTimeL1 avgLifeTimeL1;
+    public AvgLifeTimeL2 avgLifeTimeL2;
+    public AvgLifeTimeL3 avgLifeTimeL3;
 
     private bool requestSent;
 
@@ -43,6 +45,7 @@ public class ParentLifetime : MonoBehaviour
 
     private void HandleChildDestroy(float duration)
     {
+        Debug.Log("HandleChildDestroy");
         // Add the child's duration to the list
         childDurations.Add(duration);
 
@@ -70,7 +73,6 @@ public class ParentLifetime : MonoBehaviour
         // Debug.Log("Average child duration: " + avg);
         string currentlevel = SceneManager.GetActiveScene().name;
         SendAnalytics(currentlevel, avg);
-        Debug.Log("Current object tag: " + gameObject.tag);
     }
 
     private void SendAnalytics(string currentlevel, float avg)
@@ -78,9 +80,6 @@ public class ParentLifetime : MonoBehaviour
         //Analytics
         if (!requestSent)
         {
-            Debug.Log("SENDING ANL2: ");
-            Debug.Log("Current object tag: " + gameObject.tag);
-            Debug.Log("requestSent: " + requestSent);
             if (currentlevel == "Level1")
             {
                 if (avgLifeTimeL1 == null)
@@ -90,6 +89,28 @@ public class ParentLifetime : MonoBehaviour
                 else
                 {
                     avgLifeTimeL1.Send(gameObject.tag, avg);
+                }
+            }
+            else if (currentlevel == "Level2")
+            {
+                if (avgLifeTimeL2 == null)
+                {
+                    Debug.LogError("avgLifeTimeL2 is null");
+                }
+                else
+                {
+                    avgLifeTimeL2.Send(gameObject.tag, avg);
+                }
+            }
+            else if (currentlevel == "Level3")
+            {
+                if (avgLifeTimeL3 == null)
+                {
+                    Debug.LogError("avgLifeTimeL3 is null");
+                }
+                else
+                {
+                    avgLifeTimeL3.Send(gameObject.tag, avg);
                 }
             }
             
