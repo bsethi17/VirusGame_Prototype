@@ -5740,8 +5740,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletCountText: {fileID: 544445388}
   grenadeCountText: {fileID: 0}
-  GlobalBulletCount: 5
-  ResetBulletCount: 5
+  GlobalBulletCount: 6
+  ResetBulletCount: 6
 --- !u!114 &1391209146
 MonoBehaviour:
   m_ObjectHideFlags: 0
