@@ -6,10 +6,15 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public TMP_Text bulletCountText;
+    public TMP_Text grenadeCountText; // UI element for grenade count
+
     private static UIManager _instance;
 
-    // Add bullet management
-    public int GlobalBulletCount = 3;  // Initial value
+    // Bullet management
+    public int GlobalBulletCount = 3; // Initial bullet value
+
+    // Grenade management
+    public int GlobalGrenadeCount { get; private set; } = 0; // Initial grenade value
 
     public int ResetBulletCount = 3;
 
@@ -39,6 +44,7 @@ public class UIManager : MonoBehaviour
         }
 
         UpdateBulletCount(GlobalBulletCount);
+        UpdateGrenadeCount(GlobalGrenadeCount); // Initialize grenade UI
     }
 
     public void UpdateBulletCount(int count)
@@ -64,5 +70,27 @@ public class UIManager : MonoBehaviour
         UpdateBulletCount(GlobalBulletCount);
     }
 
-}
+    // Grenade related methods
+    public void UpdateGrenadeCount(int count)
+    {
+        grenadeCountText.text = "Grenades: " + count/2;
+    }
 
+    public void UseGrenades(int count)
+    {
+        GlobalGrenadeCount -= count;
+        UpdateGrenadeCount(GlobalGrenadeCount);
+    }
+
+    public void AddGrenades(int count)
+    {
+        GlobalGrenadeCount += count;
+        UpdateGrenadeCount(GlobalGrenadeCount);
+    }
+
+    public void ResetGrenadesToInitialCount()
+    {
+        GlobalGrenadeCount = 0; // Reset to initial value
+        UpdateGrenadeCount(GlobalGrenadeCount);
+    }
+}

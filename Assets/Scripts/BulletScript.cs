@@ -24,6 +24,13 @@ public class BulletScript : MonoBehaviour
 
     private static Stack<GameObject> infectedStack = new Stack<GameObject>();
     public rangepopup popupController;
+    public InfectedPath infectedPathMovementScript;
+
+
+    public static Stack<GameObject> GetInfectedStack()
+    {
+        return infectedStack;
+    }
 
     void Start()
     {
@@ -165,7 +172,6 @@ public class BulletScript : MonoBehaviour
             }
 
             Destroy(gameObject);
-
             if (shooter != null && shooter.transform.parent != null)
             {
 
@@ -233,6 +239,22 @@ public class BulletScript : MonoBehaviour
         {
             Transform initialVirusChild = null;
             Transform rotatePointGrandChild = null;
+            if (collision.gameObject.tag != "NVHuman1")
+            {
+                MonoBehaviour circlePathScript = (MonoBehaviour)collision.gameObject.GetComponent(typeof(MonoBehaviour));
+                if (circlePathScript != null)
+                {
+                    circlePathScript.enabled = false;
+                }
+
+                // Find and enable the InfectedPath script
+                InfectedPath infectedPathScript = collision.gameObject.GetComponent<InfectedPath>();
+                if (infectedPathScript != null)
+                {
+                    infectedPathScript.enabled = true;
+                }
+            }
+
 
             foreach (Transform child in collision.transform)
             {
@@ -310,6 +332,13 @@ public class BulletScript : MonoBehaviour
             sr.sortingOrder = 1; // Ensure it is rendered in front
         }
         newVirus.transform.localPosition = new Vector3(0, 0, 0);
+        MonoBehaviour virusScript = (MonoBehaviour)newVirus.GetComponent(typeof(MonoBehaviour));
+    if (virusScript != null)
+    {
+        virusScript.enabled = false;
+    }
+
+
         if (infectedStack.Count == 0 || infectedStack.Peek() != parentTransform.gameObject)
         {
             infectedStack.Push(parentTransform.gameObject);
