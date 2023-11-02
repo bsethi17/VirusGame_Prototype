@@ -45,6 +45,8 @@ public class PopUpCanvas : MonoBehaviour
         popUpText.text = message;
         if (message == "Virus wins!")
         {
+            EndLife();
+
             StartCoroutine(gameManager.DelayedStopGame());
             currentlevel = SceneManager.GetActiveScene().name;
             SendAnalytics(currentlevel);
@@ -101,6 +103,15 @@ public class PopUpCanvas : MonoBehaviour
             }
 
             requestSent = true;
+        }
+    }
+
+    public void EndLife()
+    {
+        ObjectLifetime[] objects = FindObjectsOfType<ObjectLifetime>();
+        foreach (ObjectLifetime obj in objects)
+        {
+            obj.EndGame();
         }
     }
 }

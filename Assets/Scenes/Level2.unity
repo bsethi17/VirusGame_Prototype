@@ -1166,6 +1166,7 @@ GameObject:
   - component: {fileID: 399351780}
   - component: {fileID: 399351779}
   - component: {fileID: 399351778}
+  - component: {fileID: 399351783}
   m_Layer: 0
   m_Name: HumanNV 4
   m_TagString: NVHuman4
@@ -1326,6 +1327,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &399351783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399351777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a696b9ab997f84ae49c23178520bc3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &416677529
 GameObject:
   m_ObjectHideFlags: 0
@@ -3757,6 +3770,7 @@ GameObject:
   - component: {fileID: 970776231}
   - component: {fileID: 970776235}
   - component: {fileID: 970776234}
+  - component: {fileID: 970776236}
   m_Layer: 0
   m_Name: HumanNV 1
   m_TagString: NVHuman1
@@ -3917,6 +3931,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &970776236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970776230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a696b9ab997f84ae49c23178520bc3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1018392366
 GameObject:
   m_ObjectHideFlags: 0
@@ -4400,6 +4426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6d1acfef0dd4def93ba9b3e6109894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInitialVirus: 0
 --- !u!4 &1241381088
 Transform:
   m_ObjectHideFlags: 0
