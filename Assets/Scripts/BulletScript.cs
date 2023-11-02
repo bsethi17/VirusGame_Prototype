@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BulletScript : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
+        isInitialVirus = GameManager.Instance.isInitialVirus;
         popUpCanvas = PopUpCanvas.Instance;
         // the initial position of the bullet
         initialPosition = transform.position;
@@ -40,6 +42,7 @@ public class BulletScript : MonoBehaviour
         objectToDestroy = GameObject.FindWithTag("InitialVirus");
         StartCoroutine(EnableCollisionAfterDelay(0.01f));
         popupController = FindObjectOfType<rangepopup>();
+        string originalSceneName = SceneManager.GetActiveScene().name;
     }
 
     void Update()
@@ -157,7 +160,7 @@ public class BulletScript : MonoBehaviour
             if (!isInitialVirus)
             {
                 Destroy(objectToDestroy);
-                isInitialVirus = true;
+                GameManager.Instance.isInitialVirus = true;
                 objectToDestroy = null;
             }
 
@@ -272,13 +275,11 @@ public class BulletScript : MonoBehaviour
 
             //case 3 infected human with shooting capability is hit then do nothing
 
-            // Notify the shooter of the successful hit
-
             //initially I will destroy the virus object
             if (!isInitialVirus)
             {
                 Destroy(objectToDestroy);
-                isInitialVirus = true;
+                GameManager.Instance.isInitialVirus = true;
                 objectToDestroy = null;
             }
             maxRange += 1;

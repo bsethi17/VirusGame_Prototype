@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     private string originalSceneName;
 
+    public bool isInitialVirus;
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,7 +24,6 @@ public class GameManager : MonoBehaviour
         }
         originalSceneName = SceneManager.GetActiveScene().name;
     }
-
 
     public void RestartGame()
     {
@@ -87,6 +88,11 @@ public class GameManager : MonoBehaviour
     private void ResetBulletCount()
     {
         UIManager.Instance.ResetBulletsToInitialCount(); // Calling the reset method from UIManager.
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isInitialVirus = false;
     }
 }
 
