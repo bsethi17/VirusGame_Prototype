@@ -22,12 +22,12 @@ public class AmbulanceLvl3 : MonoBehaviour
     public PopUpCanvas popUpCanvas;
 
     // Analytics
-    // public SuccessRateRequestL3 successRateRequest;
-    // private bool requestSent;
+    public SuccessRateRequestL3 successRateRequest;
+    private bool requestSent;
 
     private void Awake()
     {
-        // requestSent = false;
+        requestSent = false;
     }
 
     async void Start()
@@ -169,18 +169,18 @@ public class AmbulanceLvl3 : MonoBehaviour
         {
             popUpCanvas.ShowPopUp("Virus Lost!");
 
-            // if (!requestSent)
-            // {
-            //     int numberOfInfectedHumans = getNumOfInfectedHumans();
-            //     successRateRequest.Send(numberOfInfectedHumans);
+            if (!requestSent)
+            {
+                int numberOfInfectedHumans = getNumOfInfectedHumans();
+                successRateRequest.Send(numberOfInfectedHumans);
 
-            //     requestSent = true;
-            //     return;
-            // }
-            // else
-            // {
-            //     Debug.LogWarning("PopUpCanvas reference is not assigned!");
-            // }
+                requestSent = true;
+                return;
+            }
+            else
+            {
+                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+            }
         }
     }
 }

@@ -1630,6 +1630,7 @@ MonoBehaviour:
   human4: {fileID: 399351777}
   slideSpeed: 1
   popUpCanvas: {fileID: 1300896067}
+  successRateRequest: {fileID: 1841313034}
 --- !u!1 &498653024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4498,7 +4499,10 @@ MonoBehaviour:
   popUpText: {fileID: 1373220713}
   successRateRequestL1: {fileID: 0}
   successRateRequestL2: {fileID: 0}
-  successRateRequestL3: {fileID: 1841313034}
+  successRateRequestL3: {fileID: 0}
+  successRateRequestL4: {fileID: 0}
+  successRateRequestL5: {fileID: 1841313034}
+  successRateRequestL6: {fileID: 0}
 --- !u!1 &1359346975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5385,7 +5389,10 @@ MonoBehaviour:
   popUpCanvas: {fileID: 1300896067}
   successRateRequestL1: {fileID: 0}
   successRateRequestL2: {fileID: 0}
-  successRateRequestL3: {fileID: 1841313034}
+  successRateRequestL3: {fileID: 0}
+  successRateRequestL4: {fileID: 0}
+  successRateRequestL5: {fileID: 1841313034}
+  successRateRequestL6: {fileID: 0}
 --- !u!50 &1427021163
 Rigidbody2D:
   serializedVersion: 4
@@ -6526,10 +6533,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1841313031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02345014a23a34a7597298b56657623b, type: 3}
+  m_Script: {fileID: 11500000, guid: c9c9d4b1a2f374294b7a421688692aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdyzAiYYJe-rA_nliEhQ6IgnaSRDkF7EOrqb5JF41K8twkE-A/formResponse
+  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdaPEKQXVa70a72D0SLZjSl4Om2ZBVjQQTDZzudNJiOGRjvpQ/formResponse
 --- !u!1 &1891031709
 GameObject:
   m_ObjectHideFlags: 0
