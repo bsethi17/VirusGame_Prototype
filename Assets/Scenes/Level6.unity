@@ -1704,7 +1704,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 496797573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9022290a8d1d74e05b9640bef2692b9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 01b3b1058a9fa4ab68e46ee4ed70e8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
@@ -1716,14 +1716,13 @@ MonoBehaviour:
   - {fileID: 2093051871}
   - {fileID: 907710984}
   speed: 6
-  delay: 29
+  delay: 33
   human1: {fileID: 970776230}
   human2: {fileID: 1677162443}
   human3: {fileID: 1373557532}
   human4: {fileID: 399351777}
-  slideSpeed: 0.5
+  slideSpeed: 1
   popUpCanvas: {fileID: 1300896067}
-  successRateRequest: {fileID: 1841313034}
 --- !u!1 &498653024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,6 +4799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6d1acfef0dd4def93ba9b3e6109894, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInitialVirus: 0
 --- !u!4 &1241381088
 Transform:
   m_ObjectHideFlags: 0
@@ -5739,6 +5739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletCountText: {fileID: 544445388}
   grenadeCountText: {fileID: 622323581}
+  GlobalBulletCount: 3
+  ResetBulletCount: 3
 --- !u!114 &1391209146
 MonoBehaviour:
   m_ObjectHideFlags: 0

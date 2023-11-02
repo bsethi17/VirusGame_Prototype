@@ -1239,6 +1239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avgLifeTimeL1: {fileID: 0}
   avgLifeTimeL2: {fileID: 1133806252}
+  avgLifeTimeL3: {fileID: 0}
 --- !u!1 &416677529
 GameObject:
   m_ObjectHideFlags: 0
@@ -3747,6 +3748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   avgLifeTimeL1: {fileID: 0}
   avgLifeTimeL2: {fileID: 1133806252}
+  avgLifeTimeL3: {fileID: 0}
 --- !u!1 &1018392366
 GameObject:
   m_ObjectHideFlags: 0
