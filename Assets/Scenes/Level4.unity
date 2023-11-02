@@ -1917,6 +1917,7 @@ MonoBehaviour:
   human4: {fileID: 399351777}
   slideSpeed: 1
   popUpCanvas: {fileID: 1300896067}
+  successRateRequest: {fileID: 1841313034}
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5323,7 +5324,10 @@ MonoBehaviour:
   popUpText: {fileID: 1373220713}
   successRateRequestL1: {fileID: 0}
   successRateRequestL2: {fileID: 0}
-  successRateRequestL3: {fileID: 1841313034}
+  successRateRequestL3: {fileID: 0}
+  successRateRequestL4: {fileID: 1841313034}
+  successRateRequestL5: {fileID: 0}
+  successRateRequestL6: {fileID: 0}
 --- !u!1 &1359346975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5646,6 +5650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletCountText: {fileID: 544445388}
+  grenadeCountText: {fileID: 0}
   GlobalBulletCount: 3
   ResetBulletCount: 3
 --- !u!114 &1391209146
@@ -6179,7 +6184,10 @@ MonoBehaviour:
   popUpCanvas: {fileID: 1300896067}
   successRateRequestL1: {fileID: 0}
   successRateRequestL2: {fileID: 0}
-  successRateRequestL3: {fileID: 1841313034}
+  successRateRequestL3: {fileID: 0}
+  successRateRequestL4: {fileID: 1841313034}
+  successRateRequestL5: {fileID: 0}
+  successRateRequestL6: {fileID: 0}
 --- !u!1 &1455993089
 GameObject:
   m_ObjectHideFlags: 0
@@ -7338,10 +7346,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1841313031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02345014a23a34a7597298b56657623b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ecd15f7dc68b4d99b74de32c1e00920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdyzAiYYJe-rA_nliEhQ6IgnaSRDkF7EOrqb5JF41K8twkE-A/formResponse
+  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSeiYska8M9vm_NIR44swV7pE2Fw1OHGp4jKXlzZ02iiheHflA/formResponse
 --- !u!1 &1863787248
 GameObject:
   m_ObjectHideFlags: 0

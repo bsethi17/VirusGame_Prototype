@@ -239,7 +239,7 @@ public class BulletScript : MonoBehaviour
         {
             Transform initialVirusChild = null;
             Transform rotatePointGrandChild = null;
-            if (collision.gameObject.tag != "NVHuman1" && (SceneManager.GetActiveScene().name=="Level5" || SceneManager.GetActiveScene().name=="Level6"))
+            if (collision.gameObject.tag != "NVHuman1" && (SceneManager.GetActiveScene().name == "Level5" || SceneManager.GetActiveScene().name == "Level6"))
             {
                 MonoBehaviour circlePathScript = (MonoBehaviour)collision.gameObject.GetComponent(typeof(MonoBehaviour));
                 if (circlePathScript != null)
@@ -333,10 +333,10 @@ public class BulletScript : MonoBehaviour
         }
         newVirus.transform.localPosition = new Vector3(0, 0, 0);
         MonoBehaviour virusScript = (MonoBehaviour)newVirus.GetComponent(typeof(MonoBehaviour));
-    if (virusScript != null)
-    {
-        virusScript.enabled = false;
-    }
+        if (virusScript != null)
+        {
+            virusScript.enabled = false;
+        }
 
 
         if (infectedStack.Count == 0 || infectedStack.Peek() != parentTransform.gameObject)

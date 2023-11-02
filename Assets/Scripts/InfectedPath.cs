@@ -26,7 +26,7 @@ public class InfectedPath : MonoBehaviour
     }
 
 
- private bool hasVisitedFirstWaypoint = false;
+    private bool hasVisitedFirstWaypoint = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -16,6 +16,9 @@ public class PopUpCanvas : MonoBehaviour
     public SuccessRateRequestL1 successRateRequestL1;
     public SuccessRateRequestL2 successRateRequestL2;
     public SuccessRateRequestL3 successRateRequestL3;
+    public SuccessRateRequestL4 successRateRequestL4;
+    public SuccessRateRequestL5 successRateRequestL5;
+    public SuccessRateRequestL6 successRateRequestL6;
     private bool requestSent;
 
     void Awake()
@@ -89,7 +92,8 @@ public class PopUpCanvas : MonoBehaviour
                 {
                     successRateRequestL2.Send(2);
                 }
-            } else if (currentlevel == "Level3")
+            }
+            else if (currentlevel == "Level3")
             {
                 if (successRateRequestL3 == null)
                 {
@@ -100,7 +104,39 @@ public class PopUpCanvas : MonoBehaviour
                     successRateRequestL3.Send(4);
                 }
             }
-
+            else if (currentlevel == "Level4")
+            {
+                if (successRateRequestL4 == null)
+                {
+                    Debug.LogError("successRateRequest is null");
+                }
+                else
+                {
+                    successRateRequestL4.Send(4);
+                }
+            }
+            else if (currentlevel == "Level5")
+            {
+                if (successRateRequestL5 == null)
+                {
+                    Debug.LogError("successRateRequest is null");
+                }
+                else
+                {
+                    successRateRequestL5.Send(4);
+                }
+            }
+            else if (currentlevel == "Level6")
+            {
+                if (successRateRequestL6 == null)
+                {
+                    Debug.LogError("successRateRequest is null");
+                }
+                else
+                {
+                    successRateRequestL6.Send(4);
+                }
+            }
             requestSent = true;
         }
     }
