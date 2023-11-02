@@ -1759,26 +1759,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 496797573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9022290a8d1d74e05b9640bef2692b9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 790b0e8855e434e269b3113224fc5271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 1366853271}
-  - {fileID: 493542145}
-  - {fileID: 393625345}
-  - {fileID: 1741542278}
-  - {fileID: 2000715375}
-  - {fileID: 2093051871}
-  - {fileID: 907710984}
+  waypoints: []
   speed: 6
-  delay: 29
+  delay: 9
   human1: {fileID: 970776230}
   human2: {fileID: 908426900}
   human3: {fileID: 1691576492}
   human4: {fileID: 399351777}
   slideSpeed: 0.5
   popUpCanvas: {fileID: 1300896067}
-  successRateRequest: {fileID: 1841313034}
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0
@@ -8719,9 +8711,9 @@ SceneRoots:
   - {fileID: 789875498}
   - {fileID: 970776233}
   - {fileID: 908426903}
-  - {fileID: 1001473331}
   - {fileID: 1691576497}
   - {fileID: 399351782}
+  - {fileID: 1001473331}
   - {fileID: 749529282}
   - {fileID: 346742968}
   - {fileID: 1183988285}
