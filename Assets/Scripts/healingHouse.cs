@@ -6,11 +6,11 @@ using UnityEngine;
 public class healingHouse : MonoBehaviour
 {
     public GameObject initialVirusPrefab;
-    public GameObject humanNShieldPrefab; 
+    public GameObject humanNShieldPrefab;
     public GameObject impactPrefab;
     private static Stack<GameObject> infectedStack;
 
-     private HashSet<GameObject> humansToReceiveShield = new HashSet<GameObject>();
+    private HashSet<GameObject> humansToReceiveShield = new HashSet<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class healingHouse : MonoBehaviour
 
     }
 
-     private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("grenade"))
         {
@@ -58,31 +58,78 @@ public class healingHouse : MonoBehaviour
                 if (infectedStack.Count > 0 && infectedStack.Peek() == other.gameObject)
                 {
                     infectedStack.Pop();
-                }
-
-                // Transfer shooting capability to the previous shooter in the stack
-                if (infectedStack.Count > 0 && infectedStack.Peek().name != other.gameObject.name)
-                {
-                    GameObject previousShooter = infectedStack.Peek();
-                    Transform initialVirusChild = null;
-                    // Find the "InitialVirus" child of the next infected NVHuman
-                    foreach (Transform child in previousShooter.transform)
+                    // Transfer shooting capability to the previous shooter in the stack
+                    if (infectedStack.Count > 0 && infectedStack.Peek().name != other.gameObject.name)
                     {
-
-                        if (child.name.StartsWith("InitialVirus"))
+                        GameObject previousShooter = infectedStack.Peek();
+                        Transform initialVirusChild = null;
+                        // Find the "InitialVirus" child of the next infected NVHuman
+                        foreach (Transform child in previousShooter.transform)
                         {
-                            initialVirusChild = child;
-                            break;
+
+                            if (child.name.StartsWith("InitialVirus"))
+                            {
+                                initialVirusChild = child;
+                                break;
+                            }
+                        }
+                        if (initialVirusChild)
+                        {
+                            // Destroy the existing "InitialVirus" child
+                            Destroy(initialVirusChild.gameObject);
+                            InstantiateVirus(previousShooter.transform);
                         }
                     }
-                    if (initialVirusChild)
-                    {
-                        // Destroy the existing "InitialVirus" child
-                        Destroy(initialVirusChild.gameObject);
-                        InstantiateVirus(previousShooter.transform);
-                    }
                 }
-                
+                else if (infectedStack.Count > 0 && infectedStack.Peek() != other.gameObject)
+                {
+                    Stack<GameObject> tempStack = new Stack<GameObject>();
+                    bool found = false;
+
+                    // Move elements to the temp stack until we find the target game object
+                    while (infectedStack.Count > 0 && infectedStack.Peek() != other.gameObject)
+                    {
+                        tempStack.Push(infectedStack.Pop());
+                    }
+
+                    // If we find the target game object, pop it from the stack
+                    if (infectedStack.Count > 0 && infectedStack.Peek() == other.gameObject)
+                    {
+                        infectedStack.Pop();
+                        found = true;
+                    }
+
+                    // Move elements back from the temp stack to the infected stack
+                    while (tempStack.Count > 0)
+                    {
+                        GameObject stackObject = tempStack.Pop();
+                        infectedStack.Push(stackObject);
+                    }
+
+                    if (infectedStack.Count > 0 && infectedStack.Peek().name != other.gameObject.name)
+                    {
+                        GameObject previousShooter = infectedStack.Peek();
+                        Transform initialVirusChild = null;
+                        // Find the "InitialVirus" child of the next infected NVHuman
+                        foreach (Transform child in previousShooter.transform)
+                        {
+
+                            if (child.name.StartsWith("InitialVirus"))
+                            {
+                                initialVirusChild = child;
+                                break;
+                            }
+                        }
+                        if (initialVirusChild)
+                        {
+                            // Destroy the existing "InitialVirus" child
+                            Destroy(initialVirusChild.gameObject);
+                            InstantiateVirus(previousShooter.transform);
+                        }
+                    }
+
+                }
+
                 // Add the healed human to the HashSet
                 humansToReceiveShield.Add(other.gameObject);
             }
@@ -93,7 +140,7 @@ public class healingHouse : MonoBehaviour
         }
     }
 
-     private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (humansToReceiveShield.Contains(other.gameObject))
         {
@@ -128,7 +175,7 @@ public class healingHouse : MonoBehaviour
         newShield.transform.SetParent(humanTransform);
         newShield.transform.localPosition = new Vector3(0, 0, 0);
     }
-    
+
     private void InstantiateVirus(Transform parentTransform)
     {
 
