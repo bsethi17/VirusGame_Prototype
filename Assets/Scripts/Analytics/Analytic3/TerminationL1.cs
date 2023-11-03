@@ -61,7 +61,7 @@ public class TerminationL1 : MonoBehaviour
             }
             else
             {
-                Debug.Log("Form upload complete!");
+                Debug.Log("Form 3 upload complete!");
             }
         }
     }
