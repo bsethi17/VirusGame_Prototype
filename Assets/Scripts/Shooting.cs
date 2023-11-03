@@ -22,8 +22,8 @@ public class Shooting : MonoBehaviour
 
     // Triangle Renderer to show shooting direction
     private LineRenderer triangleRenderer;
-    public float triangleBaseSize = 0.5f; // This value will determine the width of the triangle's base
-    public float triangleHeight = 1f; // This value will determine the triangle's height
+    public float triangleBaseSize = 0.6f; // This value will determine the width of the triangle's base
+    public float triangleHeight = 1.2f; // This value will determine the triangle's height
 
     public int bulletsPerBurst = 2;
     //private int bulletsFiredInBurst = 0;

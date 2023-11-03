@@ -178,9 +178,11 @@ MonoBehaviour:
   grenadeTransform: {fileID: 8782360934462793883}
   canFire: 1
   timeBetweenFiring: 0.1
-  triangleBaseSize: 1
-  triangleHeight: 2
+  triangleBaseSize: 0.6
+  triangleHeight: 1.2
   bulletsPerBurst: 2
+  bulletColor: {r: 1, g: 1, b: 1, a: 1}
+  grenadeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &4047013594826945339
 GameObject:
   m_ObjectHideFlags: 0
