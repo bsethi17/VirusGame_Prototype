@@ -7686,6 +7686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialVirusPrefab: {fileID: 2165581262963403846, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
   humanNShieldPrefab: {fileID: 1485660214930898332, guid: 2fdfc077f1db3467b9db24dea229f69b, type: 3}
+  impactPrefab: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
 --- !u!61 &1950887430
 BoxCollider2D:
   m_ObjectHideFlags: 0

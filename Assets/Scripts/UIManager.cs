@@ -11,12 +11,12 @@ public class UIManager : MonoBehaviour
     private static UIManager _instance;
 
     // Bullet management
-    public int GlobalBulletCount = 3; // Initial bullet value
+    public int GlobalBulletCount = 10; // Initial bullet value
 
     // Grenade management
     public int GlobalGrenadeCount { get; private set; } = 0; // Initial grenade value
 
-    public int ResetBulletCount = 3;
+    public int ResetBulletCount = 10;
 
     public static UIManager Instance 
     {

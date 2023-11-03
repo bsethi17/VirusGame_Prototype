@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class healingHouse : MonoBehaviour
 {
     public GameObject initialVirusPrefab;
     public GameObject humanNShieldPrefab; 
+    public GameObject impactPrefab;
     private static Stack<GameObject> infectedStack;
 
      private HashSet<GameObject> humansToReceiveShield = new HashSet<GameObject>();
@@ -25,6 +27,7 @@ public class healingHouse : MonoBehaviour
     {
         if (other.gameObject.CompareTag("grenade"))
         {
+            Instantiate(impactPrefab, transform.position, Quaternion.identity);
             // Destroy the healingHouse
             Destroy(other.gameObject);
             Destroy(gameObject);

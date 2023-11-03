@@ -4,7 +4,7 @@ public class GrenadeMovement : MonoBehaviour
 {
     public float speed = 5f;
     private Rigidbody2D rb;
-
+    public GameObject impactPrefab;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,6 +25,8 @@ public class GrenadeMovement : MonoBehaviour
         Debug.Log("Grenade collided with: " + collision.gameObject.name);
         if (collision.gameObject.tag == "HealingHouse")
         {
+             // Instantiate the Impact02 animation at the collision point
+            Instantiate(impactPrefab, collision.contacts[0].point, Quaternion.identity);
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }
