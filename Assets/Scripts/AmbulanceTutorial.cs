@@ -13,6 +13,9 @@ public class AmbulanceTutorial : MonoBehaviour
     private bool hasStartedMoving = false;
 
     public GameObject human1;
+    //public GameObject human2;
+    //public GameObject human3;
+    //public GameObject human4;
     private GameObject ambulance;
     public float slideSpeed;
 
@@ -35,19 +38,18 @@ public class AmbulanceTutorial : MonoBehaviour
 
     void Update()
     {
-        // Check if human1 is infected; if so, stop the game immediately
-        if (IsInfected(human1.transform))
-        {
-            if (popUpCanvas != null)
-            {
-                popUpCanvas.ShowPopUp("Virus wins!");
-            }
-            else
-            {
-                Debug.LogWarning("PopUpCanvas reference is not assigned!");
-            }
-            return; // Stop further execution if human1 is infected
-        }
+        // check constantly if all the humans are infected; if so, stop the game immediately
+        // if (IsInfected(human1.transform))
+        // {
+        //     if (popUpCanvas != null)
+        //     {
+        //         popUpCanvas.ShowPopUp("Virus wins!");
+        //     }
+        //     else
+        //     {
+        //         Debug.LogWarning("PopUpCanvas reference is not assigned!");
+        //     }
+        // }
 
         // Add some delay before it starts to move
         if (!hasStartedMoving)
@@ -55,6 +57,7 @@ public class AmbulanceTutorial : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= delay)
             {
+                displayResult2();
                 hasStartedMoving = true;
             }
             return;
@@ -67,6 +70,7 @@ public class AmbulanceTutorial : MonoBehaviour
 
         if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.001f)
         {
+            // make the ambulance stop at the last waypoint
             if (currentWaypointIndex < waypoints.Length - 1)
             {
                 currentWaypointIndex++;
@@ -80,8 +84,13 @@ public class AmbulanceTutorial : MonoBehaviour
                 });
             }
         }
+        
+
+        
+
     }
 
+    // check if this human is infected
     bool IsInfected(Transform obj)
     {
         foreach (Transform child in obj)
@@ -96,33 +105,42 @@ public class AmbulanceTutorial : MonoBehaviour
 
     void MoveInfectedHumansIntoAmbulance(Action callback)
     {
-        if (IsInfected(human1.transform))
-        {
-            float step = slideSpeed * Time.deltaTime;
-            StartCoroutine(MoveToAmbulance(human1, step, callback));
-        }
-        else
-        {
-            callback?.Invoke();
-        }
+        float step = slideSpeed * Time.deltaTime;
+        StartCoroutine(MoveToAmbulance(step, callback));
     }
 
-    IEnumerator MoveToAmbulance(GameObject human, float step, Action callback)
+    // make the human get into the ambulance
+    IEnumerator MoveToAmbulance(float step, Action callback)
     {
-        while (Vector3.Distance(human.transform.position, ambulance.transform.position) > 0.001f)
+        if (IsInfected(human1.transform))
         {
-            human.transform.position = Vector3.MoveTowards(human.transform.position, ambulance.transform.position, step);
-            yield return null;
+            while (Vector3.Distance(human1.transform.position, ambulance.transform.position) > 0.01f)
+            {
+                human1.transform.position = Vector3.MoveTowards(human1.transform.position, ambulance.transform.position, step);
+                yield return null;
+            }
         }
+    
 
-        callback?.Invoke();
+        // Movement is finished, invoke the callback.
+        if (callback != null)
+        {
+            callback();
+        }
     }
 
     private int getNumOfInfectedHumans()
     {
-        return IsInfected(human1.transform) ? 1 : 0;
+        int count = 0;
+        if (IsInfected(human1.transform))
+        {
+            count += 1;
+        }
+
+        return count;
     }
 
+    // display result when time's up
     void displayResult()
     {
         if (popUpCanvas != null)
@@ -135,11 +153,23 @@ public class AmbulanceTutorial : MonoBehaviour
                 successRateRequest.Send(numberOfInfectedHumans);
 
                 requestSent = true;
+                return;
+            }
+            else
+            {
+                Debug.LogWarning("PopUpCanvas reference is not assigned!");
             }
         }
-        else
+    }
+
+    void displayResult2()
+    {
+        if (popUpCanvas != null)
         {
-            Debug.LogWarning("PopUpCanvas reference is not assigned!");
+            popUpCanvas.ShowPopUp("Virus Lost!");
         }
     }
+   
+
+
 }
