@@ -101,6 +101,19 @@ public class InfectedCount : MonoBehaviour
             if (virusChild != null)
             {
                 infectedCount++;
+                if(nvHuman.tag != "NVHuman1" && (SceneManager.GetActiveScene().name == "Level5" || SceneManager.GetActiveScene().name == "Level6"))
+                {MonoBehaviour[] parentScripts = nvHuman.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour script in parentScripts)
+            {
+                if (script.GetType().Name.StartsWith("Circle"))
+                {
+                    script.enabled = false;
+                }
+                else if (script.GetType().Name.StartsWith("Infected"))
+                {
+                    script.enabled = true;
+                }
+            }}
             }
         }
 
