@@ -213,7 +213,6 @@ public class AmbulanceLvl5 : MonoBehaviour
             // Send analytic 4
             if (!requestSent4)
             {
-                Debug.Log("Entering analytic4 frtom ambulance");
                 if (healedNumberLvl5)
                 {
                     healedNumberLvl5.Send(hh.counter);

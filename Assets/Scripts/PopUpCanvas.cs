@@ -24,6 +24,7 @@ public class PopUpCanvas : MonoBehaviour
     // Analytic 4
     public healingHouse hh;
     public HealedNumberLvl5 healedNumberLvl5;
+    public HealedNumberLvl6 healedNumberLvl6;
     private bool requestSent4;
 
     void Awake()
@@ -164,6 +165,18 @@ public class PopUpCanvas : MonoBehaviour
                 {
                     Debug.Log("The number of healed human is: " + hh.counter);
                     healedNumberLvl5.Send(hh.counter);
+                }
+            }
+            else if (currentlevel == "Level6")
+            {
+                if (healedNumberLvl6 == null)
+                {
+                    Debug.LogError("healedNumberLvl6 is null");
+                }
+                else
+                {
+                    Debug.Log("The number of healed human is: " + hh.counter);
+                    healedNumberLvl6.Send(hh.counter);
                 }
             }
         }

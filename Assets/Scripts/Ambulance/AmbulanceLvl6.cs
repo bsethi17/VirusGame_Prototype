@@ -23,15 +23,23 @@ public class AmbulanceLvl6 : MonoBehaviour
 
     // Analytic1
     public SuccessRateRequestL6 successRateRequest;
-    private bool requestSent;
+    private bool requestSent1;
 
     // Analytic3
     public TerminationL6 terminationL6;
     private bool requestSent3;
 
+
+    // Analytic 4
+    public healingHouse hh;
+    public HealedNumberLvl6 healedNumberLvl6;
+    private bool requestSent4;
+
     private void Awake()
     {
-        requestSent = false;
+        requestSent1 = false;
+        requestSent3 = false;
+        requestSent4 = false;
     }
 
     void Start()
@@ -180,12 +188,12 @@ public class AmbulanceLvl6 : MonoBehaviour
         {
             popUpCanvas.ShowPopUp("Virus Lost!");
 
-            if (!requestSent)
+            if (!requestSent1)
             {
                 int numberOfInfectedHumans = getNumOfInfectedHumans();
                 successRateRequest.Send(numberOfInfectedHumans);
 
-                requestSent = true;
+                requestSent1 = true;
                 return;
             }
 
@@ -200,6 +208,20 @@ public class AmbulanceLvl6 : MonoBehaviour
                 else
                 {
                     Debug.LogError("terminationL6 is null");
+                }
+            }
+
+            // Send analytic 4
+            if (!requestSent4)
+            {
+                if (healedNumberLvl6)
+                {
+                    healedNumberLvl6.Send(hh.counter);
+                    requestSent4 = true;
+                }
+                else
+                {
+                    Debug.LogError("healedNumberLvl6 is null!");
                 }
             }
         }

@@ -1629,6 +1629,8 @@ MonoBehaviour:
   popUpCanvas: {fileID: 1300896067}
   successRateRequest: {fileID: 1841313034}
   terminationL6: {fileID: 699919070}
+  hh: {fileID: 1950887429}
+  healedNumberLvl6: {fileID: 1002081453}
 --- !u!1 &498653024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4641,6 +4643,9 @@ MonoBehaviour:
   successRateRequestL4: {fileID: 0}
   successRateRequestL5: {fileID: 0}
   successRateRequestL6: {fileID: 1841313034}
+  hh: {fileID: 1950887429}
+  healedNumberLvl5: {fileID: 0}
+  healedNumberLvl6: {fileID: 1002081453}
 --- !u!1 &1359346975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5558,6 +5563,9 @@ MonoBehaviour:
   terminationL4: {fileID: 0}
   terminationL5: {fileID: 0}
   terminationL6: {fileID: 699919070}
+  hh: {fileID: 1950887429}
+  healedNumberLvl5: {fileID: 0}
+  healedNumberLvl6: {fileID: 1002081453}
 --- !u!50 &1427021163
 Rigidbody2D:
   serializedVersion: 4
@@ -7148,6 +7156,7 @@ MonoBehaviour:
   initialVirusPrefab: {fileID: 2165581262963403846, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
   humanNShieldPrefab: {fileID: 1485660214930898332, guid: 2fdfc077f1db3467b9db24dea229f69b, type: 3}
   impactPrefab: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
+  counter: 0
 --- !u!61 &1950887430
 BoxCollider2D:
   m_ObjectHideFlags: 0
