@@ -1435,6 +1435,7 @@ MonoBehaviour:
   avgLifeTimeL4: {fileID: 0}
   avgLifeTimeL5: {fileID: 0}
   avgLifeTimeL6: {fileID: 0}
+  avgLifeTimeL7: {fileID: 0}
 --- !u!1 &432550870
 GameObject:
   m_ObjectHideFlags: 0
@@ -3583,6 +3584,7 @@ MonoBehaviour:
   avgLifeTimeL4: {fileID: 0}
   avgLifeTimeL5: {fileID: 0}
   avgLifeTimeL6: {fileID: 0}
+  avgLifeTimeL7: {fileID: 0}
 --- !u!1 &944121148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3943,6 +3945,7 @@ MonoBehaviour:
   avgLifeTimeL4: {fileID: 0}
   avgLifeTimeL5: {fileID: 0}
   avgLifeTimeL6: {fileID: 0}
+  avgLifeTimeL7: {fileID: 0}
 --- !u!1 &1001473327
 GameObject:
   m_ObjectHideFlags: 0
@@ -6555,7 +6558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304.4, y: -14.2}
+  m_AnchoredPosition: {x: -302.5, y: -13.2}
   m_SizeDelta: {x: 49.4133, y: 42.3042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1440823513
@@ -7816,6 +7819,7 @@ MonoBehaviour:
   avgLifeTimeL4: {fileID: 0}
   avgLifeTimeL5: {fileID: 0}
   avgLifeTimeL6: {fileID: 0}
+  avgLifeTimeL7: {fileID: 0}
 --- !u!1 &1713419150
 GameObject:
   m_ObjectHideFlags: 0
@@ -8978,7 +8982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -344, y: 184}
+  m_AnchoredPosition: {x: -341.1, y: 185}
   m_SizeDelta: {x: 49.4133, y: 42.3042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2039503449
