@@ -21,16 +21,20 @@ public class AmbulanceLvl6 : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
-    // Analytics
+    // Analytic1
     public SuccessRateRequestL6 successRateRequest;
     private bool requestSent;
+
+    // Analytic3
+    public TerminationL6 terminationL6;
+    private bool requestSent3;
 
     private void Awake()
     {
         requestSent = false;
     }
 
-    async void Start()
+    void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
@@ -184,10 +188,24 @@ public class AmbulanceLvl6 : MonoBehaviour
                 requestSent = true;
                 return;
             }
-            else
+
+            // Send analytic 3
+            if (!requestSent3)
             {
-                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+                if (terminationL6)
+                {
+                    terminationL6.Send(0);
+                    requestSent3 = true;
+                }
+                else
+                {
+                    Debug.LogError("terminationL6 is null");
+                }
             }
+        }
+        else
+        {
+            Debug.LogWarning("PopUpCanvas reference is not assigned!");
         }
     }
 }

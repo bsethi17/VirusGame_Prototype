@@ -26,7 +26,7 @@ public class AmbulanceLvl2 : MonoBehaviour
     private bool requestSent1;
 
     // Analytic3
-    public TerminationL1 terminationL1;
+    public TerminationL2 terminationL2;
     private bool requestSent3;
 
     private void Awake()
@@ -35,7 +35,7 @@ public class AmbulanceLvl2 : MonoBehaviour
         requestSent3 = false;
     }
 
-    async void Start()
+    void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
@@ -175,13 +175,14 @@ public class AmbulanceLvl2 : MonoBehaviour
                 // Send analytic 3
                 if (!requestSent3)
                 {
-                    if (terminationL1)
+                    if (terminationL2)
                     {
-                        terminationL1.Send(0);
+                        terminationL2.Send(0);
+                        requestSent3 = true;
                     }
                     else
                     {
-                        Debug.LogError("terminationL1 is null");
+                        Debug.LogError("terminationL2 is null");
                     }
                 }
             }

@@ -15,6 +15,8 @@ public class TerminationL1 : MonoBehaviour
     // 2 represents ends with virus killed by vaccine
     private int _isTimerUp;
 
+    private bool isSubmitted;
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,6 +24,7 @@ public class TerminationL1 : MonoBehaviour
             Instance = this;
         }
         _sessionID = DateTime.Now.Ticks;
+        isSubmitted = false;
     }
 
     void Start()
@@ -36,8 +39,12 @@ public class TerminationL1 : MonoBehaviour
 
     public void Send(int isTimerUp)
     {
-        _isTimerUp = isTimerUp;
-        StartCoroutine(Post(_sessionID.ToString(), _isTimerUp.ToString()));
+        if (!isSubmitted)
+        {
+            _isTimerUp = isTimerUp;
+            StartCoroutine(Post(_sessionID.ToString(), _isTimerUp.ToString()));
+            isSubmitted = true;
+        }
     }
 
     private IEnumerator Post(string sessionID, string isTimerUp)

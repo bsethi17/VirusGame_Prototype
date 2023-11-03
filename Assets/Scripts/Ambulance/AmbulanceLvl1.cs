@@ -36,7 +36,7 @@ public class AmbulanceLvl1 : MonoBehaviour
         requestSent3 = false;
     }
 
-    async void Start()
+    void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
@@ -179,6 +179,7 @@ public class AmbulanceLvl1 : MonoBehaviour
                     if (terminationL1)
                     {
                         terminationL1.Send(0);
+                        requestSent3 = true;
                     }
                     else
                     {

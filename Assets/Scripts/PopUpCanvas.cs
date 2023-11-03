@@ -21,14 +21,9 @@ public class PopUpCanvas : MonoBehaviour
     public SuccessRateRequestL6 successRateRequestL6;
     private bool requestSent1;
 
-    // Analytic3
-    public TerminationL1 terminationL1;
-    private bool requestSent3;
-
     void Awake()
     {
         requestSent1 = false;
-        requestSent3 = false;
         if (Instance == null)
         {
             Instance = this;
@@ -58,11 +53,9 @@ public class PopUpCanvas : MonoBehaviour
             StartCoroutine(gameManager.DelayedStopGame());
             SendAnalytics1(currentlevel);
         }
-        // player loses because of virus killed by vaciine
         else
         {
             StartCoroutine(gameManager.DelayedStopGame());
-            SendAnalytics3(currentlevel);
         }
     }
 
@@ -144,25 +137,6 @@ public class PopUpCanvas : MonoBehaviour
                 }
             }
             requestSent1 = true;
-        }
-    }
-
-    // Analytics3
-    private void SendAnalytics3(string currentlevels)
-    {
-        if (!requestSent3)
-        {
-            if (currentlevel == "Level1")
-            {
-                if (terminationL1 == null)
-                {
-                    Debug.LogError("terminationL1 is null");
-                }
-                else
-                {
-                    terminationL1.Send(2);
-                }
-            }
         }
     }
 
