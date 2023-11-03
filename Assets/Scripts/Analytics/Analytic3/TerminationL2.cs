@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class SuccessRateRequestL1 : MonoBehaviour
+public class TerminationL2 : MonoBehaviour
 {
-    public static SuccessRateRequestL1 Instance { get; private set; }
+    public static TerminationL2 Instance { get; private set; }
     [SerializeField] private string googleFormURL;
     private long _sessionID;
-    private int _numOfInfectedHumans;
+
+    // 0 represents ends with timer up
+    // 1 represents ends with out of bullets
+    // 2 represents ends with virus killed by vaccine
+    private int _isTimerUp;
+
+    private bool isSubmitted;
 
     private void Awake()
     {
@@ -18,6 +24,7 @@ public class SuccessRateRequestL1 : MonoBehaviour
             Instance = this;
         }
         _sessionID = DateTime.Now.Ticks;
+        isSubmitted = false;
     }
 
     void Start()
@@ -30,25 +37,30 @@ public class SuccessRateRequestL1 : MonoBehaviour
 
     }
 
-    public void Send(int numOfInfectedHumans)
+    public void Send(int isTimerUp)
     {
-        _numOfInfectedHumans = numOfInfectedHumans;
-        StartCoroutine(Post(_sessionID.ToString(), _numOfInfectedHumans.ToString()));
+        if (!isSubmitted)
+        {
+            _isTimerUp = isTimerUp;
+            StartCoroutine(Post(_sessionID.ToString(), _isTimerUp.ToString()));
+            isSubmitted = true;
+        }
     }
 
-    private IEnumerator Post(string sessionID, string numOfInfectedHumans)
+    private IEnumerator Post(string sessionID, string isTimerUp)
     {
         WWWForm form = new WWWForm();
 
         // session ID entry
-        form.AddField("entry.771039262", sessionID);
+        form.AddField("entry.1978465319", sessionID);
 
         // number of infected humans entry
-        form.AddField("entry.1063098713", numOfInfectedHumans);
+        form.AddField("entry.1673532115", isTimerUp);
 
         // Send responses and verify result    
         using (UnityWebRequest www = UnityWebRequest.Post(googleFormURL, form))
         {
+            Debug.Log("Sending!!");
             yield return www.SendWebRequest();
             if (www.result != UnityWebRequest.Result.Success)
             {
@@ -56,7 +68,7 @@ public class SuccessRateRequestL1 : MonoBehaviour
             }
             else
             {
-                Debug.Log("Form upload complete!");
+                Debug.Log("Form 3 upload complete!");
             }
         }
     }

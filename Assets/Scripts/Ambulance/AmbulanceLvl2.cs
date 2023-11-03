@@ -21,20 +21,24 @@ public class AmbulanceLvl2 : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
-    //Analytics
+    // Analytic1
     public SuccessRateRequestL2 successRateRequest;
-    private bool requestSent;
+    private bool requestSent1;
+
+    // Analytic3
+    public TerminationL2 terminationL2;
+    private bool requestSent3;
 
     private void Awake()
     {
-        requestSent = false;
+        requestSent1 = false;
+        requestSent3 = false;
     }
 
-    async void Start()
+    void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
-
     }
 
     void Update()
@@ -44,14 +48,14 @@ public class AmbulanceLvl2 : MonoBehaviour
         {
             if (popUpCanvas != null)
             {
-                popUpCanvas.ShowPopUp("Virus wins!");         
+                popUpCanvas.ShowPopUp("Virus wins!");
             }
             else
             {
                 Debug.LogWarning("PopUpCanvas reference is not assigned!");
             }
         }
-        
+
         // Add some delay before it starts to move
         if (!hasStartedMoving)
         {
@@ -144,27 +148,42 @@ public class AmbulanceLvl2 : MonoBehaviour
         {
             if (popUpCanvas != null)
             {
-                popUpCanvas.ShowPopUp("Virus wins!");            
+                popUpCanvas.ShowPopUp("Virus wins!");
             }
             else
             {
                 Debug.LogWarning("PopUpCanvas reference is not assigned!");
             }
         }
+        // player loses because of timer's up
         else
         {
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus Lost!");
                 Debug.Log("LOST");
-                //Analytics
-                if (!requestSent)
+                // Send nalytic 1
+                if (!requestSent1)
                 {
                     int numberOfInfectedHumans = getNumOfInfectedHumans();
                     successRateRequest.Send(numberOfInfectedHumans);
                     Debug.Log("SENT:" + numberOfInfectedHumans);
 
-                    requestSent = true;
+                    requestSent1 = true;
+                }
+
+                // Send analytic 3
+                if (!requestSent3)
+                {
+                    if (terminationL2)
+                    {
+                        terminationL2.Send(0);
+                        requestSent3 = true;
+                    }
+                    else
+                    {
+                        Debug.LogError("terminationL2 is null");
+                    }
                 }
             }
             else

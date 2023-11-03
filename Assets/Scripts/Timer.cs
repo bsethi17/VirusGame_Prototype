@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Timer : MonoBehaviour , IPointerClickHandler
+public class Timer : MonoBehaviour, IPointerClickHandler
 {
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -33,19 +33,22 @@ public class Timer : MonoBehaviour , IPointerClickHandler
 
     private IEnumerator UpdateTimer()
     {
-        while(remainingDuration >= 0)
+        while (remainingDuration >= 0)
         {
             if (!Pause)
             {
                 // uiText.text = $"{remainingDuration / 60:00}:{remainingDuration % 60:00}";
                 uiFill.fillAmount = Mathf.InverseLerp(0, Duration, remainingDuration);
-                if (uiFill.fillAmount >= 0.66) {
+                if (uiFill.fillAmount >= 0.66)
+                {
                     uiFill.color = Color.green;
                 }
-                else if (uiFill.fillAmount >= 0.36) {
+                else if (uiFill.fillAmount >= 0.36)
+                {
                     uiFill.color = Color.yellow;
                 }
-                else {
+                else
+                {
                     uiFill.color = Color.red;
                 }
                 remainingDuration--;

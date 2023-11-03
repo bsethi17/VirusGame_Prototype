@@ -1918,6 +1918,7 @@ MonoBehaviour:
   slideSpeed: 1
   popUpCanvas: {fileID: 1300896067}
   successRateRequest: {fileID: 1841313034}
+  terminationL4: {fileID: 1361944351}
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5359,6 +5360,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1592048668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1361944350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361944352}
+  - component: {fileID: 1361944351}
+  m_Layer: 0
+  m_Name: Termination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1361944351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361944350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a045e868bfb664c34a6ea106a6e29251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSd69rywo2iehZySahKSy4VIuJDX6io87opTccVFa_kvYViI3Q/formResponse
+--- !u!4 &1361944352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361944350}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 839.48364, y: 76.02296, z: -3.5648656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1365708776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,6 +6234,10 @@ MonoBehaviour:
   successRateRequestL4: {fileID: 1841313034}
   successRateRequestL5: {fileID: 0}
   successRateRequestL6: {fileID: 0}
+  terminationL1: {fileID: 0}
+  terminationL2: {fileID: 0}
+  terminationL3: {fileID: 0}
+  terminationL4: {fileID: 1361944351}
 --- !u!1 &1455993089
 GameObject:
   m_ObjectHideFlags: 0
@@ -8106,3 +8156,4 @@ SceneRoots:
   - {fileID: 932869067}
   - {fileID: 1621409483}
   - {fileID: 21958923}
+  - {fileID: 1361944352}

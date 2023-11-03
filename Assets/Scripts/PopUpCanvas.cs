@@ -12,18 +12,18 @@ public class PopUpCanvas : MonoBehaviour
     private GameManager gameManager;
     string currentlevel;
 
-    //Analytics
+    // Analytic1
     public SuccessRateRequestL1 successRateRequestL1;
     public SuccessRateRequestL2 successRateRequestL2;
     public SuccessRateRequestL3 successRateRequestL3;
     public SuccessRateRequestL4 successRateRequestL4;
     public SuccessRateRequestL5 successRateRequestL5;
     public SuccessRateRequestL6 successRateRequestL6;
-    private bool requestSent;
+    private bool requestSent1;
 
     void Awake()
     {
-        requestSent = false;
+        requestSent1 = false;
         if (Instance == null)
         {
             Instance = this;
@@ -45,19 +45,18 @@ public class PopUpCanvas : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         popUpText.text = message;
+        currentlevel = SceneManager.GetActiveScene().name;
         if (message == "Virus wins!")
         {
             EndLife();
 
             StartCoroutine(gameManager.DelayedStopGame());
-            currentlevel = SceneManager.GetActiveScene().name;
-            SendAnalytics(currentlevel);
+            SendAnalytics1(currentlevel);
         }
         else
         {
             StartCoroutine(gameManager.DelayedStopGame());
         }
-
     }
 
     public void HidePopUp()
@@ -65,10 +64,10 @@ public class PopUpCanvas : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    private void SendAnalytics(string currentlevel)
+    private void SendAnalytics1(string currentlevel)
     {
         //Analytics
-        if (!requestSent)
+        if (!requestSent1)
         {
             Debug.Log("SENDING: ");
             if (currentlevel == "Level1")
@@ -137,7 +136,7 @@ public class PopUpCanvas : MonoBehaviour
                     successRateRequestL6.Send(4);
                 }
             }
-            requestSent = true;
+            requestSent1 = true;
         }
     }
 

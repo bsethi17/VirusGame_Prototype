@@ -1724,6 +1724,7 @@ MonoBehaviour:
   slideSpeed: 1
   popUpCanvas: {fileID: 1300896067}
   successRateRequest: {fileID: 1841313034}
+  terminationL6: {fileID: 699919070}
 --- !u!1 &498653024
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,6 +2281,51 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1157013927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &699919069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 699919071}
+  - component: {fileID: 699919070}
+  m_Layer: 0
+  m_Name: Termination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &699919070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699919069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e34e141dd3c64b2194b5c86c07b595a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  googleFormURL: https://docs.google.com/forms/u/0/d/e/1FAIpQLScr1Yg795rnaFlZm3mqvdfEpD6vng_HTPBI_trkQEwFQjk7ZQ/formResponse
+--- !u!4 &699919071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699919069}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 839.48364, y: 76.02296, z: -3.5648656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &702025832
 GameObject:
@@ -5868,6 +5914,12 @@ MonoBehaviour:
   successRateRequestL4: {fileID: 0}
   successRateRequestL5: {fileID: 0}
   successRateRequestL6: {fileID: 1841313034}
+  terminationL1: {fileID: 0}
+  terminationL2: {fileID: 0}
+  terminationL3: {fileID: 0}
+  terminationL4: {fileID: 0}
+  terminationL5: {fileID: 0}
+  terminationL6: {fileID: 699919070}
 --- !u!50 &1427021163
 Rigidbody2D:
   serializedVersion: 4
@@ -8266,3 +8318,4 @@ SceneRoots:
   - {fileID: 653036309}
   - {fileID: 1367709579}
   - {fileID: 1592540195}
+  - {fileID: 699919071}

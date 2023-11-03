@@ -7,23 +7,35 @@ public class InfectedCount : MonoBehaviour
 {
     public TextMeshProUGUI infectedText;
     public PopUpCanvas popUpCanvas;
-    //Analytics
+
+    // Analytic1
     public SuccessRateRequestL1 successRateRequestL1;
     public SuccessRateRequestL2 successRateRequestL2;
     public SuccessRateRequestL3 successRateRequestL3;
     public SuccessRateRequestL4 successRateRequestL4;
     public SuccessRateRequestL5 successRateRequestL5;
     public SuccessRateRequestL6 successRateRequestL6;
-    private bool requestSent;
+    private bool requestSent1;
+
+    // Analytic3
+    public TerminationL1 terminationL1;
+    public TerminationL2 terminationL2;
+    public TerminationL3 terminationL3;
+    public TerminationL4 terminationL4;
+    public TerminationL5 terminationL5;
+    public TerminationL6 terminationL6;
+    private bool requestSent3;
+
     string currentSceneName;
     int infectedCount;
 
     private void Awake()
     {
-        requestSent = false;
+        requestSent1 = false;
+        requestSent3 = false;
     }
 
-    async void Start()
+    void Start()
     {
         popUpCanvas = PopUpCanvas.Instance;
         if (infectedText == null)
@@ -47,6 +59,7 @@ public class InfectedCount : MonoBehaviour
 
         infectedText.text = infectedCount + " / " + maxInfectedForScene;
 
+        // player runs out of bullets
         if ((infectedCount == 0 && !getIsInitialVirusPresent()) || UIManager.Instance.GlobalBulletCount == 0 && !IsBulletInScene())
         {
             string endMessage = UIManager.Instance.GlobalBulletCount == 0 ? "Out of Bullets!" : "Virus Lost!";
@@ -71,9 +84,17 @@ public class InfectedCount : MonoBehaviour
         if (popUpCanvas != null)
         {
             popUpCanvas.ShowPopUp(message);
-            Debug.Log("REQUEST STATUS: " + requestSent);
-            //Analytics
-            SendAnalytics(currentSceneName);
+            // Analytics
+            SendAnalytics1(currentSceneName);
+            if (message == "Out of Bullets!")
+            {
+                SendAnalytics3(currentSceneName, 1);
+            }
+            else if (message == "Virus Lost!")
+            {
+                // game lose because ofkilled by vaccine
+                SendAnalytics3(currentSceneName, 2);
+            }
         }
         else
         {
@@ -101,19 +122,21 @@ public class InfectedCount : MonoBehaviour
             if (virusChild != null)
             {
                 infectedCount++;
-                if(nvHuman.tag != "NVHuman1" && (SceneManager.GetActiveScene().name == "Level5" || SceneManager.GetActiveScene().name == "Level6"))
-                {MonoBehaviour[] parentScripts = nvHuman.GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour script in parentScripts)
-            {
-                if (script.GetType().Name.StartsWith("Circle"))
+                if (nvHuman.tag != "NVHuman1" && (SceneManager.GetActiveScene().name == "Level5" || SceneManager.GetActiveScene().name == "Level6"))
                 {
-                    script.enabled = false;
+                    MonoBehaviour[] parentScripts = nvHuman.GetComponents<MonoBehaviour>();
+                    foreach (MonoBehaviour script in parentScripts)
+                    {
+                        if (script.GetType().Name.StartsWith("Circle"))
+                        {
+                            script.enabled = false;
+                        }
+                        else if (script.GetType().Name.StartsWith("Infected"))
+                        {
+                            script.enabled = true;
+                        }
+                    }
                 }
-                else if (script.GetType().Name.StartsWith("Infected"))
-                {
-                    script.enabled = true;
-                }
-            }}
             }
         }
 
@@ -139,12 +162,11 @@ public class InfectedCount : MonoBehaviour
         return null;
     }
 
-    private void SendAnalytics(string currentlevel)
+    // Analytics1
+    private void SendAnalytics1(string currentlevel)
     {
-        //Analytics
-        if (!requestSent)
+        if (!requestSent1)
         {
-            Debug.Log("SENDING: " + infectedCount);
             if (currentlevel == "Level1")
             {
                 if (successRateRequestL1 == null)
@@ -212,7 +234,84 @@ public class InfectedCount : MonoBehaviour
                 }
             }
 
-            requestSent = true;
+            requestSent1 = true;
+        }
+    }
+
+    // Analytics 3
+    private void SendAnalytics3(string currentlevel, int status)
+    {
+        if (!requestSent3)
+        {
+            if (currentlevel == "Level1")
+            {
+                if (terminationL1 == null)
+                {
+                    Debug.LogError("terminationL1 is null");
+                }
+                else
+                {
+                    Debug.Log("sending3 in infected count");
+                    terminationL1.Send(status);
+                }
+            }
+            else if (currentlevel == "Level2")
+            {
+                if (terminationL2 == null)
+                {
+                    Debug.LogError("terminationL2 is null");
+                }
+                else
+                {
+                    terminationL2.Send(status);
+                }
+            }
+            else if (currentlevel == "Level3")
+            {
+                if (terminationL3 == null)
+                {
+                    Debug.LogError("terminationL3 is null");
+                }
+                else
+                {
+                    terminationL3.Send(status);
+                }
+            }
+            else if (currentlevel == "Level4")
+            {
+                if (terminationL4 == null)
+                {
+                    Debug.LogError("terminationL4 is null");
+                }
+                else
+                {
+                    terminationL4.Send(status);
+                }
+            }
+            else if (currentlevel == "Level5")
+            {
+                if (terminationL5 == null)
+                {
+                    Debug.LogError("terminationL5 is null");
+                }
+                else
+                {
+                    terminationL5.Send(status);
+                }
+            }
+            else if (currentlevel == "Level6")
+            {
+                if (terminationL6 == null)
+                {
+                    Debug.LogError("terminationL6 is null");
+                }
+                else
+                {
+                    terminationL6.Send(status);
+                }
+            }
+            requestSent3 = true;
         }
     }
 }
+

@@ -21,16 +21,21 @@ public class AmbulanceLvl5 : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
-    // Analytics
+    // Analytic1
     public SuccessRateRequestL5 successRateRequest;
-    private bool requestSent;
+    private bool requestSent1;
+
+    // Analytic3
+    public TerminationL5 terminationL5;
+    private bool requestSent3;
+
 
     private void Awake()
     {
-        requestSent = false;
+        requestSent1 = false;
     }
 
-    async void Start()
+    void Start()
     {
         popUpCanvas.HidePopUp();
         ambulance = this.gameObject;
@@ -176,18 +181,32 @@ public class AmbulanceLvl5 : MonoBehaviour
         {
             popUpCanvas.ShowPopUp("Virus Lost!");
 
-            if (!requestSent)
+            if (!requestSent1)
             {
                 int numberOfInfectedHumans = getNumOfInfectedHumans();
                 successRateRequest.Send(numberOfInfectedHumans);
 
-                requestSent = true;
+                requestSent1 = true;
                 return;
             }
-            else
+
+            // Send analytic 3
+            if (!requestSent3)
             {
-                Debug.LogWarning("PopUpCanvas reference is not assigned!");
+                if (terminationL5)
+                {
+                    terminationL5.Send(0);
+                    requestSent3 = true;
+                }
+                else
+                {
+                    Debug.LogError("terminationL5 is null");
+                }
             }
+        }
+        else
+        {
+            Debug.LogWarning("PopUpCanvas reference is not assigned!");
         }
     }
 }

@@ -13,7 +13,7 @@ public class Shooting : MonoBehaviour
 
     public GameObject grenadePrefab;
     public Transform grenadeTransform;
-    
+
     public bool canFire;
     // how frequentlty player can fire
     private float timer;
@@ -65,7 +65,7 @@ public class Shooting : MonoBehaviour
             canFire = false;  // Disable shooting
             return;  // Exit the Update method
         }
-        
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             currentMode = ShootingMode.Grenades;
@@ -108,9 +108,9 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && canFire&&UIManager.Instance.GlobalBulletCount > 0)
+        if (Input.GetMouseButtonDown(0) && canFire && UIManager.Instance.GlobalBulletCount > 0)
         {
-           switch (currentMode)
+            switch (currentMode)
             {
                 case ShootingMode.Bullets:
                     if (UIManager.Instance.GlobalBulletCount > 0)
@@ -133,24 +133,23 @@ public class Shooting : MonoBehaviour
 
     private void ShootBullets()
     {
-            Debug.Log("s");
-            for (int i = 0; i < bulletsPerBurst; i++) // Loop to fire multiple bullets
+        for (int i = 0; i < bulletsPerBurst; i++) // Loop to fire multiple bullets
+        {
+            // Fire a bullet
+            BulletScript newBullet = Instantiate(bullet, bulletTransform.position, Quaternion.identity).GetComponent<BulletScript>();
+            if (this.gameObject.transform.parent != null)
             {
-                // Fire a bullet
-                BulletScript newBullet = Instantiate(bullet, bulletTransform.position, Quaternion.identity).GetComponent<BulletScript>();
-                if (this.gameObject.transform.parent != null)
-                {
-                    newBullet.shooter = this.gameObject.transform.parent.gameObject;
-                }
-                else
-                {
-                    // Handle the case where gameObject does not have a parent
-                    Debug.LogWarning("The game object " + gameObject.name + " does not have a parent!");
-                }
+                newBullet.shooter = this.gameObject.transform.parent.gameObject;
             }
+            else
+            {
+                // Handle the case where gameObject does not have a parent
+                Debug.LogWarning("The game object " + gameObject.name + " does not have a parent!");
+            }
+        }
 
-            canFire = false; // Set canFire to false after firing the burst of bullets
-            UIManager.Instance.UseBullets(1);
+        canFire = false; // Set canFire to false after firing the burst of bullets
+        UIManager.Instance.UseBullets(1);
     }
 
     private void ShootGrenades()
@@ -160,7 +159,7 @@ public class Shooting : MonoBehaviour
         {
             GameObject newGrenade = Instantiate(grenadePrefab, bulletTransform.position, Quaternion.identity);
             GrenadeScript grenadeScript = newGrenade.GetComponent<GrenadeScript>();
-            
+
             // Apply forces or any other initialization to the grenade
             // For example:
             // Rigidbody2D rb = newGrenade.GetComponent<Rigidbody2D>();
