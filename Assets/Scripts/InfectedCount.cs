@@ -7,20 +7,27 @@ public class InfectedCount : MonoBehaviour
 {
     public TextMeshProUGUI infectedText;
     public PopUpCanvas popUpCanvas;
-    //Analytics
+
+    // Analytic1
     public SuccessRateRequestL1 successRateRequestL1;
     public SuccessRateRequestL2 successRateRequestL2;
     public SuccessRateRequestL3 successRateRequestL3;
     public SuccessRateRequestL4 successRateRequestL4;
     public SuccessRateRequestL5 successRateRequestL5;
     public SuccessRateRequestL6 successRateRequestL6;
-    private bool requestSent;
+    private bool requestSent1;
+
+    // Analytic3
+    public TerminationL1 terminationL1;
+    private bool requestSent3;
+    
     string currentSceneName;
     int infectedCount;
 
     private void Awake()
     {
-        requestSent = false;
+        requestSent1 = false;
+        requestSent3 = false;
     }
 
     async void Start()
@@ -47,6 +54,7 @@ public class InfectedCount : MonoBehaviour
 
         infectedText.text = infectedCount + " / " + maxInfectedForScene;
 
+        // player runs out of bullets
         if ((infectedCount == 0 && !getIsInitialVirusPresent()) || UIManager.Instance.GlobalBulletCount == 0 && !IsBulletInScene())
         {
             string endMessage = UIManager.Instance.GlobalBulletCount == 0 ? "Out of Bullets!" : "Virus Lost!";
@@ -71,9 +79,9 @@ public class InfectedCount : MonoBehaviour
         if (popUpCanvas != null)
         {
             popUpCanvas.ShowPopUp(message);
-            Debug.Log("REQUEST STATUS: " + requestSent);
-            //Analytics
-            SendAnalytics(currentSceneName);
+            // Analytics
+            SendAnalytics1(currentSceneName);
+            SendAnalytics3(currentSceneName);
         }
         else
         {
@@ -126,12 +134,11 @@ public class InfectedCount : MonoBehaviour
         return null;
     }
 
-    private void SendAnalytics(string currentlevel)
+    // Analytics1
+    private void SendAnalytics1(string currentlevel)
     {
-        //Analytics
-        if (!requestSent)
+        if (!requestSent1)
         {
-            Debug.Log("SENDING: " + infectedCount);
             if (currentlevel == "Level1")
             {
                 if (successRateRequestL1 == null)
@@ -199,7 +206,29 @@ public class InfectedCount : MonoBehaviour
                 }
             }
 
-            requestSent = true;
+            requestSent1 = true;
+        }
+    }
+
+    // Analytics 3
+    private void SendAnalytics3(string currentlevel)
+    {
+        if (!requestSent3)
+        {
+            if (currentlevel == "Level1")
+            {
+                if (terminationL1 == null)
+                {
+                    Debug.LogError("terminationL1 is null");
+                }
+                else
+                {
+                    Debug.Log("sending3");
+                    terminationL1.Send(1);
+                }
+            }
+            requestSent3 = true;
         }
     }
 }
+

@@ -22,13 +22,18 @@ public class AmbulanceLvl1 : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
-    //Analytics
+    // Analytic1
     public SuccessRateRequestL1 successRateRequestL1;
-    private bool requestSent;
+    private bool requestSent1;
+
+    // Analytic3
+    public TerminationL1 terminationL1;
+    private bool requestSent3;
 
     private void Awake()
     {
-        requestSent = false;
+        requestSent1 = false;
+        requestSent3 = false;
     }
 
     async void Start()
@@ -125,6 +130,7 @@ public class AmbulanceLvl1 : MonoBehaviour
             callback();
         }
     }
+
     private int getNumOfInfectedHumans()
     {
         int count = 0;
@@ -152,18 +158,32 @@ public class AmbulanceLvl1 : MonoBehaviour
                 Debug.LogWarning("PopUpCanvas reference is not assigned!");
             }
         }
+        // player loses because of timer's up
         else
         {
             if (popUpCanvas != null)
             {
                 popUpCanvas.ShowPopUp("Virus Lost!");
-                if (!requestSent)
+                // Send analytic 1
+                if (!requestSent1)
                 {
                     int numberOfInfectedHumans = getNumOfInfectedHumans();
                     successRateRequestL1.Send(numberOfInfectedHumans);
-                    Debug.Log("SENT:" + numberOfInfectedHumans);
+                    // Debug.Log("SENT:" + numberOfInfectedHumans);
+                    requestSent1 = true;
+                }
 
-                    requestSent = true;
+                // Send analytic 3
+                if (!requestSent3)
+                {
+                    if (terminationL1)
+                    {
+                        terminationL1.Send(0);
+                    }
+                    else
+                    {
+                        Debug.LogError("terminationL1 is null");
+                    }
                 }
             }
             else

@@ -45,7 +45,7 @@ public class ParentLifetime : MonoBehaviour
 
     private void HandleChildDestroy(float duration)
     {
-        Debug.Log("HandleChildDestroy");
+        // Debug.Log("HandleChildDestroy");
         // Add the child's duration to the list
         childDurations.Add(duration);
 
