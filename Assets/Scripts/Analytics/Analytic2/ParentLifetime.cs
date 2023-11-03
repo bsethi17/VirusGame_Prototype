@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class ParentLifetime : MonoBehaviour
 {
-     public static ParentLifetime Instance { get; private set; }
+    public static ParentLifetime Instance { get; private set; }
     private List<float> childDurations = new List<float>();
 
     public AvgLifeTimeL1 avgLifeTimeL1;
     public AvgLifeTimeL2 avgLifeTimeL2;
     public AvgLifeTimeL3 avgLifeTimeL3;
+    public AvgLifeTimeL4 avgLifeTimeL4;
+    public AvgLifeTimeL5 avgLifeTimeL5;
+    public AvgLifeTimeL6 avgLifeTimeL6;
 
     private bool requestSent;
 
@@ -113,8 +116,39 @@ public class ParentLifetime : MonoBehaviour
                     avgLifeTimeL3.Send(gameObject.tag, avg);
                 }
             }
-            
-
+            else if (currentlevel == "Level4")
+            {
+                if (avgLifeTimeL4 == null)
+                {
+                    Debug.LogError("avgLifeTimeL4 is null");
+                }
+                else
+                {
+                    avgLifeTimeL4.Send(gameObject.tag, avg);
+                }
+            }
+            else if (currentlevel == "Level5")
+            {
+                if (avgLifeTimeL5 == null)
+                {
+                    Debug.LogError("avgLifeTimeL5 is null");
+                }
+                else
+                {
+                    avgLifeTimeL5.Send(gameObject.tag, avg);
+                }
+            }
+            else if (currentlevel == "Level6")
+            {
+                if (avgLifeTimeL6 == null)
+                {
+                    Debug.LogError("avgLifeTimeL6 is null");
+                }
+                else
+                {
+                    avgLifeTimeL6.Send(gameObject.tag, avg);
+                }
+            }
             requestSent = true;
         }
     }

@@ -4,18 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class TerminationL6 : MonoBehaviour
+public class AvgLifeTimeL5 : MonoBehaviour
 {
-    public static TerminationL6 Instance { get; private set; }
+    public static AvgLifeTimeL5 Instance { get; private set; }
     [SerializeField] private string googleFormURL;
     private long _sessionID;
-
-    // 0 represents ends with timer up
-    // 1 represents ends with out of bullets
-    // 2 represents ends with virus killed by vaccine
-    private int _isTimerUp;
-
-    private bool isSubmitted;
+    private string _humanNumber;
+    private float _averageTime;
 
     private void Awake()
     {
@@ -24,7 +19,6 @@ public class TerminationL6 : MonoBehaviour
             Instance = this;
         }
         _sessionID = DateTime.Now.Ticks;
-        isSubmitted = false;
     }
 
     void Start()
@@ -37,25 +31,21 @@ public class TerminationL6 : MonoBehaviour
 
     }
 
-    public void Send(int isTimerUp)
+    public void Send(string humanNumber, float averageTime)
     {
-        if (!isSubmitted)
-        {
-            _isTimerUp = isTimerUp;
-            StartCoroutine(Post(_sessionID.ToString(), _isTimerUp.ToString()));
-            isSubmitted = true;
-        }
+        _humanNumber = humanNumber;
+        _averageTime = averageTime;
+        StartCoroutine(Post(_sessionID.ToString(), _humanNumber.ToString(), _averageTime.ToString()));
     }
 
-    private IEnumerator Post(string sessionID, string isTimerUp)
+    private IEnumerator Post(string sessionID, string humanNumber, string averageTime)
     {
         WWWForm form = new WWWForm();
 
-        // session ID entry
-        form.AddField("entry.1577356890", sessionID);
-
-        // number of infected humans entry
-        form.AddField("entry.1184599555", isTimerUp);
+        // session ID entry, human number, avg time
+        form.AddField("entry.1744035791", sessionID);
+        form.AddField("entry.2087068759", humanNumber);
+        form.AddField("entry.1104424503", averageTime);
 
         // Send responses and verify result    
         using (UnityWebRequest www = UnityWebRequest.Post(googleFormURL, form))
@@ -67,7 +57,7 @@ public class TerminationL6 : MonoBehaviour
             }
             else
             {
-                Debug.Log("Form 6 upload complete!");
+                Debug.Log("Analytic 2 Form upload complete!");
             }
         }
     }
