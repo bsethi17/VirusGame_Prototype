@@ -7600,7 +7600,7 @@ GameObject:
   - component: {fileID: 1950887431}
   m_Layer: 0
   m_Name: healingHouse
-  m_TagString: Untagged
+  m_TagString: HealingHouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7686,6 +7686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialVirusPrefab: {fileID: 2165581262963403846, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
   humanNShieldPrefab: {fileID: 1485660214930898332, guid: 2fdfc077f1db3467b9db24dea229f69b, type: 3}
+  impactPrefab: {fileID: 6192724089161036641, guid: e17d9a3f04750764c8c0a7a0461e4c3b, type: 3}
 --- !u!61 &1950887430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7739,7 +7740,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950887426}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -7756,7 +7757,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &1989341774
 GameObject:
@@ -8438,8 +8439,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: bulletColor.b
+      value: 0.9039136
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: bulletColor.g
+      value: 0.06674972
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: bulletColor.r
+      value: 0.9433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: grenadeColor.b
+      value: 0.040850822
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: grenadeColor.g
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+      propertyPath: grenadeColor.r
+      value: 0.10823379
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: triangleHeight
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8670896557822443204, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: bulletsPerBurst

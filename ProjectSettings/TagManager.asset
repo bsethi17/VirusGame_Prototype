@@ -17,6 +17,9 @@ TagManager:
   - Blocker
   - FirstWaypoint
   - HS
+  - grenade
+  - HealingHouse
+  - Grenade
   layers:
   - Default
   - TransparentFX

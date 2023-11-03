@@ -239,22 +239,6 @@ public class BulletScript : MonoBehaviour
         {
             Transform initialVirusChild = null;
             Transform rotatePointGrandChild = null;
-            if (collision.gameObject.tag != "NVHuman1" && (SceneManager.GetActiveScene().name == "Level5" || SceneManager.GetActiveScene().name == "Level6"))
-            {
-                MonoBehaviour circlePathScript = (MonoBehaviour)collision.gameObject.GetComponent(typeof(MonoBehaviour));
-                if (circlePathScript != null)
-                {
-                    circlePathScript.enabled = false;
-                }
-
-                // Find and enable the InfectedPath script
-                InfectedPath infectedPathScript = collision.gameObject.GetComponent<InfectedPath>();
-                if (infectedPathScript != null)
-                {
-                    infectedPathScript.enabled = true;
-                }
-            }
-
 
             foreach (Transform child in collision.transform)
             {
