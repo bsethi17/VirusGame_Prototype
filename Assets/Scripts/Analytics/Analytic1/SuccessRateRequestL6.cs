@@ -16,7 +16,7 @@ public class SuccessRateRequestL6 : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log("SuccessRateRequest instance created");
+            // Debug.Log("SuccessRateRequest instance created");
         }
         _sessionID = DateTime.Now.Ticks;
     }
@@ -55,10 +55,6 @@ public class SuccessRateRequestL6 : MonoBehaviour
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(www.error);
-            }
-            else
-            {
-                Debug.Log("Form upload complete!");
             }
         }
     }

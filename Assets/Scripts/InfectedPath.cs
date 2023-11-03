@@ -30,7 +30,6 @@ public class InfectedPath : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hii triggered");
         if (collision.CompareTag("FirstWaypoint")) // Change "FirstWaypoint" to the tag of your first waypoint
         {
             if (!hasVisitedFirstWaypoint)
