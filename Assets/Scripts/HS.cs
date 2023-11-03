@@ -17,7 +17,7 @@ public class HS : MonoBehaviour
     void Start()
     {
         shield = this.gameObject;
-        degree = 6;
+        // degree = 6;
         shieldRenderer = shield.GetComponent<SpriteRenderer>();
     }
 
@@ -26,28 +26,27 @@ public class HS : MonoBehaviour
         if(collision.gameObject.tag == "bullet" && gameObject != null) 
         {
             Debug.Log("SHIELD DETECTED");
-            Debug.Log(degree);
-            // destroy the bullet when collide
+            // Debug.Log(degree);
             Destroy(collision.gameObject);
-            degree -= 1;
-            if (degree == 5 || degree == 4)
-            {
-                shieldRenderer.color = shieldColor2;
-                Debug.Log("color2");
-                Debug.Log(degree);
-            }
-            else if (degree == 3 || degree == 2)
-            {
-                shieldRenderer.color = shieldColor3;
-                Debug.Log("color3");
-                Debug.Log(degree);
-            }
-            else
-            {
-                Debug.Log("destroy");
-                Debug.Log(degree);
+            // degree -= 1;
+            // if (degree == 5 || degree == 4)
+            // {
+            //     shieldRenderer.color = shieldColor2;
+            //     Debug.Log("color2");
+            //     Debug.Log(degree);
+            // }
+            // else if (degree == 3 || degree == 2)
+            // {
+            //     shieldRenderer.color = shieldColor3;
+            //     Debug.Log("color3");
+            //     Debug.Log(degree);
+            // }
+            // else
+            // {
+                // Debug.Log("destroy");
+                // Debug.Log(degree);
                 Destroy(gameObject);     
-            }
+            // }
 
         }
     }
