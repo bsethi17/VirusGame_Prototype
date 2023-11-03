@@ -1051,6 +1051,7 @@ MonoBehaviour:
   avgLifeTimeL4: {fileID: 0}
   avgLifeTimeL5: {fileID: 0}
   avgLifeTimeL6: {fileID: 0}
+  avgLifeTimeL7: {fileID: 0}
 --- !u!1 &444080252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,8 +1086,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletCountText: {fileID: 1328441887}
   grenadeCountText: {fileID: 0}
-  GlobalBulletCount: 3
-  ResetBulletCount: 3
+  GlobalBulletCount: 5
+  ResetBulletCount: 5
 --- !u!114 &444080254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3727,6 +3728,7 @@ MonoBehaviour:
   avgLifeTimeL4: {fileID: 0}
   avgLifeTimeL5: {fileID: 0}
   avgLifeTimeL6: {fileID: 0}
+  avgLifeTimeL7: {fileID: 0}
 --- !u!1 &974443275
 GameObject:
   m_ObjectHideFlags: 0
