@@ -14,6 +14,7 @@ public class ParentLifetime : MonoBehaviour
     public AvgLifeTimeL4 avgLifeTimeL4;
     public AvgLifeTimeL5 avgLifeTimeL5;
     public AvgLifeTimeL6 avgLifeTimeL6;
+    public AvgLifeTimeL7 avgLifeTimeL7;
 
     private bool requestSent;
 
@@ -147,6 +148,17 @@ public class ParentLifetime : MonoBehaviour
                 else
                 {
                     avgLifeTimeL6.Send(gameObject.tag, avg);
+                }
+            }
+            else if (currentlevel == "Level7")
+            {
+                if (avgLifeTimeL7 == null)
+                {
+                    Debug.LogError("avgLifeTimeL7 is null");
+                }
+                else
+                {
+                    avgLifeTimeL7.Send(gameObject.tag, avg);
                 }
             }
             requestSent = true;
