@@ -73,7 +73,8 @@ public class UIManager : MonoBehaviour
     // Grenade related methods
     public void UpdateGrenadeCount(int count)
     {
-        grenadeCountText.text = "Grenades: " + count/2;
+        GlobalGrenadeCount=count%3;
+        grenadeCountText.text = "Grenades: " + (GlobalGrenadeCount);
     }
 
     public void UseGrenades(int count)
@@ -83,9 +84,10 @@ public class UIManager : MonoBehaviour
     }
 
     public void AddGrenades(int count)
-    {
-        GlobalGrenadeCount += count;
+    {   
+        GlobalGrenadeCount += (count%3);
         UpdateGrenadeCount(GlobalGrenadeCount);
+        
     }
 
     public void ResetGrenadesToInitialCount()

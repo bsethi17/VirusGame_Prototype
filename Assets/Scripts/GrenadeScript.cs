@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GrenadeScript : MonoBehaviour
 {
-    public int bulletsToAddOnHit = 1;
+    // public int bulletsToAddOnHit = 1;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
