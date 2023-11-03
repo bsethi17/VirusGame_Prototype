@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
     public void UpdateGrenadeCount(int count)
     {
         GlobalGrenadeCount = count%3;
-        grenadeCountText.text = "Grenades: " + count;
+        grenadeCountText.text = " : " + count;
     }
 
     public void UseGrenades(int count)
