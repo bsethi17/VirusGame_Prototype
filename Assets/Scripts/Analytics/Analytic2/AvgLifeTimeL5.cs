@@ -55,10 +55,6 @@ public class AvgLifeTimeL5 : MonoBehaviour
             {
                 Debug.LogError(www.error);
             }
-            else
-            {
-                Debug.Log("Analytic 2 Form upload complete!");
-            }
         }
     }
 }

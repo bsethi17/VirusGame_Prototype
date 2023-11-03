@@ -11,7 +11,7 @@ public class HealedNumberLvl6 : MonoBehaviour
     [SerializeField] private string googleFormURL;
     private long _sessionID;
     // number of healed humans
-    private string _count;
+    private int _count;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class HealedNumberLvl6 : MonoBehaviour
 
     }
 
-    public void Send(string count)
+    public void Send(int count)
     {
         _count = count;
         StartCoroutine(Post(_sessionID.ToString(), _count.ToString()));

@@ -21,9 +21,15 @@ public class PopUpCanvas : MonoBehaviour
     public SuccessRateRequestL6 successRateRequestL6;
     private bool requestSent1;
 
+    // Analytic 4
+    public healingHouse hh;
+    public HealedNumberLvl5 healedNumberLvl5;
+    private bool requestSent4;
+
     void Awake()
     {
         requestSent1 = false;
+        requestSent4 = false;
         if (Instance == null)
         {
             Instance = this;
@@ -51,7 +57,11 @@ public class PopUpCanvas : MonoBehaviour
             EndLife();
 
             StartCoroutine(gameManager.DelayedStopGame());
+
+            Debug.Log("Send analytic 1");
             SendAnalytics1(currentlevel);
+            Debug.Log("Send analytic 4");
+            SendAnalytics4(currentlevel);
         }
         else
         {
@@ -69,7 +79,6 @@ public class PopUpCanvas : MonoBehaviour
         //Analytics
         if (!requestSent1)
         {
-            Debug.Log("SENDING: ");
             if (currentlevel == "Level1")
             {
                 if (successRateRequestL1 == null)
@@ -138,6 +147,27 @@ public class PopUpCanvas : MonoBehaviour
             }
             requestSent1 = true;
         }
+    }
+
+    private void SendAnalytics4(string currentlevel)
+    {
+        Debug.Log("Entering analytic4 frtom popup");
+        if (!requestSent4)
+        {
+            if (currentlevel == "Level5")
+            {
+                if (healedNumberLvl5 == null)
+                {
+                    Debug.LogError("healedNumberLvl5 is null");
+                }
+                else
+                {
+                    Debug.Log("The number of healed human is: " + hh.counter);
+                    healedNumberLvl5.Send(hh.counter);
+                }
+            }
+        }
+        requestSent4 = true;
     }
 
     public void EndLife()

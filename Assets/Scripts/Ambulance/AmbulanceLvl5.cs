@@ -29,10 +29,16 @@ public class AmbulanceLvl5 : MonoBehaviour
     public TerminationL5 terminationL5;
     private bool requestSent3;
 
+    // Analytic 4
+    public healingHouse hh;
+    public HealedNumberLvl5 healedNumberLvl5;
+    private bool requestSent4;
 
     private void Awake()
     {
         requestSent1 = false;
+        requestSent3 = false;
+        requestSent4 = false;
     }
 
     void Start()
@@ -201,6 +207,21 @@ public class AmbulanceLvl5 : MonoBehaviour
                 else
                 {
                     Debug.LogError("terminationL5 is null");
+                }
+            }
+
+            // Send analytic 4
+            if (!requestSent4)
+            {
+                Debug.Log("Entering analytic4 frtom ambulance");
+                if (healedNumberLvl5)
+                {
+                    healedNumberLvl5.Send(hh.counter);
+                    requestSent4 = true;
+                }
+                else
+                {
+                    Debug.LogError("healedNumberLvl5 is null!");
                 }
             }
         }

@@ -11,7 +11,10 @@ public class healingHouse : MonoBehaviour
     private static Stack<GameObject> infectedStack;
 
     private HashSet<GameObject> humansToReceiveShield = new HashSet<GameObject>();
-    // Start is called before the first frame update
+
+    // keeping record of numbers of healed humans
+    public int counter;
+
     void Start()
     {
 
@@ -50,7 +53,8 @@ public class healingHouse : MonoBehaviour
             {
                 // If the child object exists, destroy it
                 Destroy(initialVirus.gameObject);
-                Debug.Log(other.gameObject.name + " has been healed!");
+                // Debug.Log(other.gameObject.name + " has been healed!");
+                counter += 1;
 
                 infectedStack = BulletScript.GetInfectedStack();
 

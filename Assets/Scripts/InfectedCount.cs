@@ -26,6 +26,11 @@ public class InfectedCount : MonoBehaviour
     public TerminationL6 terminationL6;
     private bool requestSent3;
 
+    // Analytic 4
+    public healingHouse hh;
+    public HealedNumberLvl5 healedNumberLvl5;
+    private bool requestSent4;
+
     string currentSceneName;
     int infectedCount;
 
@@ -33,6 +38,7 @@ public class InfectedCount : MonoBehaviour
     {
         requestSent1 = false;
         requestSent3 = false;
+        requestSent4 = false;
     }
 
     void Start()
@@ -85,14 +91,17 @@ public class InfectedCount : MonoBehaviour
         {
             popUpCanvas.ShowPopUp(message);
             // Analytics
+
             SendAnalytics1(currentSceneName);
+            SendAnalytics4(currentSceneName);
+
             if (message == "Out of Bullets!")
             {
                 SendAnalytics3(currentSceneName, 1);
             }
             else if (message == "Virus Lost!")
             {
-                // game lose because ofkilled by vaccine
+                // game lose because of killed by vaccine
                 SendAnalytics3(currentSceneName, 2);
             }
         }
@@ -312,6 +321,27 @@ public class InfectedCount : MonoBehaviour
             }
             requestSent3 = true;
         }
+    }
+
+    private void SendAnalytics4(string currentlevel)
+    {
+        if (!requestSent4)
+        {
+            Debug.Log("Entering analytic4 frtom ic");
+            if (currentlevel == "Level5")
+            {
+                if (healedNumberLvl5 == null)
+                {
+                    Debug.LogError("healedNumberLvl5 is null");
+                }
+                else
+                {
+                    Debug.Log("The number of healed human is: " + hh.counter);
+                    healedNumberLvl5.Send(hh.counter);
+                }
+            }
+        }
+        requestSent4 = true;
     }
 }
 
