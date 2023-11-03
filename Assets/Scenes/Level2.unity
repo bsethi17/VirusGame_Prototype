@@ -282,7 +282,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1304835574}
         m_TargetAssemblyTypeName: PopupManager, Assembly-CSharp
         m_MethodName: CloseInstructions
         m_Mode: 1
@@ -4786,7 +4786,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popups:
-  - {fileID: 0}
   - {fileID: 107946089}
   currentPopupIndex: 0
   instructionsPanel: {fileID: 107946089}
