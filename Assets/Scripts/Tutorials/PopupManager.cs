@@ -11,6 +11,7 @@ public class PopupManager : MonoBehaviour
 
     private void Awake()  // Using Awake instead of Start
     {
+        Debug.Log("POPUPMANAGER AWAKE");
         Time.timeScale = 0;
     }
 
