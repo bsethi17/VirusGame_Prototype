@@ -2085,7 +2085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   speed: 6
-  delay: 33
+  delay: 53
   human1: {fileID: 970776230}
   slideSpeed: 1
   popUpCanvas: {fileID: 1300896067}
@@ -5820,7 +5820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiFill: {fileID: 2027606589}
-  Duration: 32
+  Duration: 52
 --- !u!1 &1500073245
 GameObject:
   m_ObjectHideFlags: 0

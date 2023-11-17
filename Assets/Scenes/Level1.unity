@@ -1561,7 +1561,7 @@ MonoBehaviour:
   - {fileID: 2093051871}
   - {fileID: 907710984}
   speed: 6
-  delay: 9
+  delay: 19
   human1: {fileID: 970776230}
   human2: {fileID: 399351777}
   slideSpeed: 1
@@ -6838,7 +6838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiFill: {fileID: 2027606589}
-  Duration: 11
+  Duration: 21
 --- !u!1 &1496970441
 GameObject:
   m_ObjectHideFlags: 0
