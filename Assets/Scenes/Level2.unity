@@ -1232,7 +1232,7 @@ MonoBehaviour:
   - {fileID: 944121149}
   - {fileID: 905907880}
   - {fileID: 1948310324}
-  speed: 4
+  speed: 3
 --- !u!212 &399351781
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -7860,7 +7860,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1111235944960813400, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: speed
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1111235944960813400, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: waypoints.Array.size
