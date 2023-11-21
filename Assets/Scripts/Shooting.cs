@@ -28,8 +28,8 @@ public class Shooting : MonoBehaviour
     public int bulletsPerBurst = 2;
     //private int bulletsFiredInBurst = 0;
 
-    public Color bulletColor = Color.white; // Default color for the bullet mode
-    public Color grenadeColor = Color.red; // Color for when the grenade mode is
+    public Color filledColor = Color.green;
+    public Color emptyColor = Color.clear;
 
     public enum ShootingMode
     {
@@ -55,7 +55,10 @@ public class Shooting : MonoBehaviour
         triangleRenderer.endWidth = 0.05f;
         triangleRenderer.positionCount = 4; // Three corners + close the triangle (returning to the starting point)
         triangleRenderer.loop = true; // Connect the last point to the first to close the triangle
-        triangleRenderer.material.color = bulletColor;
+
+        triangleRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        triangleRenderer.startColor = emptyColor;
+        triangleRenderer.endColor = emptyColor;
     }
 
     void Update()
@@ -68,13 +71,15 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
+            triangleRenderer.startColor = filledColor;
+            triangleRenderer.endColor = filledColor;
             currentMode = ShootingMode.Grenades;
-            triangleRenderer.material.color = grenadeColor; // Change the triangle color to grenade color
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {
+            triangleRenderer.startColor = emptyColor;
+            triangleRenderer.endColor = emptyColor;
             currentMode = ShootingMode.Bullets;
-            triangleRenderer.material.color = bulletColor; // Change the triangle color back to bullet color
         }
 
         // Get mouse position
@@ -271,4 +276,3 @@ public class Shooting : MonoBehaviour
     }
 
 }
-
