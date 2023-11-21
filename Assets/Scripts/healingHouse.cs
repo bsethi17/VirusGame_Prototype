@@ -36,6 +36,12 @@ public class healingHouse : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (other.gameObject.CompareTag("bullet"))
+        {
+            Destroy(other.gameObject);
+        }
+
+
         if (other.gameObject.name.StartsWith("HumanNV"))
         {
             // Try to find the child object named "InitialVirus"
