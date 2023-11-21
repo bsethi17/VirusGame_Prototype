@@ -289,6 +289,7 @@ public class BulletScript : MonoBehaviour
                 objectToDestroy = null;
             }
             maxRange += 1;
+            maxRange = Mathf.Min(maxRange, 6);
 
             if (popupController != null)
             {
