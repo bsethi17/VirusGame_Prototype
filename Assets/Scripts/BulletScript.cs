@@ -307,6 +307,12 @@ public class BulletScript : MonoBehaviour
         }
     }
 
+    public void LogDelay() {
+        popupController = FindObjectOfType<rangepopup>();
+        popupController.ShowPopup(" ");
+        return;
+    }
+
     private void InstantiateVirus(Transform parentTransform)
     {
         GameObject newVirus = Instantiate(initialVirusPrefab, parentTransform.position, Quaternion.identity);
