@@ -29,6 +29,8 @@ public class PopUpCanvas : MonoBehaviour
     public HealedNumberLvl7 healedNumberLvl7;
     private bool requestSent4;
 
+    public BulletScript scriptReference;
+
     void Awake()
     {
         requestSent1 = false;
@@ -43,6 +45,7 @@ public class PopUpCanvas : MonoBehaviour
     {
         HidePopUp();
         gameManager = FindObjectOfType<GameManager>();
+        scriptReference = new BulletScript();
     }
 
     void Update()
@@ -68,6 +71,7 @@ public class PopUpCanvas : MonoBehaviour
         {
             StartCoroutine(gameManager.DelayedStopGame());
         }
+        scriptReference.LogDelay();
     }
 
     public void HidePopUp()
