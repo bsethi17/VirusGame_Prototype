@@ -3365,6 +3365,7 @@ GameObject:
   - component: {fileID: 970776235}
   - component: {fileID: 970776234}
   - component: {fileID: 970776236}
+  - component: {fileID: 970776237}
   m_Layer: 0
   m_Name: HumanNV 1
   m_TagString: NVHuman1
@@ -3523,6 +3524,25 @@ MonoBehaviour:
   - {fileID: 840181759}
   - {fileID: 1801314377}
   timeToNextPoint: 1
+--- !u!114 &970776237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970776230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a696b9ab997f84ae49c23178520bc3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avgLifeTimeL1: {fileID: 0}
+  avgLifeTimeL2: {fileID: 0}
+  avgLifeTimeL3: {fileID: 0}
+  avgLifeTimeL4: {fileID: 0}
+  avgLifeTimeL5: {fileID: 0}
+  avgLifeTimeL6: {fileID: 0}
+  avgLifeTimeL7: {fileID: 968037699}
 --- !u!1 &975962620
 GameObject:
   m_ObjectHideFlags: 0
