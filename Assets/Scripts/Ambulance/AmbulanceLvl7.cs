@@ -13,9 +13,6 @@ public class AmbulanceLvl7 : MonoBehaviour
     private bool hasStartedMoving = false;
 
     public GameObject human1;
-    public GameObject human2;
-    public GameObject human3;
-    public GameObject human4;
     private GameObject ambulance;
     public float slideSpeed;
 
@@ -23,15 +20,23 @@ public class AmbulanceLvl7 : MonoBehaviour
 
     // Analytic1
     public SuccessRateRequestL7 successRateRequest;
-    private bool requestSent;
+    private bool requestSent1;
 
     // Analytic3
     public TerminationL7 terminationL7;
     private bool requestSent3;
 
+
+    // Analytic 4
+    public healingHouse hh;
+    public HealedNumberLvl7 healedNumberLvl7;
+    private bool requestSent4;
+
     private void Awake()
     {
-        requestSent = false;
+        requestSent1 = false;
+        requestSent3 = false;
+        requestSent4 = false;
     }
 
     void Start()
@@ -43,7 +48,7 @@ public class AmbulanceLvl7 : MonoBehaviour
     void Update()
     {
         // check constantly if all the humans are infected; if so, stop the game immediately
-        if (IsInfected(human1.transform) && IsInfected(human2.transform) && IsInfected(human3.transform) && IsInfected(human4.transform))
+        if (IsInfected(human1.transform))
         {
             if (popUpCanvas != null)
             {
@@ -111,35 +116,11 @@ public class AmbulanceLvl7 : MonoBehaviour
     // make the human get into the ambulance
     IEnumerator MoveToAmbulance(float step, Action callback)
     {
-        if (IsInfected(human2.transform))
-        {
-            while (Vector3.Distance(human2.transform.position, ambulance.transform.position) > 0.001f)
-            {
-                human2.transform.position = Vector3.MoveTowards(human2.transform.position, ambulance.transform.position, step);
-                yield return null;
-            }
-        }
         if (IsInfected(human1.transform))
         {
             while (Vector3.Distance(human1.transform.position, ambulance.transform.position) > 0.01f)
             {
                 human1.transform.position = Vector3.MoveTowards(human1.transform.position, ambulance.transform.position, step);
-                yield return null;
-            }
-        }
-        if (IsInfected(human3.transform))
-        {
-            while (Vector3.Distance(human3.transform.position, ambulance.transform.position) > 0.001f)
-            {
-                human3.transform.position = Vector3.MoveTowards(human3.transform.position, ambulance.transform.position, step);
-                yield return null;
-            }
-        }
-        if (IsInfected(human4.transform))
-        {
-            while (Vector3.Distance(human4.transform.position, ambulance.transform.position) > 0.001f)
-            {
-                human4.transform.position = Vector3.MoveTowards(human4.transform.position, ambulance.transform.position, step);
                 yield return null;
             }
         }
@@ -158,18 +139,6 @@ public class AmbulanceLvl7 : MonoBehaviour
         {
             count += 1;
         }
-        if (IsInfected(human2.transform))
-        {
-            count += 1;
-        }
-        if (IsInfected(human3.transform))
-        {
-            count += 1;
-        }
-        if (IsInfected(human4.transform))
-        {
-            count += 1;
-        }
         return count;
     }
 
@@ -180,12 +149,12 @@ public class AmbulanceLvl7 : MonoBehaviour
         {
             popUpCanvas.ShowPopUp("Virus Lost!");
 
-            if (!requestSent)
+            if (!requestSent1)
             {
                 int numberOfInfectedHumans = getNumOfInfectedHumans();
                 successRateRequest.Send(numberOfInfectedHumans);
 
-                requestSent = true;
+                requestSent1 = true;
                 return;
             }
 
@@ -200,6 +169,20 @@ public class AmbulanceLvl7 : MonoBehaviour
                 else
                 {
                     Debug.LogError("terminationL7 is null");
+                }
+            }
+
+            // Send analytic 4
+            if (!requestSent4)
+            {
+                if (healedNumberLvl7)
+                {
+                    healedNumberLvl7.Send(hh.counter);
+                    requestSent4 = true;
+                }
+                else
+                {
+                    Debug.LogError("healedNumberLvl7 is null!");
                 }
             }
         }

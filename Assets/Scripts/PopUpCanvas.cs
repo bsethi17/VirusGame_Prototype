@@ -19,12 +19,14 @@ public class PopUpCanvas : MonoBehaviour
     public SuccessRateRequestL4 successRateRequestL4;
     public SuccessRateRequestL5 successRateRequestL5;
     public SuccessRateRequestL6 successRateRequestL6;
+    public SuccessRateRequestL7 successRateRequestL7;
     private bool requestSent1;
 
     // Analytic 4
     public healingHouse hh;
     public HealedNumberLvl5 healedNumberLvl5;
     public HealedNumberLvl6 healedNumberLvl6;
+    public HealedNumberLvl7 healedNumberLvl7;
     private bool requestSent4;
 
     void Awake()
@@ -59,9 +61,7 @@ public class PopUpCanvas : MonoBehaviour
 
             StartCoroutine(gameManager.DelayedStopGame());
 
-            Debug.Log("Send analytic 1");
             SendAnalytics1(currentlevel);
-            Debug.Log("Send analytic 4");
             SendAnalytics4(currentlevel);
         }
         else
@@ -146,6 +146,17 @@ public class PopUpCanvas : MonoBehaviour
                     successRateRequestL6.Send(4);
                 }
             }
+            else if (currentlevel == "Level7")
+            {
+                if (successRateRequestL7 == null)
+                {
+                    Debug.LogError("successRateRequest is null");
+                }
+                else
+                {
+                    successRateRequestL7.Send(4);
+                }
+            }
             requestSent1 = true;
         }
     }
@@ -177,6 +188,18 @@ public class PopUpCanvas : MonoBehaviour
                 {
                     Debug.Log("The number of healed human is: " + hh.counter);
                     healedNumberLvl6.Send(hh.counter);
+                }
+            }
+            else if (currentlevel == "Level7")
+            {
+                if (healedNumberLvl7 == null)
+                {
+                    Debug.LogError("healedNumberLvl7 is null");
+                }
+                else
+                {
+                    Debug.Log("The number of healed human is: " + hh.counter);
+                    healedNumberLvl7.Send(hh.counter);
                 }
             }
         }

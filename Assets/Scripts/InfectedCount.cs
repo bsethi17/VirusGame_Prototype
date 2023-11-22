@@ -15,6 +15,7 @@ public class InfectedCount : MonoBehaviour
     public SuccessRateRequestL4 successRateRequestL4;
     public SuccessRateRequestL5 successRateRequestL5;
     public SuccessRateRequestL6 successRateRequestL6;
+    public SuccessRateRequestL6 successRateRequestL7;
     private bool requestSent1;
 
     // Analytic3
@@ -24,12 +25,14 @@ public class InfectedCount : MonoBehaviour
     public TerminationL4 terminationL4;
     public TerminationL5 terminationL5;
     public TerminationL6 terminationL6;
+    public TerminationL6 terminationL7;
     private bool requestSent3;
 
     // Analytic 4
     public healingHouse hh;
     public HealedNumberLvl5 healedNumberLvl5;
     public HealedNumberLvl6 healedNumberLvl6;
+    public HealedNumberLvl7 healedNumberLvl7;
     private bool requestSent4;
 
     string currentSceneName;
@@ -241,6 +244,17 @@ public class InfectedCount : MonoBehaviour
                 else
                 {
                     successRateRequestL6.Send(infectedCount);
+                }
+            }
+            else if (currentlevel == "Level7")
+            {
+                if (successRateRequestL7 == null)
+                {
+                    Debug.LogError("successRateRequest is null");
+                }
+                else
+                {
+                    successRateRequestL7.Send(infectedCount);
                 }
             }
 
