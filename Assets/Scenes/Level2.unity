@@ -3244,7 +3244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -237.6, y: 192.9}
+  m_AnchoredPosition: {x: -230.9, y: 210.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &816107899
@@ -3825,7 +3825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.71, y: 5.7176}
+  m_AnchoredPosition: {x: -6.58, y: 5.7176}
   m_SizeDelta: {x: 0.7696, y: 0.8848}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &942709372
@@ -4380,7 +4380,7 @@ Transform:
   m_GameObject: {fileID: 1049443144}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9701, y: 6.239, z: 0}
+  m_LocalPosition: {x: 0.97, y: 5.7, z: 0}
   m_LocalScale: {x: 0.2257836, y: 0.09565404, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5652,9 +5652,12 @@ MonoBehaviour:
   successRateRequestL4: {fileID: 0}
   successRateRequestL5: {fileID: 0}
   successRateRequestL6: {fileID: 0}
+  successRateRequestL7: {fileID: 0}
   hh: {fileID: 0}
   healedNumberLvl5: {fileID: 0}
   healedNumberLvl6: {fileID: 0}
+  healedNumberLvl7: {fileID: 0}
+  scriptReference: {fileID: 0}
 --- !u!1 &1304835573
 GameObject:
   m_ObjectHideFlags: 0
@@ -7367,15 +7370,18 @@ MonoBehaviour:
   successRateRequestL4: {fileID: 0}
   successRateRequestL5: {fileID: 0}
   successRateRequestL6: {fileID: 0}
+  successRateRequestL7: {fileID: 0}
   terminationL1: {fileID: 0}
   terminationL2: {fileID: 462761510}
   terminationL3: {fileID: 0}
   terminationL4: {fileID: 0}
   terminationL5: {fileID: 0}
   terminationL6: {fileID: 0}
+  terminationL7: {fileID: 0}
   hh: {fileID: 0}
   healedNumberLvl5: {fileID: 0}
   healedNumberLvl6: {fileID: 0}
+  healedNumberLvl7: {fileID: 0}
 --- !u!114 &1735148977
 MonoBehaviour:
   m_ObjectHideFlags: 0
