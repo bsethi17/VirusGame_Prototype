@@ -296,7 +296,7 @@ public class BulletScript : MonoBehaviour
                 popupController.ShowPopup("Range Increased!");
             }
             // Destroy the bullet
-            UIManager.Instance.AddBullets(1);
+            UIManager.Instance.AddBullets(2);
             Destroy(gameObject);
 
         }
