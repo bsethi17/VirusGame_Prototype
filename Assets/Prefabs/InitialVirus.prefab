@@ -183,6 +183,8 @@ MonoBehaviour:
   bulletsPerBurst: 2
   filledColor: {r: 0, g: 1, b: 0, a: 1}
   emptyColor: {r: 1, g: 0.1137255, b: 0.8352942, a: 1}
+  crosshair: {fileID: 2232270447226747851, guid: fd5dcb44d62ad4148a5020d2fcff8f0d, type: 3}
+  crosshairInstance: {fileID: 0}
 --- !u!1 &4047013594826945339
 GameObject:
   m_ObjectHideFlags: 0

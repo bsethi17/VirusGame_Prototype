@@ -31,19 +31,39 @@ public class Shooting : MonoBehaviour
     public Color filledColor = Color.green;
     public Color emptyColor = Color.clear;
 
+    public GameObject crosshair;
+
     public enum ShootingMode
     {
         Bullets,
         Grenades
     }
-
+    private float shootingRange;
     private ShootingMode currentMode = ShootingMode.Bullets;
+
+    public GameObject crosshairInstance;
 
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         shooterInstance = this;
 
+        shootingRange = BulletScript.maxRange;
+        if (crosshairInstance != null)
+        {
+            Destroy(crosshairInstance);
+        }
+        if (crosshair == null)
+        {
+            Debug.LogError("Crosshair not assigned");
+        }
+
+        else if (crosshair != null)
+{
+    Debug.Log("Instantiating crosshair");
+    crosshairInstance = Instantiate(crosshair);
+    crosshairInstance.SetActive(true);
+}
         // Initialize TriangleRenderer
         triangleRenderer = GetComponent<LineRenderer>();
         if (triangleRenderer == null)
@@ -59,6 +79,9 @@ public class Shooting : MonoBehaviour
         triangleRenderer.material = new Material(Shader.Find("Sprites/Default"));
         triangleRenderer.startColor = emptyColor;
         triangleRenderer.endColor = emptyColor;
+        //crosshairInstance = Instantiate(crosshair, Vector3.zero, Quaternion.identity);
+        crosshairInstance.transform.SetParent(transform, false); // Set the triangle GameObject as the parent
+        crosshairInstance.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); // Adjust scale as needed
     }
 
     void Update()
@@ -83,14 +106,13 @@ public class Shooting : MonoBehaviour
         }
 
         // Get mouse position
-        mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCam.nearClipPlane));
         mousePos.z = 0; // Ensure that the z position is 0  
 
         Vector3 direction = (mousePos - virusObject.transform.position).normalized;  // Calculate the normalized direction vector from the virusObject to the mouse cursor
         Vector3 triangleApex = virusObject.transform.position + direction * triangleHeight;  // Calculate the position of the triangle apex
 
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
         transform.position = virusObject.transform.position + direction * distanceFromVirusObject;  // Calculate the position of the small circle
         bulletTransform.position = triangleApex;  // Set the bulletTransform position to the triangle apex
@@ -102,6 +124,8 @@ public class Shooting : MonoBehaviour
         triangleRenderer.SetPosition(1, triangleApex);
         triangleRenderer.SetPosition(2, rightBaseCorner);
         triangleRenderer.SetPosition(3, leftBaseCorner);
+
+        UpdateCrosshairPosition();
 
         if (!canFire)
         {
@@ -135,6 +159,22 @@ public class Shooting : MonoBehaviour
         //Code to switch the shooting agent on right click of infected human
         HandleRightClick();
     }
+
+    private void UpdateCrosshairPosition()
+{
+    if (crosshairInstance != null)
+    {
+        Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCam.nearClipPlane);
+        mousePos = mainCam.ScreenToWorldPoint(mouseScreenPosition);
+        mousePos.z = virusObject.transform.position.z; // Make sure it's on the same plane as the virusObject
+
+        Vector3 direction = (mousePos - virusObject.transform.position).normalized;
+        float distance = Mathf.Min(shootingRange, Vector3.Distance(virusObject.transform.position, mousePos));
+
+        // Set crosshairInstance position instead of crosshair
+        crosshairInstance.transform.position = virusObject.transform.position + (direction * distance);
+    }
+}
 
     private void ShootBullets()
     {
@@ -274,5 +314,4 @@ public class Shooting : MonoBehaviour
         canFire = true;
         this.enabled = true;
     }
-
 }
