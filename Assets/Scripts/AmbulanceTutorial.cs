@@ -21,6 +21,7 @@ public class AmbulanceTutorial : MonoBehaviour
 
     public PopUpCanvas popUpCanvas;
 
+    public PopUpCanvas popUpCanvasLost;
     // Analytics
     public SuccessRateRequestL6 successRateRequest;
     private bool requestSent;
@@ -143,9 +144,9 @@ public class AmbulanceTutorial : MonoBehaviour
     // display result when time's up
     void displayResult()
     {
-        if (popUpCanvas != null)
+        if (popUpCanvasLost != null)
         {
-            popUpCanvas.ShowPopUp("Virus Lost!");
+            popUpCanvasLost.ShowPopUp("Virus Lost!");
 
             if (!requestSent)
             {
@@ -164,9 +165,9 @@ public class AmbulanceTutorial : MonoBehaviour
 
     void displayResult2()
     {
-        if (popUpCanvas != null)
+        if (popUpCanvasLost != null)
         {
-            popUpCanvas.ShowPopUp("Virus Lost!");
+            popUpCanvasLost.ShowPopUp("Virus Lost!");
         }
     }
    

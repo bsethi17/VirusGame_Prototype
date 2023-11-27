@@ -17,6 +17,8 @@ public class AmbulanceLvl7 : MonoBehaviour
     public GameObject human3;
     public GameObject human4;
     private GameObject ambulance;
+
+    public PopUpCanvas popUpCanvasLost; 
     public float slideSpeed;
 
     public PopUpCanvas popUpCanvas;
@@ -183,9 +185,9 @@ public class AmbulanceLvl7 : MonoBehaviour
     // display result when time's up
     void displayResult()
     {
-        if (popUpCanvas != null)
+        if (popUpCanvasLost != null)
         {
-            popUpCanvas.ShowPopUp("Virus Lost!");
+            popUpCanvasLost.ShowPopUp("Virus Lost!");
 
             if (!requestSent1)
             {
