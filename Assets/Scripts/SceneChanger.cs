@@ -19,6 +19,7 @@ public class SceneChanger : MonoBehaviour
 
     public void LoadLevelMenu()
     {
+        PopupManager.SetPopupsShown(false);
         SceneManager.LoadScene("LevelScene");
     }
 

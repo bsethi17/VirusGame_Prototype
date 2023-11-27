@@ -9,21 +9,47 @@ public class PopupManager : MonoBehaviour
     public int currentPopupIndex;
     public GameObject instructionsPanel;
 
+    public static bool PopupsShownKey { get; private set; } // popup show flag
+
     private void Awake()  // Using Awake instead of Start
     {
         Debug.Log("POPUPMANAGER AWAKE");
+        Debug.Log("PopupsShownKey:" + PopupsShownKey);
+        if (PopupsShownKey)
+        {
+            Debug.Log("Popups have already been shown in a previous session.");
+            CloseInstructions();
+            return;
+        }
         Time.timeScale = 0;
+        
     }
 
     public void CloseInstructions()
     {
         instructionsPanel.SetActive(false);
+        PopupsShownKey = true;
+        Debug.Log("PopupsShownKey:" + PopupsShownKey);
         // Resume the game
         Time.timeScale = 1;
     }
 
     void Start()
     {
+        if (PopupsShownKey)
+        {
+            Debug.Log("Popups have already been shown in a previous session.");
+            for (int i = 0; i < popups.Count; i++)
+            {
+                popups[i].SetActive(false);
+            }
+            Time.timeScale = 1;
+            return;
+        }
+        else
+        {
+            Debug.Log("Showing popups for the first time.");
+        }
         currentPopupIndex = 0;
         ShowPopup(currentPopupIndex);
     }
@@ -38,18 +64,17 @@ public class PopupManager : MonoBehaviour
                 Debug.Log("set active:" + index);
             }
         }
-        else
-        {
-            // All popups are shown, start the game or do other stuff
-            Debug.Log("All popups are shown, start the game!");
-        }
     }
 
     public void NextPopup()
     {
-        Debug.Log("NEXTPOPUP");
         currentPopupIndex++;
         Debug.Log("NEXT: " + currentPopupIndex);
         ShowPopup(currentPopupIndex);
+    }
+
+    public static void SetPopupsShown(bool shown)
+    {
+        PopupsShownKey = shown;
     }
 }

@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     private string originalSceneName;
 
     public bool isInitialVirus;
-
     private void Awake()
     {
         if (Instance == null)
@@ -27,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Debug.Log("RELOAD");
         // Add any additional restart logic here.
         ResetBulletCount();
         SceneManager.LoadScene(originalSceneName);
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public void Menu()
     {
         ResetBulletCount();
+        PopupManager.SetPopupsShown(false);
         SceneManager.LoadScene("LevelScene");
         ResumeGame();
     }
@@ -43,36 +44,42 @@ public class GameManager : MonoBehaviour
     public void GoToLevel2()
     {
         ResetBulletCount();
+        PopupManager.SetPopupsShown(false);
         SceneManager.LoadScene("Level2");
     }
 
     public void GoToLevel3()
     {
         ResetBulletCount();
+        PopupManager.SetPopupsShown(false);
         SceneManager.LoadScene("Level3");
     }
 
     public void GoToLevel4()
     {
         ResetBulletCount();
+        PopupManager.SetPopupsShown(false);
         SceneManager.LoadScene("Level4");
     }
 
     public void GoToLevel5()
     {
         ResetBulletCount();
+        PopupManager.SetPopupsShown(false);
         SceneManager.LoadScene("Level5");
     }
 
     public void GoToLevel6()
     {
         ResetBulletCount();
+        PopupManager.SetPopupsShown(false);
         SceneManager.LoadScene("Level6");
     }
 
     public void GoToLevel7()
     {
         ResetBulletCount();
+        PopupManager.SetPopupsShown(false);
         SceneManager.LoadScene("Level7");
     }
 
