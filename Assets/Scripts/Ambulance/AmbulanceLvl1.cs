@@ -19,7 +19,7 @@ public class AmbulanceLvl1 : MonoBehaviour
     private bool human2Infected;
     private GameObject ambulance;
     public float slideSpeed;
-
+    public PopUpCanvas popUpCanvasLost; 
     public PopUpCanvas popUpCanvas;
 
     // Analytic1
@@ -161,9 +161,9 @@ public class AmbulanceLvl1 : MonoBehaviour
         // player loses because of timer's up
         else
         {
-            if (popUpCanvas != null)
+            if (popUpCanvasLost != null)
             {
-                popUpCanvas.ShowPopUp("Virus Lost!");
+                popUpCanvasLost.ShowPopUp("Virus Lost!");
                 // Send analytic 1
                 if (!requestSent1)
                 {
