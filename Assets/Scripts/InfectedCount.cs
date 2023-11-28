@@ -72,7 +72,7 @@ public class InfectedCount : MonoBehaviour
         // player runs out of bullets
         if ((infectedCount == 0 && !getIsInitialVirusPresent()) || UIManager.Instance.GlobalBulletCount == 0 && !IsBulletInScene())
         {
-            string endMessage = UIManager.Instance.GlobalBulletCount == 0 ? "Out of Bullets!" : "Virus Lost!";
+            string endMessage = UIManager.Instance.GlobalBulletCount == 0 ? "Out of Bullets!" : "You Lost!";
             EndGame(endMessage);
         }
     }
@@ -103,7 +103,7 @@ public class InfectedCount : MonoBehaviour
             {
                 SendAnalytics3(currentSceneName, 1);
             }
-            else if (message == "Virus Lost!")
+            else if (message == "You Lost!")
             {
                 // game lose because of killed by vaccine
                 SendAnalytics3(currentSceneName, 2);

@@ -146,7 +146,7 @@ public class AmbulanceTutorial : MonoBehaviour
     {
         if (popUpCanvasLost != null)
         {
-            popUpCanvasLost.ShowPopUp("Virus Lost!");
+            popUpCanvasLost.ShowPopUp("You Lost!");
 
             if (!requestSent)
             {
@@ -167,7 +167,7 @@ public class AmbulanceTutorial : MonoBehaviour
     {
         if (popUpCanvasLost != null)
         {
-            popUpCanvasLost.ShowPopUp("Virus Lost!");
+            popUpCanvasLost.ShowPopUp("You Lost!");
         }
     }
    

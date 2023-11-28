@@ -64,7 +64,7 @@ public class AmbulanceLvl7 : MonoBehaviour
                 {
                     levelManager.CompleteLevel(levelNumber + 1);
                 }
-                popUpCanvas.ShowPopUp("Virus wins!");
+                popUpCanvas.ShowPopUp("You won!");
             }
             else
             {
@@ -195,7 +195,7 @@ public class AmbulanceLvl7 : MonoBehaviour
     {
         if (popUpCanvasLost != null)
         {
-            popUpCanvasLost.ShowPopUp("Virus Lost!");
+            popUpCanvasLost.ShowPopUp("You Lost!");
 
             if (!requestSent1)
             {
