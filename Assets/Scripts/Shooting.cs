@@ -59,11 +59,11 @@ public class Shooting : MonoBehaviour
         }
 
         else if (crosshair != null)
-{
-    Debug.Log("Instantiating crosshair");
-    crosshairInstance = Instantiate(crosshair);
-    crosshairInstance.SetActive(true);
-}
+        {
+            // Debug.Log("Instantiating crosshair");
+            crosshairInstance = Instantiate(crosshair);
+            crosshairInstance.SetActive(true);
+        }
         // Initialize TriangleRenderer
         triangleRenderer = GetComponent<LineRenderer>();
         if (triangleRenderer == null)
@@ -161,20 +161,20 @@ public class Shooting : MonoBehaviour
     }
 
     private void UpdateCrosshairPosition()
-{
-    if (crosshairInstance != null)
     {
-        Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCam.nearClipPlane);
-        mousePos = mainCam.ScreenToWorldPoint(mouseScreenPosition);
-        mousePos.z = virusObject.transform.position.z; // Make sure it's on the same plane as the virusObject
+        if (crosshairInstance != null)
+        {
+            Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, mainCam.nearClipPlane);
+            mousePos = mainCam.ScreenToWorldPoint(mouseScreenPosition);
+            mousePos.z = virusObject.transform.position.z; // Make sure it's on the same plane as the virusObject
 
-        Vector3 direction = (mousePos - virusObject.transform.position).normalized;
-        float distance = Mathf.Min(shootingRange, Vector3.Distance(virusObject.transform.position, mousePos));
+            Vector3 direction = (mousePos - virusObject.transform.position).normalized;
+            float distance = Mathf.Min(shootingRange, Vector3.Distance(virusObject.transform.position, mousePos));
 
-        // Set crosshairInstance position instead of crosshair
-        crosshairInstance.transform.position = virusObject.transform.position + (direction * distance);
+            // Set crosshairInstance position instead of crosshair
+            crosshairInstance.transform.position = virusObject.transform.position + (direction * distance);
+        }
     }
-}
 
     private void ShootBullets()
     {
