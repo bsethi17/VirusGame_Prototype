@@ -128,9 +128,7 @@ public class BulletScript : MonoBehaviour
                 }
             }
         }
-
     }
-
 
     private IEnumerator EnableCollisionAfterDelay(float delay)
     {

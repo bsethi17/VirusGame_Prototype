@@ -3,6 +3,7 @@ using System.Collections;
 public class Checker : MonoBehaviour
 {
     public PopUpCanvas popUpCanvas;
+    private int levelNumber = 6;
 
     // Update is called once per frame
     async void Start()
@@ -20,7 +21,12 @@ public class Checker : MonoBehaviour
         else
         {
             Debug.Log("HealingHouse does not exist.");
-            StartCoroutine(ShowDelayedPopup("Virus Won!", 1.0f)); // Delay for 2 seconds and then show the popup.
+            LevelManager levelManager = FindObjectOfType<LevelManager>();
+            if (levelManager != null)
+            {
+                levelManager.CompleteLevel(levelNumber + 1);
+            }
+            StartCoroutine(ShowDelayedPopup("You Won!", 1.0f)); // Delay for 2 seconds and then show the popup.
             // Actions to take if the HealingHouse does not exist.
         }
 

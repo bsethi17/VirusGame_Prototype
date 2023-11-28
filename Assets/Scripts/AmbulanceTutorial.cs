@@ -85,10 +85,6 @@ public class AmbulanceTutorial : MonoBehaviour
                 });
             }
         }
-        
-
-        
-
     }
 
     // check if this human is infected
@@ -121,7 +117,6 @@ public class AmbulanceTutorial : MonoBehaviour
                 yield return null;
             }
         }
-    
 
         // Movement is finished, invoke the callback.
         if (callback != null)
@@ -170,7 +165,4 @@ public class AmbulanceTutorial : MonoBehaviour
             popUpCanvasLost.ShowPopUp("You Lost!");
         }
     }
-   
-
-
 }
