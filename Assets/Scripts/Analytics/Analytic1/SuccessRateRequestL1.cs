@@ -54,10 +54,6 @@ public class SuccessRateRequestL1 : MonoBehaviour
             {
                 Debug.Log(www.error);
             }
-            else
-            {
-                Debug.Log("Form upload complete!");
-            }
         }
     }
 }

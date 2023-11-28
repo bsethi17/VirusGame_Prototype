@@ -199,7 +199,6 @@ public class Shooting : MonoBehaviour
 
     private void ShootGrenades()
     {
-        Debug.Log("g");
         if (UIManager.Instance.GlobalGrenadeCount > 0)
         {
             GameObject newGrenade = Instantiate(grenadePrefab, bulletTransform.position, Quaternion.identity);

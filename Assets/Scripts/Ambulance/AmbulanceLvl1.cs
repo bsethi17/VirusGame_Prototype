@@ -19,7 +19,7 @@ public class AmbulanceLvl1 : MonoBehaviour
     private bool human2Infected;
     private GameObject ambulance;
     public float slideSpeed;
-    public PopUpCanvas popUpCanvasLost; 
+    public PopUpCanvas popUpCanvasLost;
     public PopUpCanvas popUpCanvas;
 
     // Analytic1
@@ -29,6 +29,8 @@ public class AmbulanceLvl1 : MonoBehaviour
     // Analytic3
     public TerminationL1 terminationL1;
     private bool requestSent3;
+
+    private int levelNumber = 1;
 
     private void Awake()
     {
@@ -47,8 +49,15 @@ public class AmbulanceLvl1 : MonoBehaviour
         // check constantly if all the humans are infected; if so, stop the game immediately
         if (HasChildren(human1.transform) && HasChildren(human2.transform))
         {
+            // virus wins
             if (popUpCanvas != null)
             {
+                // change the level scene button status
+                LevelManager levelManager = FindObjectOfType<LevelManager>();
+                if (levelManager != null)
+                {
+                    levelManager.CompleteLevel(levelNumber + 1);
+                }
                 popUpCanvas.ShowPopUp("Virus wins!");
                 return;
             }

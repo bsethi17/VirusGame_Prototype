@@ -1758,6 +1758,7 @@ MonoBehaviour:
   popUpCanvas: {fileID: 1300896067}
   successRateRequestL1: {fileID: 9786975}
   terminationL1: {fileID: 1678951824}
+  levelNumber: 1
 --- !u!1 &515446973
 GameObject:
   m_ObjectHideFlags: 0
@@ -9792,6 +9793,51 @@ Transform:
   m_Father: {fileID: 1500073246}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2118537051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2118537052}
+  - component: {fileID: 2118537053}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2118537052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118537051}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 582.2904, y: 202.56314, z: -0.04956934}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118537053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118537051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e4bf39bc874408ba295fbdb91b6c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelButtons: []
 --- !u!1 &2126906249
 GameObject:
   m_ObjectHideFlags: 0
@@ -10141,3 +10187,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 519420032}
+  - {fileID: 1861827571}
+  - {fileID: 970776233}
+  - {fileID: 399351782}
+  - {fileID: 749529282}
+  - {fileID: 1018392367}
+  - {fileID: 496797575}
+  - {fileID: 1500073246}
+  - {fileID: 7364125226037779481}
+  - {fileID: 1592048668}
+  - {fileID: 1300896066}
+  - {fileID: 1463999969}
+  - {fileID: 1733749711}
+  - {fileID: 1241381088}
+  - {fileID: 1054705962}
+  - {fileID: 1362273347}
+  - {fileID: 974443280}
+  - {fileID: 444080261}
+  - {fileID: 1463923569}
+  - {fileID: 463055747}
+  - {fileID: 1158356380}
+  - {fileID: 1678951825}
+  - {fileID: 1087206661}
+  - {fileID: 1708793168}
+  - {fileID: 2118537052}

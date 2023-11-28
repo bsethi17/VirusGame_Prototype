@@ -60,7 +60,6 @@ public class TerminationL1 : MonoBehaviour
         // Send responses and verify result    
         using (UnityWebRequest www = UnityWebRequest.Post(googleFormURL, form))
         {
-            Debug.Log("Sending!!");
             yield return www.SendWebRequest();
             if (www.result != UnityWebRequest.Result.Success)
             {

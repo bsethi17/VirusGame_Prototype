@@ -18,7 +18,7 @@ public class AmbulanceLvl5 : MonoBehaviour
     public GameObject human4;
     private GameObject ambulance;
     public float slideSpeed;
-    public PopUpCanvas popUpCanvasLost; 
+    public PopUpCanvas popUpCanvasLost;
     public PopUpCanvas popUpCanvas;
 
     // Analytic1
@@ -33,6 +33,8 @@ public class AmbulanceLvl5 : MonoBehaviour
     public healingHouse hh;
     public HealedNumberLvl5 healedNumberLvl5;
     private bool requestSent4;
+
+    private int levelNumber = 5;
 
     private void Awake()
     {
@@ -54,6 +56,12 @@ public class AmbulanceLvl5 : MonoBehaviour
         {
             if (popUpCanvas != null)
             {
+                // change the level scene button status
+                LevelManager levelManager = FindObjectOfType<LevelManager>();
+                if (levelManager != null)
+                {
+                    levelManager.CompleteLevel(levelNumber + 1);
+                }
                 popUpCanvas.ShowPopUp("Virus wins!");
             }
             else

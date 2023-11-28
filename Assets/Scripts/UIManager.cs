@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
 
     public int ResetBulletCount = 10;
 
-    public static UIManager Instance 
+    public static UIManager Instance
     {
         get
         {
@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
     // Grenade related methods
     public void UpdateGrenadeCount(int count)
     {
-        GlobalGrenadeCount = count%3;
+        GlobalGrenadeCount = count % 3;
         grenadeCountText.text = " : " + count;
     }
 

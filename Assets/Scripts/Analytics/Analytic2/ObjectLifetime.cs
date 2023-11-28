@@ -36,14 +36,14 @@ public class ObjectLifetime : MonoBehaviour
     private void CalculateDurationOnDestroy()
     {
         float duration = Time.time - startTime;
-        Debug.Log(gameObject.name + " duration on destroy: " + duration);
+        // Debug.Log(gameObject.name + " duration on destroy: " + duration);
         OnDestroyEvent?.Invoke(duration);
     }
 
     private void CalculateDurationOnEndGame()
     {
         float duration = Time.time - startTime;
-        Debug.Log(gameObject.name + " duration on end game: " + duration);
+        // Debug.Log(gameObject.name + " duration on end game: " + duration);
         OnEndGameEvent?.Invoke(duration);
     }
 }

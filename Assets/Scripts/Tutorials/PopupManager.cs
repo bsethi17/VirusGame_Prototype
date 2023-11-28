@@ -13,8 +13,6 @@ public class PopupManager : MonoBehaviour
 
     private void Awake()  // Using Awake instead of Start
     {
-        Debug.Log("POPUPMANAGER AWAKE");
-        Debug.Log("PopupsShownKey:" + PopupsShownKey);
         if (PopupsShownKey)
         {
             Debug.Log("Popups have already been shown in a previous session.");
@@ -61,7 +59,6 @@ public class PopupManager : MonoBehaviour
             for (int i = 0; i < popups.Count; i++)
             {
                 popups[i].SetActive(i == index);
-                Debug.Log("set active:" + index);
             }
         }
     }
@@ -69,7 +66,6 @@ public class PopupManager : MonoBehaviour
     public void NextPopup()
     {
         currentPopupIndex++;
-        Debug.Log("NEXT: " + currentPopupIndex);
         ShowPopup(currentPopupIndex);
     }
 
