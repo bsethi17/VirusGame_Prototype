@@ -452,7 +452,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -3318,8 +3318,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 98669ea49f47bbb4d80419a7cbbaafc8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 0.9622642, g: 0.76708794, b: 0.76708794, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3580,7 +3580,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -4564,7 +4564,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -5077,7 +5077,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -8059,10 +8059,6 @@ PrefabInstance:
       value: InitialVirus
       objectReference: {fileID: 0}
     - target: {fileID: 2624037154835970595, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2624037154835970595, guid: 57eecf7ebcd6b4d7e8e3267709ca3674, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.54
       objectReference: {fileID: 0}
@@ -8185,27 +8181,26 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 496797575}
-  - {fileID: 1500073246}
-  - {fileID: 1054705962}
-  - {fileID: 203661504}
-  - {fileID: 1391209149}
   - {fileID: 1511225038}
-  - {fileID: 1733749711}
-  - {fileID: 1241381088}
-  - {fileID: 1950887428}
+  - {fileID: 519420032}
   - {fileID: 970776233}
   - {fileID: 749529282}
+  - {fileID: 496797575}
+  - {fileID: 1500073246}
   - {fileID: 7364125226037779481}
   - {fileID: 1592048668}
-  - {fileID: 519420032}
-  - {fileID: 171256335}
+  - {fileID: 1733749711}
   - {fileID: 1300896066}
   - {fileID: 1026477214}
-  - {fileID: 259176213}
+  - {fileID: 1241381088}
+  - {fileID: 1054705962}
   - {fileID: 1133597970}
+  - {fileID: 1391209149}
   - {fileID: 1168403051}
+  - {fileID: 1950887428}
   - {fileID: 1592540195}
   - {fileID: 1388310174}
+  - {fileID: 259176213}
   - {fileID: 1943042159}
-  - {fileID: 1610979275}
+  - {fileID: 203661504}
+  - {fileID: 171256335}

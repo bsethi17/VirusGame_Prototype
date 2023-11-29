@@ -216,7 +216,7 @@ public class BulletScript : MonoBehaviour
 
                 if (popUpCanvas != null)
                 {
-                    popUpCanvas.ShowPopUp("You Lost!");
+                    popUpCanvas.ShowPopUp("Virus Lost!");
                     Destroy(shooter);
                 }
                 else

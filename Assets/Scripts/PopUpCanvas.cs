@@ -58,7 +58,7 @@ public class PopUpCanvas : MonoBehaviour
         this.gameObject.SetActive(true);
         popUpText.text = message;
         currentlevel = SceneManager.GetActiveScene().name;
-        if (message == "You won!")
+        if (message == "Virus wins!")
         {
             EndLife();
 
