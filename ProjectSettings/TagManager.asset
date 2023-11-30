@@ -20,6 +20,7 @@ TagManager:
   - grenade
   - HealingHouse
   - Grenade
+  - trianglePrefab
   layers:
   - Default
   - TransparentFX

@@ -29,7 +29,7 @@ public class Shooting : MonoBehaviour
     //private int bulletsFiredInBurst = 0;
 
     public Color filledColor = Color.green;
-    public Color emptyColor = Color.clear;
+    public readonly Color emptyColor = new Color(1f, 0.5f, 0.5f, 1f); // pink
 
     public GameObject crosshair;
 
