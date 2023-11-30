@@ -25,6 +25,7 @@ public class PopupManager : MonoBehaviour
 
     public void CloseInstructions()
     {
+        Debug.Log("CloseInstructions:");
         instructionsPanel.SetActive(false);
         PopupsShownKey = true;
         Debug.Log("PopupsShownKey:" + PopupsShownKey);
@@ -50,6 +51,9 @@ public class PopupManager : MonoBehaviour
         }
         currentPopupIndex = 0;
         ShowPopup(currentPopupIndex);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
     }
 
     void ShowPopup(int index)
