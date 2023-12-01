@@ -16,11 +16,11 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        // Disable all level buttons initially
-        DisableAllButtons();
+        // // Disable all level buttons initially
+        // DisableAllButtons();
 
-        // Enable the first level button
-        EnableButtonFromLevel(maxFinishedLevel);
+        // // Enable the first level button
+        // EnableButtonFromLevel(maxFinishedLevel);
     }
 
     public void CompleteLevel(int level)

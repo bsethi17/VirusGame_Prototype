@@ -50,12 +50,12 @@ public class AmbulanceLvl4 : MonoBehaviour
         {
             if (popUpCanvas != null)
             {
-                // change the level scene button status
-                LevelManager levelManager = FindObjectOfType<LevelManager>();
-                if (levelManager != null)
-                {
-                    levelManager.CompleteLevel(levelNumber + 1);
-                }
+                // // change the level scene button status
+                // LevelManager levelManager = FindObjectOfType<LevelManager>();
+                // if (levelManager != null)
+                // {
+                //     levelManager.CompleteLevel(levelNumber + 1);
+                // }
                 popUpCanvas.ShowPopUp("Virus wins!");
             }
             else

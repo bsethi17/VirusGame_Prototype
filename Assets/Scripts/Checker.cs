@@ -20,12 +20,12 @@ public class Checker : MonoBehaviour
         }
         else
         {
-            Debug.Log("HealingHouse does not exist.");
-            LevelManager levelManager = FindObjectOfType<LevelManager>();
-            if (levelManager != null)
-            {
-                levelManager.CompleteLevel(levelNumber + 1);
-            }
+            // Debug.Log("HealingHouse does not exist.");
+            // LevelManager levelManager = FindObjectOfType<LevelManager>();
+            // if (levelManager != null)
+            // {
+            //     levelManager.CompleteLevel(levelNumber + 1);
+            // }
             StartCoroutine(ShowDelayedPopup("You Won!", 1.0f)); // Delay for 2 seconds and then show the popup.
             // Actions to take if the HealingHouse does not exist.
         }
