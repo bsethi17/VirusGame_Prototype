@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 12f71bafac83842b4bf8a8fac9a4950e, type: 3}
+    - target: {fileID: 3823762798509789597, guid: aaacd25907c1444ba88bb853418d28e3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8961236795934530770, guid: aaacd25907c1444ba88bb853418d28e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.257
